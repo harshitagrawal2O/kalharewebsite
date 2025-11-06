@@ -10,6 +10,8 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { FileUpload } from "@/components/ui/file-upload";
+import { SparklesCore } from "@/components/ui/sparkles";
+import { BackgroundRippleEffect } from "@/components/ui/background-ripple-effect";
 import { 
   Upload, 
   FileText, 
@@ -87,7 +89,8 @@ export default function CustomPrint() {
     { id: "orange", name: "Orange", hex: "#F97316" },
     { id: "pink", name: "Pink", hex: "#EC4899" },
     { id: "gray", name: "Gray", hex: "#6B7280" },
-    { id: "transparent", name: "Transparent", hex: "linear-gradient(45deg, #ccc 25%, transparent 25%, transparent 75%, #ccc 75%, #ccc)" }
+    { id: "multicolor", name: "Multicolor", hex: "linear-gradient(135deg, #EF4444 0%, #F59E0B 25%, #10B981 50%, #3B82F6 75%, #A855F7 100%)" },
+    { id: "transparent", name: "Transparent", hex: "repeating-conic-gradient(#ccc 0% 25%, transparent 0% 50%)" }
   ];
 
   const finishes = [
@@ -167,18 +170,34 @@ ${notes ? `📝 Additional Notes: ${notes}` : ''}`;
   const estimate = calculateEstimate();
 
   return (
-    <div className="min-h-screen pt-24 pb-12 bg-gradient-to-b from-background to-secondary/20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen pt-24 pb-12 bg-gradient-to-b from-background to-secondary/20 relative">
+      <div className="fixed inset-0 w-full h-full opacity-40 pointer-events-none">
+        <BackgroundRippleEffect rows={15} cols={30} cellSize={60} />
+      </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-12 relative"
         >
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Custom <span className="text-gradient">3D Printing</span>
-          </h1>
+          <div className="relative inline-block">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 relative z-10">
+              Custom <span className="text-gradient">3D Printing</span>
+            </h1>
+            <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
+              <SparklesCore
+                particleColor="#fbbf24"
+                background="transparent"
+                minSize={1}
+                maxSize={3}
+                speed={3}
+                particleDensity={60}
+                className="w-full h-full"
+              />
+            </div>
+          </div>
           <p className="text-xl text-muted-foreground">
             Upload your design and customize your print
           </p>
@@ -265,28 +284,66 @@ ${notes ? `📝 Additional Notes: ${notes}` : ''}`;
                 <CardDescription>Choose your preferred color</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="grid grid-cols-4 sm:grid-cols-6 gap-3">
-                  {colors.map((color) => (
-                    <button
+                <div className="flex flex-wrap gap-2" style={{ transformStyle: 'preserve-3d', transform: 'perspective(1000px)' }}>
+                  {colors.map((color, index) => (
+                    <div
                       key={color.id}
-                      onClick={() => setSelectedColor(color.id)}
-                      className={`relative group ${
-                        selectedColor === color.id ? 'ring-2 ring-primary ring-offset-2' : ''
-                      }`}
+                      className="relative group"
+                      style={{
+                        flexShrink: 0,
+                        width: '40px',
+                        height: '48px',
+                      }}
                     >
-                      <div
-                        className="w-full aspect-square rounded-lg border-2 border-border hover:scale-110 transition-transform"
-                        style={{ 
-                          background: color.id === 'transparent' 
+                      <button
+                        onClick={() => setSelectedColor(color.id)}
+                        data-color={color.name}
+                        className="relative w-full h-10 border-none outline-none bg-transparent cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.175,0.885,0.32,1.1)] hover:scale-150 hover:-translate-y-2 hover:z-[99999] [&:hover+*]:scale-[1.3] [&:hover+*]:-translate-y-1 [&:hover+*]:z-[9999] [&:hover+*+*]:scale-[1.15] [&:hover+*+*]:-translate-y-0.5 [&:hover+*+*]:z-[999] has-[+*:hover]:scale-[1.3] has-[+*:hover]:-translate-y-1 has-[+*:hover]:z-[9999] has-[+*+*:hover]:scale-[1.15] has-[+*+*:hover]:-translate-y-0.5 has-[+*+*:hover]:z-[999] active:scale-95"
+                        style={{
+                          ['--color-bg' as string]: color.id === 'transparent' 
                             ? `repeating-conic-gradient(#ccc 0% 25%, transparent 0% 50%) 50% / 10px 10px`
-                            : color.hex 
+                            : color.hex
                         }}
-                      />
-                      <p className="text-xs mt-1 text-center">{color.name}</p>
+                      >
+                        <div 
+                          className={`absolute inset-0 w-10 h-10 rounded-lg pointer-events-none transition-all duration-500 ease-[cubic-bezier(0.175,0.885,0.32,1.1)] shadow-md ${
+                            selectedColor === color.id 
+                              ? 'scale-110 ring-[3px] ring-primary shadow-xl' 
+                              : ''
+                          } ${
+                            color.id === 'multicolor' 
+                              ? 'border-2 border-white dark:border-gray-800' 
+                              : ''
+                          }`}
+                          style={{
+                            background: color.id === 'transparent' 
+                              ? `repeating-conic-gradient(#ccc 0% 25%, transparent 0% 50%) 50% / 10px 10px`
+                              : color.id === 'multicolor'
+                              ? color.hex
+                              : color.hex
+                          }}
+                        />
+                        <div 
+                          className="absolute left-1/2 -translate-x-1/2 bottom-[52px] text-[10px] leading-[14px] px-2 py-1 bg-black text-white rounded-md pointer-events-none opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-500 ease-[cubic-bezier(0.175,0.885,0.32,1.1)] whitespace-nowrap z-[1000]"
+                        >
+                          {color.name}
+                        </div>
+                      </button>
                       {selectedColor === color.id && (
-                        <CheckCircle className="absolute -top-1 -right-1 h-5 w-5 text-primary bg-background rounded-full" />
+                        <motion.span
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          transition={{
+                            type: "spring",
+                            stiffness: 500,
+                            damping: 15
+                          }}
+                          className="absolute -top-1 -right-1 w-[18px] h-[18px] bg-primary rounded-full flex items-center justify-center text-white text-xs z-10"
+                        >
+                          ✓
+                        </motion.span>
                       )}
-                    </button>
+                    </div>
                   ))}
                 </div>
               </CardContent>

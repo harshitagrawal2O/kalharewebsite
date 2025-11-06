@@ -29,6 +29,12 @@
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
+    --color-neutral-100: #f5f5f5;
+    --color-neutral-300: #d4d4d4;
+    --color-neutral-500: #737373;
+    --color-neutral-700: #404040;
+    --color-neutral-800: #262626;
+    --color-neutral-900: #171717;
   }
 
   .dark {
@@ -71,5 +77,15 @@
 @layer utilities {
   .text-gradient {
     @apply bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent;
+  }
+  
+  .mask-radial-from-20\% {
+    mask-image: radial-gradient(circle at center, transparent 20%, black 100%);
+    -webkit-mask-image: radial-gradient(circle at center, transparent 20%, black 100%);
+  }
+  
+  .mask-radial-at-top {
+    mask-position: center top;
+    -webkit-mask-position: center top;
   }
 }

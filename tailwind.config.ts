@@ -77,11 +77,26 @@ const config: Config = {
   				to: {
   					height: '0'
   				}
+  			},
+  			'cell-ripple': {
+  				'0%': {
+  					transform: 'scale(1)',
+  					backgroundColor: 'var(--cell-fill-color)',
+  				},
+  				'50%': {
+  					transform: 'scale(1.1)',
+  					backgroundColor: 'rgba(59, 130, 246, 0.4)',
+  				},
+  				'100%': {
+  					transform: 'scale(1)',
+  					backgroundColor: 'var(--cell-fill-color)',
+  				},
   			}
   		},
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
-  			'accordion-up': 'accordion-up 0.2s ease-out'
+  			'accordion-up': 'accordion-up 0.2s ease-out',
+  			'cell-ripple': 'cell-ripple var(--duration, 500ms) ease-out var(--delay, 0ms)'
   		}
   	}
   },
