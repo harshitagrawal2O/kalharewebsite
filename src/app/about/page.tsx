@@ -2,29 +2,67 @@
 
 import { motion } from "framer-motion";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Target, Eye, Award, Users, TrendingUp, Heart } from "lucide-react";
+import { Target, Eye, Award, Users, TrendingUp, Heart, Lightbulb, Palette, Building, Megaphone, Cpu, GraduationCap } from "lucide-react";
 
 export default function AboutPage() {
   const values = [
     {
       icon: <Target className="h-8 w-8" />,
-      title: "Innovation",
-      description: "Pushing boundaries with cutting-edge 3D printing technology"
+      title: "Human Creativity Meets Industrial Precision",
+      description: "Combining artistic vision with cutting-edge manufacturing technology"
     },
     {
       icon: <Award className="h-8 w-8" />,
-      title: "Quality",
-      description: "Uncompromising standards in every print we deliver"
+      title: "Expert Design Assistance",
+      description: "From concept to print, our team guides you every step of the way"
     },
     {
       icon: <Users className="h-8 w-8" />,
-      title: "Customer First",
-      description: "Your satisfaction drives everything we do"
+      title: "Wide Material & Finish Options",
+      description: "Extensive selection to match your specific project needs"
     },
     {
       icon: <Heart className="h-8 w-8" />,
-      title: "Sustainability",
-      description: "Eco-friendly materials and practices"
+      title: "Scalable Production",
+      description: "Solutions for individuals and enterprises alike"
+    },
+    {
+      icon: <TrendingUp className="h-8 w-8" />,
+      title: "Fast Turnaround",
+      description: "Quick delivery with guaranteed quality standards"
+    }
+  ];
+
+  const clients = [
+    {
+      icon: <Lightbulb className="h-8 w-8" />,
+      title: "Product Designers & Innovators",
+      description: "Bringing innovative product concepts to life"
+    },
+    {
+      icon: <Palette className="h-8 w-8" />,
+      title: "Artists, Sculptors & Makers",
+      description: "Creating artistic and sculptural masterpieces"
+    },
+    {
+      icon: <Building className="h-8 w-8" />,
+      title: "Architects & Interior Designers",
+      description: "Building detailed architectural models and prototypes"
+    },
+    {
+      icon: <Megaphone className="h-8 w-8" />,
+      title: "Advertising & Creative Agencies",
+      description: "Producing eye-catching promotional materials"
+    },
+    {
+      icon: <Cpu className="h-8 w-8" />,
+      title: "Hardware Startups & Prototypers",
+      description: "Rapid prototyping for product development"
+    },
+    {
+      icon: <GraduationCap className="h-8 w-8" />,
+      title: "Educational & Research Institutions",
+      description: "Supporting academic and research projects"
     }
   ];
 
@@ -73,10 +111,10 @@ export default function AboutPage() {
             className="text-center"
           >
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              About <span className="text-gradient">PrintX</span>
+              About <span className="text-gradient">Layerforge Technologies</span>
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Leading the revolution in 3D printing services since 2010
+              A creative tech studio built for innovators, designers, and dreamers
             </p>
           </motion.div>
         </div>
@@ -96,9 +134,9 @@ export default function AboutPage() {
                   <Eye className="h-12 w-12 text-primary mb-4" />
                   <CardTitle className="text-3xl">Our Mission</CardTitle>
                   <CardDescription className="text-base mt-4">
-                    To democratize 3D printing technology and make it accessible to everyone.
-                    We believe in empowering creators, entrepreneurs, and innovators to bring
-                    their ideas to life with professional-grade 3D printing services.
+                    We believe that the future of creation lies at the intersection of art, engineering, and digital fabrication. 
+                    Our mission is to make that future accessible — by offering professional 3D printing, design, and prototyping 
+                    services that empower creators to turn vision into reality.
                   </CardDescription>
                 </CardHeader>
               </Card>
@@ -112,11 +150,12 @@ export default function AboutPage() {
               <Card className="h-full bg-gradient-to-br from-purple-500/10 to-transparent">
                 <CardHeader>
                   <Target className="h-12 w-12 text-purple-600 mb-4" />
-                  <CardTitle className="text-3xl">Our Vision</CardTitle>
+                  <CardTitle className="text-3xl">Our Philosophy</CardTitle>
                   <CardDescription className="text-base mt-4">
-                    To be the world&apos;s most trusted 3D printing service provider, known for
-                    innovation, quality, and customer satisfaction. We envision a future where
-                    3D printing transforms manufacturing and creative expression globally.
+                    Design boldly. Build intelligently. Create beautifully.
+                    <br /><br />
+                    Whether you&apos;re designing a new product, building an architectural model, or fabricating an artistic installation, 
+                    we provide the tools, expertise, and craftsmanship to make it happen.
                   </CardDescription>
                 </CardHeader>
               </Card>
@@ -158,14 +197,14 @@ export default function AboutPage() {
             className="text-center mb-12"
           >
             <h2 className="text-4xl font-bold mb-4">
-              Our <span className="text-gradient">Values</span>
+              Why Choose <span className="text-gradient">Layerforge</span>
             </h2>
             <p className="text-xl text-muted-foreground">
-              The principles that guide everything we do
+              The advantages that set us apart
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {values.map((value, index) => (
               <motion.div
                 key={index}
@@ -189,8 +228,49 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Team Section */}
+      {/* Who We Work With Section */}
       <section className="py-20 bg-secondary/30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-4xl font-bold mb-4">
+              Who We <span className="text-gradient">Work With</span>
+            </h2>
+            <p className="text-xl text-muted-foreground">
+              Serving diverse industries and creative professionals
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {clients.map((client, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <Card className="h-full text-center hover:shadow-lg transition-all hover:-translate-y-1">
+                  <CardHeader>
+                    <div className="h-16 w-16 rounded-full bg-gradient-to-br from-primary/10 to-purple-500/10 flex items-center justify-center text-primary mx-auto mb-4">
+                      {client.icon}
+                    </div>
+                    <CardTitle className="text-lg">{client.title}</CardTitle>
+                    <CardDescription>{client.description}</CardDescription>
+                  </CardHeader>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Team Section */}
+      <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -244,24 +324,25 @@ export default function AboutPage() {
             <Card>
               <CardHeader>
                 <TrendingUp className="h-12 w-12 text-primary mb-4" />
-                <CardTitle className="text-3xl">Our Story</CardTitle>
+                <CardTitle className="text-3xl">About Us</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4 text-muted-foreground">
                 <p>
-                  Founded in 2010, PrintX started as a small workshop with a passion for
-                  3D printing technology. What began as a dream to make 3D printing accessible
-                  to everyone has grown into one of the leading 3D printing service providers.
+                  Layerforge Technologies is a creative tech studio built for innovators, designers, and dreamers. 
+                  We believe that the future of creation lies at the intersection of art, engineering, and digital fabrication.
                 </p>
                 <p>
-                  Over the years, we&apos;ve served thousands of clients ranging from individual
-                  creators to Fortune 500 companies. Our commitment to quality, innovation,
-                  and customer satisfaction has remained unwavering.
+                  Our mission is to make that future accessible — by offering professional 3D printing, design, and prototyping 
+                  services that empower creators to turn vision into reality.
                 </p>
                 <p>
-                  Today, we operate state-of-the-art facilities with the latest 3D printing
-                  technology, a team of expert designers and engineers, and a dedication to
-                  pushing the boundaries of what&apos;s possible with additive manufacturing.
+                  Whether you&apos;re designing a new product, building an architectural model, or fabricating an artistic installation, 
+                  we provide the tools, expertise, and craftsmanship to make it happen.
                 </p>
+                <div className="pt-4">
+                  <h4 className="font-semibold text-foreground text-lg mb-2">Our Philosophy:</h4>
+                  <p className="text-lg italic">Design boldly. Build intelligently. Create beautifully.</p>
+                </div>
               </CardContent>
             </Card>
           </motion.div>

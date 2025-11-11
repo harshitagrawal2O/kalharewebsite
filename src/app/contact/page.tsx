@@ -12,22 +12,22 @@ export default function ContactPage() {
     {
       icon: <MapPin className="h-6 w-6" />,
       title: "Visit Us",
-      details: ["123 Print Street", "Tech City, TC 12345", "United States"]
+      details: ["Varanasi, Uttar Pradesh", "India"]
     },
     {
       icon: <Phone className="h-6 w-6" />,
       title: "Call Us",
-      details: ["+1 (555) 123-4567", "+1 (555) 987-6543", "Mon-Fri, 9AM-6PM EST"]
+      details: ["+91 91299 58671", "Mon-Sat, 9AM-7PM IST"]
     },
     {
       icon: <Mail className="h-6 w-6" />,
       title: "Email Us",
-      details: ["info@printx.com", "support@printx.com", "sales@printx.com"]
+      details: ["hello@gmail.com", "www.layerforgetech.com"]
     },
     {
       icon: <Clock className="h-6 w-6" />,
       title: "Business Hours",
-      details: ["Monday - Friday: 9AM - 6PM", "Saturday: 10AM - 4PM", "Sunday: Closed"]
+      details: ["Monday - Saturday: 9AM - 7PM", "Sunday: Closed"]
     }
   ];
 

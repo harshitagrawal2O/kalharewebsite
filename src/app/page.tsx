@@ -120,19 +120,19 @@ export default function Home() {
               <TypewriterEffectSmooth 
                 words={[
                   {
-                    text: "Transform",
+                    text: "Where",
                     className: "text-slate-900"
                   },
                   {
-                    text: "Ideas",
+                    text: "Imagination",
                     className: "text-slate-900"
                   },
                   {
-                    text: "Into",
+                    text: "Takes",
                     className: "text-slate-900"
                   },
                   {
-                    text: "Reality",
+                    text: "Shape",
                     className: "bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent"
                   },
                 ]}
@@ -140,8 +140,7 @@ export default function Home() {
                 cursorClassName="bg-purple-600"
               />
               <p className="text-xl md:text-2xl text-slate-700 max-w-3xl mx-auto">
-                Professional 3D printing services with cutting-edge technology.
-                Fast, reliable, and affordable.
+                At Layerforge Technologies, we fuse creativity and technology to transform your boldest ideas into precision-built reality — one layer at a time.
               </p>
             </motion.div>
 
