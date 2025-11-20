@@ -89,7 +89,7 @@ export default function ServicesPage() {
         "Assembly services",
         "Quality inspection"
       ],
-      price: "From $20"
+      price: "From ₹1000"
     }
   ];
 

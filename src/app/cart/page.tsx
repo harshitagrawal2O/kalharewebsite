@@ -180,7 +180,7 @@ export default function CartPage() {
                   </div>
                   {shipping > 0 && (
                     <p className="text-xs text-muted-foreground">
-                      Free shipping on orders over $50
+                      Free shipping on orders over ₹2500
                     </p>
                   )}
                   <div className="flex justify-between">
@@ -232,7 +232,7 @@ export default function CartPage() {
                     </div>
                     <div className="flex items-center gap-2">
                       <div className="h-2 w-2 rounded-full bg-green-500" />
-                      <span>Free Shipping on Orders $50+</span>
+                      <span>Free Shipping on Orders ₹2500+</span>
                     </div>
                   </div>
                 </CardContent>

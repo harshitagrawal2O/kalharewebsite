@@ -159,7 +159,7 @@ export default function CustomPrint() {
 🎨 Color: ${color?.name}
 ✨ Finish: ${finish?.name || 'Standard'}
 📦 Quantity: ${quantity}
-💰 Estimated Price: $${estimate.toFixed(2)}
+💰 Estimated Price: ₹${estimate.toFixed(2)}
 
 ${notes ? `📝 Additional Notes: ${notes}` : ''}`;
 
@@ -375,7 +375,7 @@ ${notes ? `📝 Additional Notes: ${notes}` : ''}`;
                         {finish.description}
                       </p>
                       <Badge variant={finish.price === 0 ? "secondary" : "default"}>
-                        {finish.price === 0 ? 'Included' : `+$${finish.price}`}
+                        {finish.price === 0 ? 'Included' : `+₹${finish.price}`}
                       </Badge>
                     </button>
                   ))}

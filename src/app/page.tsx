@@ -56,14 +56,14 @@ export default function Home() {
       title: "Custom 3D Printing",
       description: "Upload your design and get instant quotes",
       image: "🎨",
-      price: "From $10",
+      price: "From ₹500",
       link: "/services#custom"
     },
     {
       title: "Pre-designed Models",
       description: "Choose from our extensive library",
       image: "📦",
-      price: "From $5",
+      price: "From ₹250",
       link: "/products"
     },
     {
