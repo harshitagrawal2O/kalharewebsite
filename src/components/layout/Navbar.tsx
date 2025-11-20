@@ -5,8 +5,10 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ShoppingCart, User } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useCart } from "@/contexts/CartContext";
 
 export default function Navbar() {
+  const { cartCount } = useCart();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -70,9 +72,11 @@ export default function Navbar() {
             <Link href="/cart">
               <Button variant="ghost" size="icon" className="relative">
                 <ShoppingCart className="h-5 w-5" />
-                <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                  0
-                </span>
+                {cartCount > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                    {cartCount}
+                  </span>
+                )}
               </Button>
             </Link>
             <Link href="/auth">
@@ -117,9 +121,14 @@ export default function Navbar() {
               ))}
               <div className="pt-4 space-y-2">
                 <Link href="/cart" className="block">
-                  <Button variant="outline" className="w-full">
+                  <Button variant="outline" className="w-full relative">
                     <ShoppingCart className="mr-2 h-4 w-4" />
                     Cart
+                    {cartCount > 0 && (
+                      <span className="ml-auto bg-primary text-primary-foreground text-xs rounded-full px-2 py-0.5">
+                        {cartCount}
+                      </span>
+                    )}
                   </Button>
                 </Link>
                 <Link href="/auth" className="block">

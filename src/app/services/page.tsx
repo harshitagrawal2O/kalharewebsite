@@ -29,7 +29,7 @@ export default function ServicesPage() {
         "Different finish types",
         "High precision printing"
       ],
-      price: "From $10"
+      price: "From ₹500"
     },
     {
       icon: <Pencil className="h-12 w-12" />,
@@ -41,7 +41,7 @@ export default function ServicesPage() {
         "Unlimited revisions",
         "Fast turnaround"
       ],
-      price: "From $50"
+      price: "From ₹1000"
     },
     {
       icon: <Zap className="h-12 w-12" />,

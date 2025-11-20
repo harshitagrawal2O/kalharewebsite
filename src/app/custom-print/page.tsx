@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -12,6 +13,7 @@ import { Badge } from "@/components/ui/badge";
 import { FileUpload } from "@/components/ui/file-upload";
 import { SparklesCore } from "@/components/ui/sparkles";
 import { BackgroundRippleEffect } from "@/components/ui/background-ripple-effect";
+import { useCart } from "@/contexts/CartContext";
 import { 
   Upload, 
   FileText, 
@@ -26,6 +28,8 @@ import {
 } from "lucide-react";
 
 export default function CustomPrint() {
+  const router = useRouter();
+  const { addToCart } = useCart();
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
   const [selectedMaterial, setSelectedMaterial] = useState("");
   const [selectedColor, setSelectedColor] = useState("");
@@ -137,8 +141,24 @@ export default function CustomPrint() {
       return;
     }
     
-    // Add to cart logic here
-    alert('Added to cart successfully!');
+    const material = materials.find(m => m.id === selectedMaterial);
+    const color = colors.find(c => c.id === selectedColor);
+    const finish = finishes.find(f => f.id === selectedFinish);
+    const estimate = calculateEstimate();
+
+    addToCart({
+      name: `Custom Print - ${uploadedFile.name}`,
+      price: estimate,
+      quantity: quantity,
+      material: material?.name,
+      color: color?.name,
+      finish: finish?.name || 'Standard',
+      notes: notes,
+      fileName: uploadedFile.name
+    });
+
+    // Navigate to cart page
+    router.push('/cart');
   };
 
   const handleWhatsAppQuote = () => {
@@ -150,20 +170,34 @@ export default function CustomPrint() {
     const material = materials.find(m => m.id === selectedMaterial);
     const color = colors.find(c => c.id === selectedColor);
     const finish = finishes.find(f => f.id === selectedFinish);
-    const estimate = calculateEstimate();
 
-    const message = `Hi! I'd like to get a quote for 3D printing:
-    
-📁 File: ${uploadedFile.name}
-🔧 Material: ${material?.name}
-🎨 Color: ${color?.name}
-✨ Finish: ${finish?.name || 'Standard'}
-📦 Quantity: ${quantity}
-💰 Estimated Price: ₹${estimate.toFixed(2)}
+    const message = `*3D Printing Quote Request*
 
-${notes ? `📝 Additional Notes: ${notes}` : ''}`;
+Hello! I would like to request a quote for custom 3D printing with the following specifications:
 
-    const whatsappUrl = `https://wa.me/1234567890?text=${encodeURIComponent(message)}`;
+*Project Details:*
+📁 *File Name:* ${uploadedFile.name}
+📏 *File Size:* ${(uploadedFile.size / (1024 * 1024)).toFixed(2)} MB
+
+*Print Specifications:*
+🔧 *Material:* ${material?.name} (${material?.description})
+🎨 *Color:* ${color?.name}
+✨ *Finish:* ${finish?.name || 'Standard'} ${finish?.price ? `(+₹${finish.price})` : '(Included)'}
+📦 *Quantity:* ${quantity} unit${quantity > 1 ? 's' : ''}
+${notes ? `
+📝 *Additional Notes:*
+${notes}` : ''}
+
+*Next Steps:*
+Please review my requirements and provide:
+• Accurate price quotation
+• Expected delivery timeline
+• Any file modifications needed
+
+Thank you!`;
+
+    const whatsappNumber = '919129958671'; // Replace with your WhatsApp number
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   };
 
@@ -222,20 +256,46 @@ ${notes ? `📝 Additional Notes: ${notes}` : ''}`;
                   Supported formats: STL, OBJ, 3MF, STEP, STP
                 </CardDescription>
               </CardHeader>
-              <CardContent>
-                <FileUpload onChange={(files: File[]) => {
-                  if (files.length > 0) {
-                    const file = files[0];
-                    const validTypes = ['.stl', '.obj', '.3mf', '.step', '.stp'];
-                    const fileExtension = file.name.substring(file.name.lastIndexOf('.')).toLowerCase();
-                    
-                    if (validTypes.includes(fileExtension)) {
-                      setUploadedFile(file);
-                    } else {
-                      alert('Please upload a valid 3D file (.stl, .obj, .3mf, .step, .stp)');
+              <CardContent className="space-y-4">
+                {!uploadedFile ? (
+                  <FileUpload onChange={(files: File[]) => {
+                    if (files.length > 0) {
+                      const file = files[0];
+                      const validTypes = ['.stl', '.obj', '.3mf', '.step', '.stp'];
+                      const fileExtension = file.name.substring(file.name.lastIndexOf('.')).toLowerCase();
+                      
+                      if (validTypes.includes(fileExtension)) {
+                        setUploadedFile(file);
+                      } else {
+                        alert('Please upload a valid 3D file (.stl, .obj, .3mf, .step, .stp)');
+                      }
                     }
-                  }
-                }} />
+                  }} />
+                ) : (
+                  <div className="border-2 border-dashed border-primary/50 rounded-lg p-6 bg-primary/5">
+                    <div className="flex items-start justify-between">
+                      <div className="flex items-start gap-3 flex-1">
+                        <FileText className="h-8 w-8 text-primary flex-shrink-0" />
+                        <div className="flex-1 min-w-0">
+                          <p className="font-semibold text-foreground truncate">{uploadedFile.name}</p>
+                          <p className="text-sm text-muted-foreground">Size: {(uploadedFile.size / (1024 * 1024)).toFixed(2)} MB</p>
+                          <Badge variant="default" className="mt-2">
+                            <CheckCircle className="h-3 w-3 mr-1" />
+                            File uploaded successfully
+                          </Badge>
+                        </div>
+                      </div>
+                      <Button
+                        onClick={removeFile}
+                        variant="ghost"
+                        size="sm"
+                        className="text-destructive hover:text-destructive hover:bg-destructive/10 flex-shrink-0 ml-2"
+                      >
+                        <X className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  </div>
+                )}
               </CardContent>
             </Card>
 
@@ -266,7 +326,7 @@ ${notes ? `📝 Additional Notes: ${notes}` : ''}`;
                         {material.description}
                       </p>
                       <Badge variant="secondary" className="text-xs">
-                        ${material.price}/g
+                        ₹{material.price}/g
                       </Badge>
                     </button>
                   ))}
@@ -460,33 +520,19 @@ ${notes ? `📝 Additional Notes: ${notes}` : ''}`;
                 </div>
 
                 <div className="border-t pt-4">
-                  <div className="flex justify-between items-center mb-4">
-                    <span className="text-lg font-semibold">Estimated Total:</span>
-                    <span className="text-2xl font-bold text-gradient">
-                      ${estimate.toFixed(2)}
-                    </span>
-                  </div>
-                  
-                  <div className="flex items-start gap-2 p-3 bg-blue-50 dark:bg-blue-950/20 rounded-lg mb-4">
-                    <Info className="h-4 w-4 text-blue-600 mt-0.5 flex-shrink-0" />
-                    <p className="text-xs text-blue-600 dark:text-blue-400">
-                      This is an estimated price. Final quote will be provided after file analysis.
-                    </p>
+                  <div className="flex items-start gap-2 p-3 bg-primary/5 border border-primary/20 rounded-lg mb-4">
+                    <Info className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                    <div className="text-sm">
+                      <p className="font-semibold text-foreground mb-1">Get Your Quote</p>
+                      <p className="text-muted-foreground">
+                        Send your requirements via WhatsApp and we'll provide an accurate quote with delivery timeline.
+                      </p>
+                    </div>
                   </div>
 
                   <div className="space-y-2">
                     <Button
-                      onClick={handleAddToCart}
-                      className="w-full"
-                      size="lg"
-                      disabled={!uploadedFile || !selectedMaterial || !selectedColor}
-                    >
-                      <ShoppingCart className="mr-2 h-5 w-5" />
-                      Add to Cart
-                    </Button>
-                    <Button
                       onClick={handleWhatsAppQuote}
-                      variant="outline"
                       className="w-full"
                       size="lg"
                       disabled={!uploadedFile || !selectedMaterial || !selectedColor}
@@ -499,9 +545,10 @@ ${notes ? `📝 Additional Notes: ${notes}` : ''}`;
 
                 <div className="border-t pt-4 space-y-2 text-xs text-muted-foreground">
                   <p>✓ Free file analysis & optimization</p>
-                  <p>✓ Quality guarantee</p>
+                  <p>✓ Quality guarantee on all prints</p>
                   <p>✓ Fast turnaround time</p>
-                  <p>✓ Secure payment options</p>
+                  <p>✓ Direct communication via WhatsApp</p>
+                  <p>✓ Expert consultation available</p>
                 </div>
               </CardContent>
             </Card>
