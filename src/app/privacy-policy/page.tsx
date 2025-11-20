@@ -8,7 +8,7 @@ export default function PrivacyPolicyPage() {
   return (
     <div className="min-h-screen pt-24 pb-16">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary/10 via-background to-purple-500/10 py-20">
+      <section className="bg-gradient-to-br from-primary/10 via-background to-primary/5 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -39,7 +39,7 @@ export default function PrivacyPolicyPage() {
               <CardContent className="pt-6 space-y-4 text-muted-foreground">
                 <p className="text-sm text-muted-foreground">Effective Date: November 11, 2025</p>
                 <p>
-                  At Layerforge Technologies Private Limited, we value your privacy and are committed to protecting your personal information. 
+                  At LayerForge, we value your privacy and are committed to protecting your personal information. 
                   This policy explains how we collect, use, and safeguard the data you share with us through our website, email, and services.
                 </p>
               </CardContent>
@@ -251,7 +251,7 @@ export default function PrivacyPolicyPage() {
               </CardHeader>
               <CardContent className="text-muted-foreground">
                 <p>
-                  Layerforge Technologies reserves the right to update or modify this Privacy Policy at any time. 
+                  LayerForge reserves the right to update or modify this Privacy Policy at any time. 
                   The updated version will be posted on this page with a revised effective date.
                 </p>
               </CardContent>
@@ -283,7 +283,7 @@ export default function PrivacyPolicyPage() {
                   <div className="flex items-start gap-3 p-4 bg-secondary/50 rounded-lg">
                     <MapPin className="h-5 w-5 text-primary mt-1" />
                     <div>
-                      <p className="font-semibold text-foreground">Layerforge Technologies Private Limited</p>
+                      <p className="font-semibold text-foreground">LayerForge</p>
                       <p className="text-sm text-muted-foreground">Varanasi, Uttar Pradesh, India</p>
                     </div>
                   </div>

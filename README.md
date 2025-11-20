@@ -1,4 +1,4 @@
-# PrintX - 3D Printing Service Website
+# LayerForge - 3D Printing Service Website
 
 A modern, visually stunning website for a 3D printing service company built with Next.js, TypeScript, Tailwind CSS, and shadcn/ui components.
 

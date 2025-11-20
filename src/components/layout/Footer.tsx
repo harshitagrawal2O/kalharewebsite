@@ -8,7 +8,9 @@ export default function Footer() {
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12">
           {/* Company Info */}
           <div className="space-y-4">
-            <h3 className="text-2xl font-bold text-gradient">Layerforge</h3>
+              <Link href="/" className="inline-block">
+                <img src="/logo.svg" alt="LayerForge" className="h-20 w-40" />
+              </Link>
             <p className="text-sm text-muted-foreground">
               Let's Build Something Extraordinary Together
             </p>
@@ -124,7 +126,7 @@ export default function Footer() {
         <div className="mt-8 pt-8 border-t border-border">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-center text-sm text-muted-foreground">
-              © {new Date().getFullYear()} Layerforge Technologies. All rights reserved.
+              © {new Date().getFullYear()} LayerForge. All rights reserved.
             </p>
             <div className="flex gap-4 text-xs text-muted-foreground">
               <Link href="/terms" className="hover:text-foreground transition-colors">

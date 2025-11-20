@@ -12,7 +12,7 @@ export default function AuthPage() {
   const [isLogin, setIsLogin] = useState(true);
 
   return (
-    <div className="min-h-screen pt-24 pb-16 bg-gradient-to-br from-primary/10 via-background to-purple-500/10">
+    <div className="min-h-screen pt-24 pb-16 bg-gradient-to-br from-primary/10 via-background to-primary/5">
       <div className="max-w-md mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -25,7 +25,7 @@ export default function AuthPage() {
               </CardTitle>
               <CardDescription>
                 {isLogin
-                  ? "Sign in to your PrintX account"
+                  ? "Sign in to your LayerForge account"
                   : "Start your 3D printing journey today"}
               </CardDescription>
             </CardHeader>

@@ -84,7 +84,7 @@ export default function Home() {
 
   const testimonials = [
     {
-      quote: "PrintX transformed my designs into reality. The quality is outstanding! Their attention to detail and commitment to excellence is unmatched in the industry.",
+      quote: "LayerForge transformed my designs into reality. The quality is outstanding! Their attention to detail and commitment to excellence is unmatched in the industry.",
       name: "Sarah Johnson",
       designation: "Product Designer",
       src: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&h=500&fit=crop"
@@ -96,7 +96,7 @@ export default function Home() {
       src: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=500&fit=crop"
     },
     {
-      quote: "Perfect for architectural models. The precision is incredible. PrintX has become an essential partner in our design process, delivering consistent quality every time.",
+      quote: "Perfect for architectural models. The precision is incredible. LayerForge has become an essential partner in our design process, delivering consistent quality every time.",
       name: "Emily Davis",
       designation: "Architect",
       src: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=500&h=500&fit=crop"
@@ -121,26 +121,26 @@ export default function Home() {
                 words={[
                   {
                     text: "Where",
-                    className: "text-slate-900"
+                    className: "text-slate-900 dark:text-slate-100"
                   },
                   {
                     text: "Imagination",
-                    className: "text-slate-900"
+                    className: "text-slate-900 dark:text-slate-100"
                   },
                   {
                     text: "Takes",
-                    className: "text-slate-900"
+                    className: "text-slate-900 dark:text-slate-100"
                   },
                   {
                     text: "Shape",
-                    className: "bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent"
+                    className: "text-[#4c9aff]"
                   },
                 ]}
                 className="text-5xl md:text-7xl font-bold tracking-tight justify-center"
-                cursorClassName="bg-purple-600"
+                cursorClassName="bg-[#4c9aff]"
               />
               <p className="text-xl md:text-2xl text-slate-700 max-w-3xl mx-auto">
-                At Layerforge Technologies, we fuse creativity and technology to transform your boldest ideas into precision-built reality — one layer at a time.
+                At LayerForge, we fuse creativity and technology to transform your boldest ideas into precision-built reality — one layer at a time.
               </p>
             </motion.div>
 
@@ -155,8 +155,8 @@ export default function Home() {
                 </Button>
               </Link>
               <PointerHighlight
-                rectangleClassName="border-purple-600"
-                pointerClassName="text-purple-600"
+                rectangleClassName="border-[#4c9aff]"
+                pointerClassName="text-[#4c9aff]"
               >
                 <Link href="/services">
                   <Button size="lg" variant="outline" className="text-lg px-8 relative z-10">
@@ -171,16 +171,16 @@ export default function Home() {
               className="pt-12 flex justify-center gap-12 text-center flex-wrap"
             >
               <div>
-                <div className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">10K+</div>
-                <div className="text-slate-600">Orders Completed</div>
+                <div className="text-4xl font-bold text-gradient">10K+</div>
+                <div className="text-slate-600 dark:text-slate-400">Orders Completed</div>
               </div>
               <div>
-                <div className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">5K+</div>
-                <div className="text-slate-600">Happy Clients</div>
+                <div className="text-4xl font-bold text-gradient">5K+</div>
+                <div className="text-slate-600 dark:text-slate-400">Happy Clients</div>
               </div>
               <div>
-                <div className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">99%</div>
-                <div className="text-slate-600">Satisfaction</div>
+                <div className="text-4xl font-bold text-gradient">99%</div>
+                <div className="text-slate-600 dark:text-slate-400">Satisfaction</div>
               </div>
             </motion.div>
           </div>
@@ -226,7 +226,7 @@ export default function Home() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Why Choose <span className="text-gradient">PrintX</span>
+              Why Choose <span className="text-gradient">LayerForge</span>
             </h2>
             <p className="text-xl text-muted-foreground">
               Industry-leading 3D printing with unmatched quality
@@ -356,7 +356,7 @@ export default function Home() {
                 <CardSpotlight 
                   className="h-full text-center p-8 bg-white dark:bg-neutral-950 border-gray-200 flex-1"
                   radius={400}
-                  color="rgba(168, 85, 247, 0.3)"
+                  color="rgba(76, 154, 255, 0.25)"
                 >
                   <div className="text-6xl font-bold text-primary/20 mb-4">
                     {item.step}
@@ -401,7 +401,7 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-primary to-purple-600">
+      <section className="py-20 bg-gradient-to-r from-[#4c9aff] to-[#2563eb]">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
@@ -417,7 +417,7 @@ export default function Home() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/products">
-              <Button size="lg" variant="secondary" className="text-lg px-8">
+              <Button size="lg" variant="secondary" className="text-lg px-8 bg-white hover:bg-white/90 text-[#1a365d]">
                 Browse Products
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>

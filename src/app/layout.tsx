@@ -7,7 +7,7 @@ import Footer from "@/components/layout/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "PrintX - Professional 3D Printing Services",
+  title: "LayerForge - Professional 3D Printing Services",
   description: "Transform your ideas into reality with our professional 3D printing services. Custom designs, fast turnaround, and premium quality.",
 };
 

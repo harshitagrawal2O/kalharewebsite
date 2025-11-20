@@ -44,9 +44,10 @@ export default function Navbar() {
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="text-2xl font-bold text-gradient"
+              className="text-xl font-bold flex flex-col leading-tight"
             >
-              PrintX
+              <span className="text-[#4c9aff]">LayerForge</span>
+              <span className="text-foreground">Technologies.</span>
             </motion.div>
           </Link>
 

@@ -103,7 +103,7 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen pt-24 pb-16">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary/10 via-background to-purple-500/10 py-20">
+      <section className="bg-gradient-to-br from-primary/10 via-background to-primary/5 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -111,7 +111,7 @@ export default function AboutPage() {
             className="text-center"
           >
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              About <span className="text-gradient">Layerforge Technologies</span>
+              About <span className="text-gradient">LayerForge</span>
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               A creative tech studio built for innovators, designers, and dreamers
@@ -147,9 +147,9 @@ export default function AboutPage() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <Card className="h-full bg-gradient-to-br from-purple-500/10 to-transparent">
+              <Card className="h-full bg-gradient-to-br from-[#4c9aff]/10 to-transparent">
                 <CardHeader>
-                  <Target className="h-12 w-12 text-purple-600 mb-4" />
+                  <Target className="h-12 w-12 text-[#4c9aff] mb-4" />
                   <CardTitle className="text-3xl">Our Philosophy</CardTitle>
                   <CardDescription className="text-base mt-4">
                     Design boldly. Build intelligently. Create beautifully.
@@ -197,7 +197,7 @@ export default function AboutPage() {
             className="text-center mb-12"
           >
             <h2 className="text-4xl font-bold mb-4">
-              Why Choose <span className="text-gradient">Layerforge</span>
+              Why Choose <span className="text-gradient">LayerForge</span>
             </h2>
             <p className="text-xl text-muted-foreground">
               The advantages that set us apart
@@ -256,7 +256,7 @@ export default function AboutPage() {
               >
                 <Card className="h-full text-center hover:shadow-lg transition-all hover:-translate-y-1">
                   <CardHeader>
-                    <div className="h-16 w-16 rounded-full bg-gradient-to-br from-primary/10 to-purple-500/10 flex items-center justify-center text-primary mx-auto mb-4">
+                    <div className="h-16 w-16 rounded-full bg-gradient-to-br from-primary/10 to-[#4c9aff]/10 flex items-center justify-center text-primary mx-auto mb-4">
                       {client.icon}
                     </div>
                     <CardTitle className="text-lg">{client.title}</CardTitle>
@@ -328,7 +328,7 @@ export default function AboutPage() {
               </CardHeader>
               <CardContent className="space-y-4 text-muted-foreground">
                 <p>
-                  Layerforge Technologies is a creative tech studio built for innovators, designers, and dreamers. 
+                  LayerForge is a creative tech studio built for innovators, designers, and dreamers. 
                   We believe that the future of creation lies at the intersection of art, engineering, and digital fabrication.
                 </p>
                 <p>

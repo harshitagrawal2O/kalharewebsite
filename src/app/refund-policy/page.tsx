@@ -8,7 +8,7 @@ export default function RefundPolicyPage() {
   return (
     <div className="min-h-screen pt-24 pb-16">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary/10 via-background to-purple-500/10 py-20">
+      <section className="bg-gradient-to-br from-primary/10 via-background to-primary/5 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -40,7 +40,7 @@ export default function RefundPolicyPage() {
               </CardHeader>
               <CardContent className="space-y-4 text-muted-foreground">
                 <p>
-                  At Layerforge Technologies Private Limited, each project is custom-produced based on client specifications. 
+                  At LayerForge, each project is custom-produced based on client specifications. 
                   As a result, we follow a <span className="font-semibold text-foreground">strict no-refund policy once an order has been confirmed and production has begun.</span>
                 </p>
                 <p>
@@ -96,7 +96,7 @@ export default function RefundPolicyPage() {
               </CardHeader>
               <CardContent className="text-muted-foreground">
                 <p>
-                  If an order is found to have a manufacturing defect or quality issue directly attributable to Layerforge, 
+                  If an order is found to have a manufacturing defect or quality issue directly attributable to LayerForge, 
                   we will offer a <span className="font-semibold text-foreground">reprint or suitable replacement at no additional cost</span>, after verification.
                 </p>
               </CardContent>

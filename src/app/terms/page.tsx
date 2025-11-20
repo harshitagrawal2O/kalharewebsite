@@ -8,7 +8,7 @@ export default function TermsPage() {
   return (
     <div className="min-h-screen pt-24 pb-16">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary/10 via-background to-purple-500/10 py-20">
+      <section className="bg-gradient-to-br from-primary/10 via-background to-primary/5 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -37,7 +37,7 @@ export default function TermsPage() {
             <Card>
               <CardHeader>
                 <CardTitle className="text-2xl">
-                  By using the services of Layerforge Technologies Private Limited, you agree to the following terms and conditions:
+                  By using the services of LayerForge, you agree to the following terms and conditions:
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-6 text-muted-foreground">
@@ -52,7 +52,7 @@ export default function TermsPage() {
                   <div className="flex items-start gap-3">
                     <Shield className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
                     <p>
-                      Layerforge ensures complete confidentiality and does not share or reproduce client designs without consent.
+                      LayerForge ensures complete confidentiality and does not share or reproduce client designs without consent.
                     </p>
                   </div>
 
@@ -80,7 +80,7 @@ export default function TermsPage() {
                   <div className="flex items-start gap-3">
                     <AlertCircle className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
                     <p>
-                      Layerforge is not liable for errors arising from incomplete, inaccurate, or faulty client-supplied designs.
+                      LayerForge is not liable for errors arising from incomplete, inaccurate, or faulty client-supplied designs.
                     </p>
                   </div>
 
