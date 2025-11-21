@@ -44,7 +44,7 @@ export default function ProductsPage() {
               transition={{ delay: 0.4 }}
               className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8"
             >
-              We're working hard to bring you an amazing collection of pre-designed 3D models. 
+              We&apos;re working hard to bring you an amazing collection of pre-designed 3D models. 
               Stay tuned for our product launch!
             </motion.p>
 
@@ -140,7 +140,7 @@ export default function ProductsPage() {
                 <Bell className="h-12 w-12 text-primary mx-auto mb-4" />
                 <CardTitle className="text-3xl mb-4">Be the First to Know</CardTitle>
                 <CardDescription className="text-base">
-                  Want to get notified when our product store launches? Contact us and we'll keep you updated.
+                  Want to get notified when our product store launches? Contact us and we&apos;ll keep you updated.
                 </CardDescription>
               </CardHeader>
               <CardContent>

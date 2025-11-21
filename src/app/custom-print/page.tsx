@@ -667,7 +667,7 @@ Thank you!`;
                     <div className="text-sm">
                       <p className="font-semibold text-foreground mb-1">Get Your Quote</p>
                       <p className="text-muted-foreground">
-                        Send your requirements via WhatsApp and we'll provide an accurate quote with delivery timeline.
+                        Send your requirements via WhatsApp and we&apos;ll provide an accurate quote with delivery timeline.
                       </p>
                     </div>
                   </div>

@@ -12,7 +12,7 @@ export default function Footer() {
                 <img src="/logo.svg" alt="LayerForge" className="h-20 w-40" />
               </Link>
             <p className="text-sm text-muted-foreground">
-              Let's Build Something Extraordinary Together
+              Let&apos;s Build Something Extraordinary Together
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
