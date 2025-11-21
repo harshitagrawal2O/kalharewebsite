@@ -1,16 +1,16 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useSession, signIn, signOut } from "next-auth/react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
-import { FileUpload } from "@/components/ui/file-upload";
 import { SparklesCore } from "@/components/ui/sparkles";
 import { BackgroundRippleEffect } from "@/components/ui/background-ripple-effect";
 import { useCart } from "@/contexts/CartContext";
@@ -24,13 +24,18 @@ import {
   MessageCircle,
   CheckCircle,
   X,
-  Info
+  Info,
+  Download
 } from "lucide-react";
 
 export default function CustomPrint() {
   const router = useRouter();
   const { addToCart } = useCart();
-  const [uploadedFile, setUploadedFile] = useState<File | null>(null);
+  const { data: session } = useSession();
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [uploadedFiles, setUploadedFiles] = useState<Array<{ name: string; size: number; url: string }>>([]);
+  const [uploading, setUploading] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState(0);
   const [selectedMaterial, setSelectedMaterial] = useState("");
   const [selectedColor, setSelectedColor] = useState("");
   const [selectedFinish, setSelectedFinish] = useState("");
@@ -103,40 +108,96 @@ export default function CustomPrint() {
     { id: "painted", name: "Painted", description: "Professional paint job", price: 30 }
   ];
 
-  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const validTypes = ['.stl', '.obj', '.3mf', '.step', '.stp'];
-      const fileExtension = file.name.substring(file.name.lastIndexOf('.')).toLowerCase();
-      
-      if (validTypes.includes(fileExtension)) {
-        setUploadedFile(file);
-      } else {
-        alert('Please upload a valid 3D file (.stl, .obj, .3mf, .step, .stp)');
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (!files || files.length === 0) return;
+
+    // Check if user is signed in
+    if (!session) {
+      alert('Please sign in with Google to upload files');
+      signIn('google');
+      return;
+    }
+
+    setUploading(true);
+    setUploadProgress(0);
+
+    try {
+      const file = files[0];
+      const formData = new FormData();
+      formData.append('file', file);
+
+      // Simulate progress for better UX
+      const progressInterval = setInterval(() => {
+        setUploadProgress(prev => {
+          if (prev >= 90) {
+            clearInterval(progressInterval);
+            return 90;
+          }
+          return prev + 10;
+        });
+      }, 200);
+
+      const response = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData,
+      });
+
+      clearInterval(progressInterval);
+
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error || 'Upload failed');
       }
+
+      const data = await response.json();
+      
+      setUploadProgress(100);
+      
+      const uploadedFile = {
+        name: data.file.name,
+        size: data.file.size,
+        url: data.file.url
+      };
+      
+      setUploadedFiles([...uploadedFiles, uploadedFile]);
+      
+      setTimeout(() => {
+        setUploading(false);
+        setUploadProgress(0);
+        if (fileInputRef.current) {
+          fileInputRef.current.value = '';
+        }
+      }, 500);
+      
+    } catch (error: any) {
+      console.error('Upload error:', error);
+      alert('Upload failed: ' + error.message);
+      setUploading(false);
+      setUploadProgress(0);
     }
   };
 
-  const removeFile = () => {
-    setUploadedFile(null);
+  const removeFile = (index: number) => {
+    setUploadedFiles(uploadedFiles.filter((_, i) => i !== index));
   };
 
   const calculateEstimate = () => {
-    if (!uploadedFile || !selectedMaterial) return 0;
+    if (uploadedFiles.length === 0 || !selectedMaterial) return 0;
     
     const material = materials.find(m => m.id === selectedMaterial);
     const finish = finishes.find(f => f.id === selectedFinish);
     
     // Estimate based on file size (simplified calculation)
-    const fileSizeInMB = uploadedFile.size / (1024 * 1024);
-    const materialCost = (material?.price || 0) * fileSizeInMB * 100;
+    const totalFileSizeInMB = uploadedFiles.reduce((sum, file) => sum + file.size / (1024 * 1024), 0);
+    const materialCost = (material?.price || 0) * totalFileSizeInMB * 100;
     const finishCost = finish?.price || 0;
     
     return (materialCost + finishCost) * quantity;
   };
 
   const handleAddToCart = () => {
-    if (!uploadedFile || !selectedMaterial || !selectedColor) {
+    if (uploadedFiles.length === 0 || !selectedMaterial || !selectedColor) {
       alert('Please complete all required fields');
       return;
     }
@@ -147,14 +208,14 @@ export default function CustomPrint() {
     const estimate = calculateEstimate();
 
     addToCart({
-      name: `Custom Print - ${uploadedFile.name}`,
+      name: `Custom Print - ${uploadedFiles.map(f => f.name).join(', ')}`,
       price: estimate,
       quantity: quantity,
       material: material?.name,
       color: color?.name,
       finish: finish?.name || 'Standard',
       notes: notes,
-      fileName: uploadedFile.name
+      fileName: uploadedFiles.map(f => f.name).join(', ')
     });
 
     // Navigate to cart page
@@ -162,7 +223,7 @@ export default function CustomPrint() {
   };
 
   const handleWhatsAppQuote = () => {
-    if (!uploadedFile || !selectedMaterial || !selectedColor) {
+    if (uploadedFiles.length === 0 || !selectedMaterial || !selectedColor) {
       alert('Please complete all required fields');
       return;
     }
@@ -171,13 +232,17 @@ export default function CustomPrint() {
     const color = colors.find(c => c.id === selectedColor);
     const finish = finishes.find(f => f.id === selectedFinish);
 
+    // Create file list with download URLs
+    const fileList = uploadedFiles.map((file, index) => 
+      `📁 *File ${index + 1}:* ${file.name} (${(file.size / (1024 * 1024)).toFixed(2)} MB)\n🔗 Download: ${file.url}`
+    ).join('\n\n');
+
     const message = `*3D Printing Quote Request*
 
 Hello! I would like to request a quote for custom 3D printing with the following specifications:
 
 *Project Details:*
-📁 *File Name:* ${uploadedFile.name}
-📏 *File Size:* ${(uploadedFile.size / (1024 * 1024)).toFixed(2)} MB
+${fileList}
 
 *Print Specifications:*
 🔧 *Material:* ${material?.name} (${material?.description})
@@ -257,43 +322,120 @@ Thank you!`;
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
-                {!uploadedFile ? (
-                  <FileUpload onChange={(files: File[]) => {
-                    if (files.length > 0) {
-                      const file = files[0];
-                      const validTypes = ['.stl', '.obj', '.3mf', '.step', '.stp'];
-                      const fileExtension = file.name.substring(file.name.lastIndexOf('.')).toLowerCase();
-                      
-                      if (validTypes.includes(fileExtension)) {
-                        setUploadedFile(file);
-                      } else {
-                        alert('Please upload a valid 3D file (.stl, .obj, .3mf, .step, .stp)');
-                      }
-                    }
-                  }} />
+                {!session ? (
+                  <div className="border-2 border-dashed border-primary/50 rounded-lg p-8 text-center">
+                    <Upload className="h-12 w-12 text-primary mx-auto mb-4" />
+                    <p className="text-lg font-semibold text-foreground mb-2">
+                      Sign in to upload files
+                    </p>
+                    <p className="text-sm text-muted-foreground mb-4">
+                      Connect with Google Drive to upload your 3D files
+                    </p>
+                    <Button
+                      onClick={() => signIn('google')}
+                      className="bg-primary hover:bg-primary/90"
+                    >
+                      <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                        <path fill="currentColor" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                        <path fill="currentColor" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                        <path fill="currentColor" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                      </svg>
+                      Sign in with Google
+                    </Button>
+                  </div>
                 ) : (
-                  <div className="border-2 border-dashed border-primary/50 rounded-lg p-6 bg-primary/5">
-                    <div className="flex items-start justify-between">
-                      <div className="flex items-start gap-3 flex-1">
-                        <FileText className="h-8 w-8 text-primary flex-shrink-0" />
-                        <div className="flex-1 min-w-0">
-                          <p className="font-semibold text-foreground truncate">{uploadedFile.name}</p>
-                          <p className="text-sm text-muted-foreground">Size: {(uploadedFile.size / (1024 * 1024)).toFixed(2)} MB</p>
-                          <Badge variant="default" className="mt-2">
-                            <CheckCircle className="h-3 w-3 mr-1" />
-                            File uploaded successfully
-                          </Badge>
-                        </div>
+                  <>
+                    <div className="flex items-center justify-between p-3 bg-primary/10 rounded-lg mb-4">
+                      <div className="flex items-center gap-2">
+                        <CheckCircle className="h-5 w-5 text-primary" />
+                        <span className="text-sm font-medium">Signed in as {session.user?.email}</span>
                       </div>
                       <Button
-                        onClick={removeFile}
+                        onClick={() => signOut()}
                         variant="ghost"
                         size="sm"
-                        className="text-destructive hover:text-destructive hover:bg-destructive/10 flex-shrink-0 ml-2"
                       >
-                        <X className="h-4 w-4" />
+                        Sign out
                       </Button>
                     </div>
+
+                    <input
+                      ref={fileInputRef}
+                      type="file"
+                      accept=".stl,.obj,.3mf,.step,.stp"
+                      onChange={handleFileUpload}
+                      disabled={uploading}
+                      className="hidden"
+                    />
+                    
+                    <div 
+                      onClick={() => !uploading && fileInputRef.current?.click()}
+                      className={`border-2 border-dashed border-primary/50 rounded-lg p-8 text-center hover:border-primary hover:bg-primary/5 transition-all ${uploading ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
+                    >
+                      <Upload className="h-12 w-12 text-primary mx-auto mb-4" />
+                      <p className="text-lg font-semibold text-foreground mb-2">
+                        {uploading ? 'Uploading...' : 'Click to upload 3D files'}
+                      </p>
+                      <p className="text-sm text-muted-foreground">
+                        Supports: STL, OBJ, 3MF, STEP, STP (No size restrictions)
+                      </p>
+                    </div>
+
+                    {uploading && (
+                      <div className="space-y-2">
+                        <div className="flex justify-between text-sm">
+                          <span className="text-muted-foreground">Uploading...</span>
+                          <span className="font-semibold text-primary">{uploadProgress}%</span>
+                        </div>
+                        <div className="w-full bg-secondary rounded-full h-2 overflow-hidden">
+                          <div 
+                            className="bg-primary h-full transition-all duration-300 ease-out"
+                            style={{ width: `${uploadProgress}%` }}
+                          />
+                        </div>
+                      </div>
+                    )}
+                  </>
+                )}
+
+                {uploadedFiles.length > 0 && (
+                  <div className="space-y-2">
+                    {uploadedFiles.map((file, index) => (
+                      <div key={index} className="border-2 border-primary/50 rounded-lg p-4 bg-primary/5">
+                        <div className="flex items-start justify-between">
+                          <div className="flex items-start gap-3 flex-1">
+                            <FileText className="h-6 w-6 text-primary flex-shrink-0" />
+                            <div className="flex-1 min-w-0">
+                              <p className="font-semibold text-foreground truncate">{file.name}</p>
+                              <p className="text-sm text-muted-foreground">
+                                Size: {(file.size / (1024 * 1024)).toFixed(2)} MB
+                              </p>
+                            </div>
+                          </div>
+                          <div className="flex gap-2">
+                            <Button
+                              onClick={() => window.open(file.url, '_blank')}
+                              variant="outline"
+                              size="sm"
+                              className="flex-shrink-0"
+                              title="View/Download file"
+                            >
+                              <Download className="h-4 w-4" />
+                            </Button>
+                            <Button
+                              onClick={() => removeFile(index)}
+                              variant="ghost"
+                              size="sm"
+                              className="text-destructive hover:text-destructive hover:bg-destructive/10 flex-shrink-0"
+                              title="Remove file"
+                            >
+                              <X className="h-4 w-4" />
+                            </Button>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 )}
               </CardContent>
@@ -490,9 +632,9 @@ Thank you!`;
               <CardContent className="space-y-4">
                 <div className="space-y-3">
                   <div className="flex justify-between text-sm">
-                    <span className="text-muted-foreground">File:</span>
+                    <span className="text-muted-foreground">Files:</span>
                     <span className="font-medium truncate ml-2 max-w-[150px]">
-                      {uploadedFile ? uploadedFile.name : 'Not uploaded'}
+                      {uploadedFiles.length > 0 ? `${uploadedFiles.length} file${uploadedFiles.length > 1 ? 's' : ''}` : 'Not uploaded'}
                     </span>
                   </div>
                   <div className="flex justify-between text-sm">
@@ -535,7 +677,7 @@ Thank you!`;
                       onClick={handleWhatsAppQuote}
                       className="w-full"
                       size="lg"
-                      disabled={!uploadedFile || !selectedMaterial || !selectedColor}
+                      disabled={uploadedFiles.length === 0 || !selectedMaterial || !selectedColor}
                     >
                       <MessageCircle className="mr-2 h-5 w-5" />
                       Get Quote on WhatsApp

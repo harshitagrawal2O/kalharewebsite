@@ -88,4 +88,13 @@
     mask-position: center top;
     -webkit-mask-position: center top;
   }
+
+  /* UploadThing styles */
+  .ut-button:hover {
+    @apply bg-primary/80;
+  }
+  
+  .ut-button:focus {
+    @apply ring-2 ring-primary ring-offset-2;
+  }
 }
