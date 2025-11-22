@@ -8,9 +8,20 @@ export async function POST(req: NextRequest) {
   try {
     const session = await getServerSession(authOptions);
 
+    console.log("Session:", session ? "exists" : "missing");
+    console.log("Access token:", session?.accessToken ? "exists" : "missing");
+
     if (!session || !session.accessToken) {
       return NextResponse.json(
         { error: "Unauthorized. Please sign in with Google." },
+        { status: 401 }
+      );
+    }
+
+    // Check for session error (token refresh failed)
+    if (session.error === "RefreshAccessTokenError") {
+      return NextResponse.json(
+        { error: "Token expired. Please sign in again." },
         { status: 401 }
       );
     }
@@ -24,6 +35,8 @@ export async function POST(req: NextRequest) {
         { status: 400 }
       );
     }
+
+    console.log("Uploading file:", file.name, "Size:", file.size);
 
     // Initialize Google Drive API
     const oauth2Client = new google.auth.OAuth2(
