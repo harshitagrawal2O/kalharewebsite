@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card";
 import { Button } from "@/components/ui/button";
+import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
 import { 
   Printer, 
   Pencil, 
@@ -185,15 +186,20 @@ export default function ServicesPage() {
                     <div className="flex justify-end items-center pt-4 border-t">
                       <CardItem
                         translateZ="60"
-                        as="button"
-                        onClick={() => {
-                          const message = `Hello! I am interested in your ${service.title} service. Please provide me with a quote.`;
-                          const whatsappUrl = `https://api.whatsapp.com/send?phone=9129958671&text=${encodeURIComponent(message)}`;
-                          window.open(whatsappUrl, '_blank');
-                        }}
-                        className="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold"
+                        as="div"
                       >
-                        Get Quote
+                        <HoverBorderGradient
+                          as="button"
+                          onClick={() => {
+                            const message = `Hello! I am interested in your ${service.title} service. Please provide me with a quote.`;
+                            const whatsappUrl = `https://api.whatsapp.com/send?phone=9129958671&text=${encodeURIComponent(message)}`;
+                            window.open(whatsappUrl, '_blank');
+                          }}
+                          containerClassName="rounded-xl"
+                          className="bg-gray-100 text-black"
+                        >
+                          <span className="text-sm font-semibold">Get Quote</span>
+                        </HoverBorderGradient>
                       </CardItem>
                     </div>
                   </CardBody>
