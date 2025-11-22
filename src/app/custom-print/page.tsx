@@ -150,7 +150,7 @@ export default function CustomPrint() {
     if (!files || files.length === 0) return;
 
     // Check if user is signed in
-    if (!session) {
+    if (!session || !session.accessToken) {
       alert('Please sign in with Google to upload files');
       signIn('google');
       return;
@@ -161,40 +161,84 @@ export default function CustomPrint() {
 
     try {
       const file = files[0];
-      const formData = new FormData();
-      formData.append('file', file);
-
-      // Simulate progress for better UX
-      const progressInterval = setInterval(() => {
-        setUploadProgress(prev => {
-          if (prev >= 90) {
-            clearInterval(progressInterval);
-            return 90;
-          }
-          return prev + 10;
-        });
-      }, 200);
-
-      const response = await fetch('/api/upload', {
+      
+      // 1. Initiate Resumable Upload
+      const initResponse = await fetch('https://www.googleapis.com/upload/drive/v3/files?uploadType=resumable', {
         method: 'POST',
-        body: formData,
+        headers: {
+          'Authorization': `Bearer ${session.accessToken}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: file.name,
+          mimeType: file.type,
+          parents: ["root"],
+        }),
       });
 
-      clearInterval(progressInterval);
-
-      if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.error || 'Upload failed');
+      if (!initResponse.ok) {
+        if (initResponse.status === 401) {
+           throw new Error("Session expired. Please sign in again.");
+        }
+        const errorText = await initResponse.text();
+        throw new Error(`Failed to initiate upload: ${errorText}`);
       }
 
-      const data = await response.json();
+      const uploadUrl = initResponse.headers.get('Location');
+      if (!uploadUrl) throw new Error('No upload URL received from Google Drive');
+
+      // 2. Upload File Content using XMLHttpRequest for progress tracking
+      const xhr = new XMLHttpRequest();
+      xhr.open('PUT', uploadUrl);
       
-      setUploadProgress(100);
+      xhr.upload.onprogress = (event) => {
+        if (event.lengthComputable) {
+          const percentComplete = (event.loaded / event.total) * 100;
+          setUploadProgress(Math.round(percentComplete));
+        }
+      };
+
+      const uploadPromise = new Promise<any>((resolve, reject) => {
+        xhr.onload = () => {
+          if (xhr.status === 200 || xhr.status === 201) {
+            resolve(JSON.parse(xhr.responseText));
+          } else {
+            reject(new Error('Upload failed'));
+          }
+        };
+        xhr.onerror = () => reject(new Error('Network error during upload'));
+      });
+
+      xhr.send(file);
+      const fileData = await uploadPromise;
+      const fileId = fileData.id;
+
+      // 3. Make File Publicly Accessible
+      await fetch(`https://www.googleapis.com/drive/v3/files/${fileId}/permissions`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${session.accessToken}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          role: 'reader',
+          type: 'anyone',
+        }),
+      });
+
+      // 4. Get File Details (webContentLink)
+      const fileDetailsResponse = await fetch(`https://www.googleapis.com/drive/v3/files/${fileId}?fields=id,name,mimeType,size,webViewLink,webContentLink`, {
+        headers: {
+          'Authorization': `Bearer ${session.accessToken}`,
+        },
+      });
       
+      const finalFileData = await fileDetailsResponse.json();
+
       const uploadedFile = {
-        name: data.file.name,
-        size: data.file.size,
-        url: data.file.url
+        name: finalFileData.name,
+        size: parseInt(finalFileData.size || "0"),
+        url: finalFileData.webContentLink || finalFileData.webViewLink
       };
       
       setUploadedFiles([...uploadedFiles, uploadedFile]);
