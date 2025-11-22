@@ -29,8 +29,7 @@ export default function ServicesPage() {
         "Various color choices",
         "Different finish types",
         "High precision printing"
-      ],
-      price: "From ₹500"
+      ]
     },
     {
       icon: <Pencil className="h-12 w-12" />,
@@ -41,8 +40,7 @@ export default function ServicesPage() {
         "Design consultation",
         "Unlimited revisions",
         "Fast turnaround"
-      ],
-      price: "From ₹1000"
+      ]
     },
     {
       icon: <Zap className="h-12 w-12" />,
@@ -53,8 +51,7 @@ export default function ServicesPage() {
         "Multiple iterations",
         "Design feedback",
         "Testing support"
-      ],
-      price: "Custom Quote"
+      ]
     },
     {
       icon: <Package className="h-12 w-12" />,
@@ -65,8 +62,7 @@ export default function ServicesPage() {
         "Quality consistency",
         "Fast production",
         "Logistics support"
-      ],
-      price: "Custom Quote"
+      ]
     },
     {
       icon: <Users className="h-12 w-12" />,
@@ -77,8 +73,7 @@ export default function ServicesPage() {
         "Material advice",
         "Design optimization",
         "Cost reduction"
-      ],
-      price: "Hourly Rate"
+      ]
     },
     {
       icon: <Sparkles className="h-12 w-12" />,
@@ -89,8 +84,7 @@ export default function ServicesPage() {
         "Painting & coating",
         "Assembly services",
         "Quality inspection"
-      ],
-      price: "From ₹1000"
+      ]
     }
   ];
 
@@ -188,13 +182,7 @@ export default function ServicesPage() {
                         ))}
                       </ul>
                     </CardItem>
-                    <div className="flex justify-between items-center pt-4 border-t">
-                      <CardItem
-                        translateZ="70"
-                        className="text-lg font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent"
-                      >
-                        {service.price}
-                      </CardItem>
+                    <div className="flex justify-end items-center pt-4 border-t">
                       <CardItem
                         translateZ="60"
                         as="button"
