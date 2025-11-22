@@ -30,13 +30,14 @@ export function PointerHighlight({
       }
     });
 
-    if (containerRef.current) {
-      resizeObserver.observe(containerRef.current);
+    const element = containerRef.current;
+    if (element) {
+      resizeObserver.observe(element);
     }
 
     return () => {
-      if (containerRef.current) {
-        resizeObserver.unobserve(containerRef.current);
+      if (element) {
+        resizeObserver.unobserve(element);
       }
     };
   }, []);

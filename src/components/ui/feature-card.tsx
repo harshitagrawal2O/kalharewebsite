@@ -2,6 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 export const FeatureCard = ({
   icon,
@@ -25,9 +26,9 @@ export const FeatureCard = ({
       <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
       
       <div className="relative z-10 flex flex-col h-full items-center text-center">
-        <div className="mb-6 inline-flex h-20 w-20 items-center justify-center rounded-xl bg-primary/5 transition-all duration-300 group-hover:scale-110 shadow-sm overflow-hidden">
+        <div className="mb-6 inline-flex h-20 w-20 items-center justify-center rounded-xl bg-primary/5 transition-all duration-300 group-hover:scale-110 shadow-sm overflow-hidden relative">
           {typeof icon === "string" ? (
-            <img src={icon} alt={title} className="h-full w-full object-cover" />
+            <Image src={icon} alt={title} fill className="object-cover" />
           ) : (
             <div className="text-primary group-hover:text-primary">
               {icon}

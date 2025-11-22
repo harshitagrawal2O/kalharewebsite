@@ -16,6 +16,7 @@ import {
   Check
 } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function ServicesPage() {
   const services = [
@@ -238,11 +239,12 @@ export default function ServicesPage() {
               >
                 <Card className="text-center hover:shadow-lg transition-all overflow-hidden">
                   <CardContent className="pt-6">
-                    <div className="h-20 w-20 rounded-full mx-auto mb-4 overflow-hidden bg-muted">
-                      <img 
+                    <div className="h-20 w-20 rounded-full mx-auto mb-4 overflow-hidden bg-muted relative">
+                      <Image 
                         src={material.image} 
                         alt={material.name}
-                        className="w-full h-full object-cover"
+                        fill
+                        className="object-cover"
                       />
                     </div>
                     <h3 className="font-bold text-lg mb-2">{material.name}</h3>

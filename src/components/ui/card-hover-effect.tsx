@@ -2,6 +2,7 @@ import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "motion/react";
 
 import { useState } from "react";
+import Image from "next/image";
 
 export const HoverEffect = ({
   items,
@@ -53,7 +54,7 @@ export const HoverEffect = ({
             {item.image && (
               <div className="mb-4 group-hover:scale-110 transition-transform duration-300">
                 {(item.image.startsWith('/') || item.image.startsWith('http')) ? (
-                   <img src={item.image} alt={item.title} className="h-16 w-16 object-contain" />
+                   <Image src={item.image} alt={item.title} width={64} height={64} className="h-16 w-16 object-contain" />
                 ) : (
                    <span className="text-6xl">{item.image}</span>
                 )}

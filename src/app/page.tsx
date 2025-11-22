@@ -14,12 +14,12 @@ import { CardSpotlight } from "@/components/ui/card-spotlight";
 import { cn } from "@/lib/utils";
 import { useState, useRef, useEffect } from "react";
 
+const videos = ['/printing.mp4', '/printing2.mp4'];
+
 export default function Home() {
   const [currentVideo, setCurrentVideo] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
-  
-  const videos = ['/printing.mp4', '/printing2.mp4'];
   
   useEffect(() => {
     const video = videoRef.current;

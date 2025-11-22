@@ -29,6 +29,7 @@ import {
   Info,
   Download
 } from "lucide-react";
+import Image from "next/image";
 
 export default function CustomPrint() {
   const router = useRouter();
@@ -73,7 +74,8 @@ export default function CustomPrint() {
       description: "Most popular, eco-friendly",
       icon: "🌱",
       image: "/pla.png",
-      detailedContent: "PLA (Polylactic Acid) is a biodegradable thermoplastic derived from renewable resources like corn starch or sugarcane. It's the most popular 3D printing material due to its ease of use, low warping, and environmental friendliness. PLA produces minimal odor during printing and offers excellent detail resolution. Ideal for prototypes, decorative items, and general-purpose prints. However, it has lower heat resistance (starts softening around 60°C) and is more brittle compared to other materials."
+      detailedContent: "PLA (Polylactic Acid) is a biodegradable thermoplastic derived from renewable resources like corn starch or sugarcane. It's the most popular 3D printing material due to its ease of use, low warping, and environmental friendliness. PLA produces minimal odor during printing and offers excellent detail resolution. Ideal for prototypes, decorative items, and general-purpose prints. However, it has lower heat resistance (starts softening around 60°C) and is more brittle compared to other materials.",
+      price: 10
     },
     { 
       id: "abs", 
@@ -81,7 +83,8 @@ export default function CustomPrint() {
       description: "Strong, heat resistant",
       icon: "💪",
       image: "/abs.png",
-      detailedContent: "ABS (Acrylonitrile Butadiene Styrene) is a petroleum-based thermoplastic known for its strength, durability, and heat resistance. It can withstand temperatures up to 100°C, making it suitable for functional parts and mechanical components. ABS is impact-resistant and can be smoothed with acetone vapor for a glossy finish. However, it requires a heated bed for printing and produces stronger fumes. Commonly used in automotive parts, toys (like LEGO bricks), and enclosures."
+      detailedContent: "ABS (Acrylonitrile Butadiene Styrene) is a petroleum-based thermoplastic known for its strength, durability, and heat resistance. It can withstand temperatures up to 100°C, making it suitable for functional parts and mechanical components. ABS is impact-resistant and can be smoothed with acetone vapor for a glossy finish. However, it requires a heated bed for printing and produces stronger fumes. Commonly used in automotive parts, toys (like LEGO bricks), and enclosures.",
+      price: 12
     },
     { 
       id: "petg", 
@@ -89,7 +92,8 @@ export default function CustomPrint() {
       description: "Durable, flexible",
       icon: "🔧",
       image: "/petg.png",
-      detailedContent: "PETG (Polyethylene Terephthalate Glycol) combines the best properties of PLA and ABS. It offers excellent layer adhesion, durability, and chemical resistance while being easier to print than ABS. PETG is food-safe (when properly printed), weather-resistant, and has good flexibility. It's transparent in its natural form and can be colored easily. Perfect for mechanical parts, outdoor applications, protective cases, and functional prototypes that need to withstand stress."
+      detailedContent: "PETG (Polyethylene Terephthalate Glycol) combines the best properties of PLA and ABS. It offers excellent layer adhesion, durability, and chemical resistance while being easier to print than ABS. PETG is food-safe (when properly printed), weather-resistant, and has good flexibility. It's transparent in its natural form and can be colored easily. Perfect for mechanical parts, outdoor applications, protective cases, and functional prototypes that need to withstand stress.",
+      price: 15
     },
     { 
       id: "resin", 
@@ -97,7 +101,8 @@ export default function CustomPrint() {
       description: "High detail, smooth finish",
       icon: "✨",
       image: "/resin.png",
-      detailedContent: "Resin (Photopolymer) is used in SLA/DLP 3D printing, cured by UV light. It produces incredibly smooth surfaces with fine details down to 25 microns layer height. Ideal for miniatures, jewelry, dental models, and highly detailed prototypes. Resin prints require post-processing (washing and curing) and are generally more brittle than FDM materials. Various types include standard, tough, flexible, castable, and dental resins. Note: Uncured resin is toxic and requires careful handling."
+      detailedContent: "Resin (Photopolymer) is used in SLA/DLP 3D printing, cured by UV light. It produces incredibly smooth surfaces with fine details down to 25 microns layer height. Ideal for miniatures, jewelry, dental models, and highly detailed prototypes. Resin prints require post-processing (washing and curing) and are generally more brittle than FDM materials. Various types include standard, tough, flexible, castable, and dental resins. Note: Uncured resin is toxic and requires careful handling.",
+      price: 20
     },
     { 
       id: "nylon", 
@@ -105,7 +110,8 @@ export default function CustomPrint() {
       description: "Industrial strength",
       icon: "⚙️",
       image: "/nylon.png",
-      detailedContent: "Nylon (Polyamide) is an engineering-grade material offering exceptional strength, flexibility, and wear resistance. It has excellent layer adhesion and can withstand repeated stress and friction. Nylon is hygroscopic (absorbs moisture from air), which can affect print quality if not stored properly. It requires high printing temperatures (240-260°C) and works best with an enclosed printer. Perfect for gears, hinges, functional parts, tools, and applications requiring durability and toughness."
+      detailedContent: "Nylon (Polyamide) is an engineering-grade material offering exceptional strength, flexibility, and wear resistance. It has excellent layer adhesion and can withstand repeated stress and friction. Nylon is hygroscopic (absorbs moisture from air), which can affect print quality if not stored properly. It requires high printing temperatures (240-260°C) and works best with an enclosed printer. Perfect for gears, hinges, functional parts, tools, and applications requiring durability and toughness.",
+      price: 25
     },
     { 
       id: "tpu", 
@@ -113,7 +119,8 @@ export default function CustomPrint() {
       description: "Flexible, rubber-like",
       icon: "🔮",
       image: "/tpu.png",
-      detailedContent: "TPU (Thermoplastic Polyurethane) is a flexible, rubber-like material that can bend and compress without breaking. It offers excellent elasticity, abrasion resistance, and impact absorption. TPU can stretch up to 3 times its original length and bounce back to shape. It's resistant to oil, grease, and abrasion. Ideal for phone cases, wearables, seals, gaskets, and any application requiring flexibility. Printing TPU requires slower speeds and careful calibration due to its flexible nature."
+      detailedContent: "TPU (Thermoplastic Polyurethane) is a flexible, rubber-like material that can bend and compress without breaking. It offers excellent elasticity, abrasion resistance, and impact absorption. TPU can stretch up to 3 times its original length and bounce back to shape. It's resistant to oil, grease, and abrasion. Ideal for phone cases, wearables, seals, gaskets, and any application requiring flexibility. Printing TPU requires slower speeds and careful calibration due to its flexible nature.",
+      price: 18
     }
   ];
 
@@ -133,9 +140,9 @@ export default function CustomPrint() {
   ];
 
   const finishes = [
-    { id: "standard", name: "Standard", description: "Layer lines visible" },
-    { id: "smooth", name: "Smooth", description: "Sanded & polished" },
-    { id: "painted", name: "Painted", description: "Professional paint job" }
+    { id: "standard", name: "Standard", description: "Layer lines visible", price: 0 },
+    { id: "smooth", name: "Smooth", description: "Sanded & polished", price: 50 },
+    { id: "painted", name: "Painted", description: "Professional paint job", price: 100 }
   ];
 
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -511,10 +518,11 @@ Thank you!`;
                         className="w-full max-w-[500px] h-full md:h-fit md:max-h-[90%] flex flex-col bg-white dark:bg-neutral-900 sm:rounded-3xl overflow-hidden shadow-2xl"
                       >
                         <div className="relative w-full h-48 overflow-hidden bg-muted">
-                          <img
-                            src={materials.find(m => m.id === expandedMaterial)?.image}
-                            alt={materials.find(m => m.id === expandedMaterial)?.name}
-                            className="w-full h-full object-cover"
+                          <Image
+                            src={materials.find(m => m.id === expandedMaterial)?.image || ""}
+                            alt={materials.find(m => m.id === expandedMaterial)?.name || ""}
+                            fill
+                            className="object-cover"
                           />
                         </div>
                         <div className="p-6">
@@ -611,10 +619,11 @@ Thank you!`;
                               className="w-full"
                             >
                               <div className="relative w-full h-28 overflow-hidden bg-muted/50">
-                                <img
+                                <Image
                                   src={material.image}
                                   alt={material.name}
-                                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                                  fill
+                                  className="object-cover transition-transform duration-300 group-hover:scale-105"
                                 />
                               </div>
                             </CardItem>

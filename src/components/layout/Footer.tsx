@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin } from "lucide-react";
 
 export default function Footer() {
@@ -9,7 +10,7 @@ export default function Footer() {
           {/* Company Info */}
           <div className="space-y-4">
               <Link href="/" className="inline-block">
-                <img src="/logo.svg" alt="LayerForge" className="h-20 w-40" />
+                <Image src="/logo.svg" alt="LayerForge" width={160} height={80} className="h-20 w-40" />
               </Link>
             <p className="text-sm text-muted-foreground">
               Let&apos;s Build Something Extraordinary Together
