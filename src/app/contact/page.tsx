@@ -202,7 +202,7 @@ export default function ContactPage() {
                 a: "Yes, we offer 24-48 hour rush service for an additional fee."
               },
               {
-                q: "What&apos;s your return policy?",
+                q: "What's your return policy?",
                 a: "We offer a 30-day satisfaction guarantee on all prints."
               }
             ].map((faq, index) => (
