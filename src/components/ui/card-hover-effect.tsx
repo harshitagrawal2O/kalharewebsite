@@ -51,8 +51,12 @@ export const HoverEffect = ({
           </AnimatePresence>
           <Card>
             {item.image && (
-              <div className="text-6xl mb-4 group-hover:scale-110 transition-transform">
-                {item.image}
+              <div className="mb-4 group-hover:scale-110 transition-transform duration-300">
+                {(item.image.startsWith('/') || item.image.startsWith('http')) ? (
+                   <img src={item.image} alt={item.title} className="h-16 w-16 object-contain" />
+                ) : (
+                   <span className="text-6xl">{item.image}</span>
+                )}
               </div>
             )}
             <CardTitle>{item.title}</CardTitle>

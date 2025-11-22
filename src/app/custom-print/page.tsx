@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useRef } from "react";
-import { motion } from "framer-motion";
+import { useState, useRef, useId, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useSession, signIn, signOut } from "next-auth/react";
@@ -13,7 +13,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { SparklesCore } from "@/components/ui/sparkles";
 import { BackgroundRippleEffect } from "@/components/ui/background-ripple-effect";
+import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card";
 import { useCart } from "@/contexts/CartContext";
+import { useOutsideClick } from "@/hooks/use-outside-click";
 import { 
   Upload, 
   FileText, 
@@ -41,49 +43,77 @@ export default function CustomPrint() {
   const [selectedFinish, setSelectedFinish] = useState("");
   const [quantity, setQuantity] = useState(1);
   const [notes, setNotes] = useState("");
+  const [expandedMaterial, setExpandedMaterial] = useState<string | null>(null);
+  const materialCardRef = useRef<HTMLDivElement>(null);
+  const id = useId();
+
+  useEffect(() => {
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setExpandedMaterial(null);
+      }
+    }
+
+    if (expandedMaterial) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [expandedMaterial]);
+
+  useOutsideClick(materialCardRef, () => setExpandedMaterial(null));
 
   const materials = [
     { 
       id: "pla", 
       name: "PLA", 
       description: "Most popular, eco-friendly",
-      price: 0.05,
-      icon: "🌱"
+      icon: "🌱",
+      image: "/pla.png",
+      detailedContent: "PLA (Polylactic Acid) is a biodegradable thermoplastic derived from renewable resources like corn starch or sugarcane. It's the most popular 3D printing material due to its ease of use, low warping, and environmental friendliness. PLA produces minimal odor during printing and offers excellent detail resolution. Ideal for prototypes, decorative items, and general-purpose prints. However, it has lower heat resistance (starts softening around 60°C) and is more brittle compared to other materials."
     },
     { 
       id: "abs", 
       name: "ABS", 
       description: "Strong, heat resistant",
-      price: 0.07,
-      icon: "💪"
+      icon: "💪",
+      image: "/abs.png",
+      detailedContent: "ABS (Acrylonitrile Butadiene Styrene) is a petroleum-based thermoplastic known for its strength, durability, and heat resistance. It can withstand temperatures up to 100°C, making it suitable for functional parts and mechanical components. ABS is impact-resistant and can be smoothed with acetone vapor for a glossy finish. However, it requires a heated bed for printing and produces stronger fumes. Commonly used in automotive parts, toys (like LEGO bricks), and enclosures."
     },
     { 
       id: "petg", 
       name: "PETG", 
       description: "Durable, flexible",
-      price: 0.08,
-      icon: "🔧"
+      icon: "🔧",
+      image: "/petg.png",
+      detailedContent: "PETG (Polyethylene Terephthalate Glycol) combines the best properties of PLA and ABS. It offers excellent layer adhesion, durability, and chemical resistance while being easier to print than ABS. PETG is food-safe (when properly printed), weather-resistant, and has good flexibility. It's transparent in its natural form and can be colored easily. Perfect for mechanical parts, outdoor applications, protective cases, and functional prototypes that need to withstand stress."
     },
     { 
       id: "resin", 
       name: "Resin", 
       description: "High detail, smooth finish",
-      price: 0.15,
-      icon: "✨"
+      icon: "✨",
+      image: "/resin.png",
+      detailedContent: "Resin (Photopolymer) is used in SLA/DLP 3D printing, cured by UV light. It produces incredibly smooth surfaces with fine details down to 25 microns layer height. Ideal for miniatures, jewelry, dental models, and highly detailed prototypes. Resin prints require post-processing (washing and curing) and are generally more brittle than FDM materials. Various types include standard, tough, flexible, castable, and dental resins. Note: Uncured resin is toxic and requires careful handling."
     },
     { 
       id: "nylon", 
       name: "Nylon", 
       description: "Industrial strength",
-      price: 0.12,
-      icon: "⚙️"
+      icon: "⚙️",
+      image: "/nylon.png",
+      detailedContent: "Nylon (Polyamide) is an engineering-grade material offering exceptional strength, flexibility, and wear resistance. It has excellent layer adhesion and can withstand repeated stress and friction. Nylon is hygroscopic (absorbs moisture from air), which can affect print quality if not stored properly. It requires high printing temperatures (240-260°C) and works best with an enclosed printer. Perfect for gears, hinges, functional parts, tools, and applications requiring durability and toughness."
     },
     { 
       id: "tpu", 
       name: "TPU", 
       description: "Flexible, rubber-like",
-      price: 0.10,
-      icon: "🔮"
+      icon: "🔮",
+      image: "/tpu.png",
+      detailedContent: "TPU (Thermoplastic Polyurethane) is a flexible, rubber-like material that can bend and compress without breaking. It offers excellent elasticity, abrasion resistance, and impact absorption. TPU can stretch up to 3 times its original length and bounce back to shape. It's resistant to oil, grease, and abrasion. Ideal for phone cases, wearables, seals, gaskets, and any application requiring flexibility. Printing TPU requires slower speeds and careful calibration due to its flexible nature."
     }
   ];
 
@@ -103,9 +133,9 @@ export default function CustomPrint() {
   ];
 
   const finishes = [
-    { id: "standard", name: "Standard", description: "Layer lines visible", price: 0 },
-    { id: "smooth", name: "Smooth", description: "Sanded & polished", price: 15 },
-    { id: "painted", name: "Painted", description: "Professional paint job", price: 30 }
+    { id: "standard", name: "Standard", description: "Layer lines visible" },
+    { id: "smooth", name: "Smooth", description: "Sanded & polished" },
+    { id: "painted", name: "Painted", description: "Professional paint job" }
   ];
 
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -451,26 +481,200 @@ Thank you!`;
                 <CardDescription>Choose the material for your print</CardDescription>
               </CardHeader>
               <CardContent>
+                <AnimatePresence>
+                  {expandedMaterial && (
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      className="fixed inset-0 bg-black/50 h-full w-full z-50"
+                    />
+                  )}
+                </AnimatePresence>
+                <AnimatePresence>
+                  {expandedMaterial && materials.find(m => m.id === expandedMaterial) && (
+                    <div className="fixed inset-0 grid place-items-center z-[100]">
+                      <motion.button
+                        key={`button-${expandedMaterial}-${id}`}
+                        layout
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0, transition: { duration: 0.05 } }}
+                        className="flex absolute top-2 right-2 lg:hidden items-center justify-center bg-white rounded-full h-6 w-6 z-[110]"
+                        onClick={() => setExpandedMaterial(null)}
+                      >
+                        <X className="h-4 w-4 text-black" />
+                      </motion.button>
+                      <motion.div
+                        layoutId={`card-${expandedMaterial}-${id}`}
+                        ref={materialCardRef}
+                        className="w-full max-w-[500px] h-full md:h-fit md:max-h-[90%] flex flex-col bg-white dark:bg-neutral-900 sm:rounded-3xl overflow-hidden shadow-2xl"
+                      >
+                        <div className="relative w-full h-48 overflow-hidden bg-muted">
+                          <img
+                            src={materials.find(m => m.id === expandedMaterial)?.image}
+                            alt={materials.find(m => m.id === expandedMaterial)?.name}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                        <div className="p-6">
+                          <div className="flex justify-between items-start mb-4">
+                            <div>
+                              <motion.h3
+                                layoutId={`title-${expandedMaterial}-${id}`}
+                                className="text-2xl font-bold text-neutral-700 dark:text-neutral-200"
+                              >
+                                {materials.find(m => m.id === expandedMaterial)?.name}
+                              </motion.h3>
+                              <motion.p
+                                layoutId={`description-${expandedMaterial}-${id}`}
+                                className="text-neutral-600 dark:text-neutral-400"
+                              >
+                                {materials.find(m => m.id === expandedMaterial)?.description}
+                              </motion.p>
+                            </div>
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              className="hidden lg:flex"
+                              onClick={() => setExpandedMaterial(null)}
+                            >
+                              <X className="h-5 w-5" />
+                            </Button>
+                          </div>
+                          <div className="pt-4 relative">
+                            <motion.div
+                              layout
+                              initial={{ opacity: 0 }}
+                              animate={{ opacity: 1 }}
+                              exit={{ opacity: 0 }}
+                              className="text-neutral-600 text-sm md:text-base max-h-[400px] pb-6 overflow-auto dark:text-neutral-400 [scrollbar-width:thin]"
+                            >
+                              <h4 className="font-semibold mb-3 flex items-center gap-2 text-primary">
+                                <Info className="h-5 w-5" />
+                                Material Details
+                              </h4>
+                              <p className="leading-relaxed">
+                                {materials.find(m => m.id === expandedMaterial)?.detailedContent}
+                              </p>
+                            </motion.div>
+                          </div>
+                          <div className="flex gap-2 mt-4">
+                            <Button
+                              onClick={() => {
+                                setSelectedMaterial(expandedMaterial);
+                                setExpandedMaterial(null);
+                              }}
+                              className="flex-1"
+                            >
+                              Select This Material
+                            </Button>
+                            <Button
+                              variant="outline"
+                              onClick={() => setExpandedMaterial(null)}
+                            >
+                              Close
+                            </Button>
+                          </div>
+                        </div>
+                      </motion.div>
+                    </div>
+                  )}
+                </AnimatePresence>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                   {materials.map((material) => (
-                    <button
-                      key={material.id}
-                      onClick={() => setSelectedMaterial(material.id)}
-                      className={`p-4 rounded-lg border-2 text-left transition-all ${
-                        selectedMaterial === material.id
-                          ? 'border-primary bg-primary/5'
-                          : 'border-border hover:border-primary/50'
-                      }`}
-                    >
-                      <div className="text-3xl mb-2">{material.icon}</div>
-                      <h3 className="font-semibold mb-1">{material.name}</h3>
-                      <p className="text-xs text-muted-foreground mb-2">
-                        {material.description}
-                      </p>
-                      <Badge variant="secondary" className="text-xs">
-                        ₹{material.price}/g
-                      </Badge>
-                    </button>
+                    <CardContainer key={material.id} className="inter-var" containerClassName="py-0">
+                      <CardBody className="relative w-auto h-auto">
+                        <motion.div
+                          layoutId={`card-${material.id}-${id}`}
+                          className="relative"
+                        >
+                          {material.id === 'pla' && (
+                            <div className="absolute top-0 left-0 z-10 overflow-hidden w-20 h-20 pointer-events-none">
+                              <div className="absolute top-3 -left-7 w-28 h-7 bg-gradient-to-r from-rose-500 via-rose-600 to-rose-700 transform -rotate-45 shadow-lg flex items-center justify-center">
+                                <span className="text-white text-[11px] font-bold tracking-widest uppercase drop-shadow-sm">
+                                  Popular
+                                </span>
+                              </div>
+                            </div>
+                          )}
+                          <button
+                            onClick={() => setSelectedMaterial(material.id)}
+                            className={`w-full rounded-xl border text-left transition-all duration-300 overflow-hidden group ${
+                              selectedMaterial === material.id
+                                ? 'border-primary shadow-lg shadow-primary/20 bg-primary/5'
+                                : 'border-border/50 hover:border-primary/50 hover:shadow-md bg-card'
+                            }`}
+                          >
+                            <CardItem
+                              translateZ="50"
+                              className="w-full"
+                            >
+                              <div className="relative w-full h-28 overflow-hidden bg-muted/50">
+                                <img
+                                  src={material.image}
+                                  alt={material.name}
+                                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                                />
+                              </div>
+                            </CardItem>
+                            <div className="p-3">
+                              <CardItem
+                                translateZ="60"
+                                className="w-full"
+                              >
+                                <motion.h3
+                                  layoutId={`title-${material.id}-${id}`}
+                                  className="font-semibold mb-1 text-sm"
+                                >
+                                  {material.name}
+                                </motion.h3>
+                              </CardItem>
+                              <CardItem
+                                translateZ="40"
+                                className="w-full"
+                              >
+                                <motion.p
+                                  layoutId={`description-${material.id}-${id}`}
+                                  className="text-xs text-muted-foreground mb-3"
+                                >
+                                  {material.description}
+                                </motion.p>
+                              </CardItem>
+                              <CardItem
+                                translateZ="70"
+                                className="w-full flex justify-end"
+                              >
+                                <Button
+                                  variant="ghost"
+                                  size="sm"
+                                  className="text-primary hover:text-primary hover:bg-primary/10 h-5 px-1.5 text-[10px] gap-0.5"
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    setExpandedMaterial(material.id);
+                                  }}
+                                >
+                                  Know More
+                                  <svg 
+                                    className="w-3 h-3" 
+                                    fill="none" 
+                                    stroke="currentColor" 
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <path 
+                                      strokeLinecap="round" 
+                                      strokeLinejoin="round" 
+                                      strokeWidth={2} 
+                                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" 
+                                    />
+                                  </svg>
+                                </Button>
+                              </CardItem>
+                            </div>
+                          </button>
+                        </motion.div>
+                      </CardBody>
+                    </CardContainer>
                   ))}
                 </div>
               </CardContent>
@@ -573,12 +777,9 @@ Thank you!`;
                       }`}
                     >
                       <h3 className="font-semibold mb-1">{finish.name}</h3>
-                      <p className="text-xs text-muted-foreground mb-2">
+                      <p className="text-xs text-muted-foreground">
                         {finish.description}
                       </p>
-                      <Badge variant={finish.price === 0 ? "secondary" : "default"}>
-                        {finish.price === 0 ? 'Included' : `+₹${finish.price}`}
-                      </Badge>
                     </button>
                   ))}
                 </div>

@@ -17,7 +17,7 @@ export default function ContactPage() {
     {
       icon: <Phone className="h-6 w-6" />,
       title: "Call Us",
-      details: ["+91 91299 58671", "Mon-Sat, 9AM-7PM IST"]
+      details: ["+91 91299 58671", "Mon-Sat, 9AM-9PM IST"]
     },
     {
       icon: <Mail className="h-6 w-6" />,

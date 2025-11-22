@@ -97,32 +97,32 @@ export default function ServicesPage() {
     {
       name: "PLA",
       description: "Eco-friendly, easy to print",
-      color: "bg-green-500"
+      image: "/pla.png"
     },
     {
       name: "ABS",
       description: "Strong and durable",
-      color: "bg-blue-500"
+      image: "/abs.png"
     },
     {
       name: "PETG",
       description: "Weather resistant",
-      color: "bg-purple-500"
+      image: "/petg.png"
     },
     {
       name: "Resin",
       description: "High detail finish",
-      color: "bg-orange-500"
+      image: "/resin.png"
     },
     {
       name: "Nylon",
       description: "Flexible and tough",
-      color: "bg-pink-500"
+      image: "/nylon.png"
     },
     {
       name: "TPU",
       description: "Rubber-like flexibility",
-      color: "bg-red-500"
+      image: "/tpu.png"
     }
   ];
 
@@ -236,9 +236,15 @@ export default function ServicesPage() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
               >
-                <Card className="text-center hover:shadow-lg transition-all">
+                <Card className="text-center hover:shadow-lg transition-all overflow-hidden">
                   <CardContent className="pt-6">
-                    <div className={`h-16 w-16 rounded-full ${material.color} mx-auto mb-4`} />
+                    <div className="h-20 w-20 rounded-full mx-auto mb-4 overflow-hidden bg-muted">
+                      <img 
+                        src={material.image} 
+                        alt={material.name}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
                     <h3 className="font-bold text-lg mb-2">{material.name}</h3>
                     <p className="text-sm text-muted-foreground">
                       {material.description}
@@ -268,30 +274,137 @@ export default function ServicesPage() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 relative">
             {[
               { icon: <Pencil />, title: "Design", desc: "Upload or create your design" },
               { icon: <Shield />, title: "Review", desc: "We check and optimize" },
               { icon: <Printer />, title: "Print", desc: "Professional 3D printing" },
               { icon: <Package />, title: "Deliver", desc: "Fast shipping to your door" }
             ].map((step, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-              >
-                <Card className="text-center h-full">
-                  <CardContent className="pt-6">
-                    <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center text-primary mx-auto mb-4">
-                      {step.icon}
-                    </div>
-                    <h3 className="font-bold text-lg mb-2">{step.title}</h3>
-                    <p className="text-sm text-muted-foreground">{step.desc}</p>
-                  </CardContent>
-                </Card>
-              </motion.div>
+              <div key={index} className="relative">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  <Card className="text-center h-full hover:shadow-2xl transition-all duration-300 group hover:-translate-y-2 border-2 hover:border-primary/50">
+                    <CardContent className="pt-6 relative overflow-hidden">
+                      {/* Animated background gradient on hover */}
+                      <motion.div 
+                        className="absolute inset-0 bg-gradient-to-br from-primary/10 via-purple-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                        initial={false}
+                      />
+                      
+                      {/* Step number */}
+                      <motion.div 
+                        className="absolute top-4 right-4 text-6xl font-bold text-primary/5 group-hover:text-primary/10 transition-colors duration-300"
+                        whileHover={{ scale: 1.2, rotate: 5 }}
+                      >
+                        {index + 1}
+                      </motion.div>
+                      
+                      {/* Icon with advanced animations */}
+                      <motion.div 
+                        className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center text-primary mx-auto mb-4 relative z-10"
+                        whileHover={{ 
+                          scale: 1.1,
+                          rotate: 360,
+                          backgroundColor: "rgba(76, 154, 255, 0.2)"
+                        }}
+                        transition={{ 
+                          rotate: { duration: 0.6, ease: "easeInOut" },
+                          scale: { duration: 0.2 }
+                        }}
+                      >
+                        <motion.div
+                          whileHover={{ scale: 1.2 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          {step.icon}
+                        </motion.div>
+                        
+                        {/* Pulse ring effect */}
+                        <motion.div
+                          className="absolute inset-0 rounded-full border-2 border-primary opacity-0 group-hover:opacity-100"
+                          initial={{ scale: 1, opacity: 0 }}
+                          whileHover={{
+                            scale: [1, 1.5, 1.5],
+                            opacity: [0, 0.5, 0],
+                          }}
+                          transition={{
+                            duration: 1.5,
+                            repeat: Infinity,
+                            ease: "easeOut"
+                          }}
+                        />
+                      </motion.div>
+                      
+                      {/* Title with slide-in effect */}
+                      <motion.h3 
+                        className="font-bold text-lg mb-2 relative z-10"
+                        whileHover={{ scale: 1.05, color: "#4c9aff" }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        {step.title}
+                      </motion.h3>
+                      
+                      {/* Description */}
+                      <motion.p 
+                        className="text-sm text-muted-foreground relative z-10"
+                        initial={{ opacity: 0.7 }}
+                        whileHover={{ opacity: 1 }}
+                      >
+                        {step.desc}
+                      </motion.p>
+                      
+                      {/* Progress indicator */}
+                      <motion.div 
+                        className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-primary to-purple-600"
+                        initial={{ width: "0%" }}
+                        whileInView={{ width: "100%" }}
+                        viewport={{ once: true }}
+                        transition={{ delay: index * 0.2 + 0.5, duration: 0.8 }}
+                      />
+                    </CardContent>
+                  </Card>
+                </motion.div>
+                
+                {/* Connector arrow between steps (not on last item) */}
+                {index < 3 && (
+                  <motion.div
+                    className="hidden md:flex absolute top-1/2 -right-3 transform -translate-y-1/2 z-30"
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 + 0.3 }}
+                  >
+                    <motion.svg 
+                      width="24" 
+                      height="24" 
+                      viewBox="0 0 24 24" 
+                      fill="none"
+                      className="text-primary drop-shadow-lg"
+                      animate={{
+                        x: [0, 5, 0],
+                      }}
+                      transition={{
+                        duration: 1.5,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                      }}
+                    >
+                      <path 
+                        d="M5 12h14m-7-7l7 7-7 7" 
+                        stroke="currentColor" 
+                        strokeWidth="2" 
+                        strokeLinecap="round" 
+                        strokeLinejoin="round"
+                      />
+                    </motion.svg>
+                  </motion.div>
+                )}
+              </div>
             ))}
           </div>
         </div>

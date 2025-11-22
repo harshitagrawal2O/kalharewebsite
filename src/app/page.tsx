@@ -3,8 +3,8 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowRight, Printer, Zap, Shield, Clock, CheckCircle2, Star } from "lucide-react";
+import { FeatureCard } from "@/components/ui/feature-card";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { Boxes } from "@/components/ui/background-boxes";
 import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
 import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
@@ -12,8 +12,31 @@ import { PointerHighlight } from "@/components/ui/pointer-highlight";
 import { HoverEffect } from "@/components/ui/card-hover-effect";
 import { CardSpotlight } from "@/components/ui/card-spotlight";
 import { cn } from "@/lib/utils";
+import { useState, useRef, useEffect } from "react";
 
 export default function Home() {
+  const [currentVideo, setCurrentVideo] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  
+  const videos = ['/printing.mp4', '/printing2.mp4'];
+  
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    
+    const handleVideoEnd = () => {
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setCurrentVideo((prev) => (prev + 1) % videos.length);
+        setIsTransitioning(false);
+      }, 500);
+    };
+    
+    video.addEventListener('ended', handleVideoEnd);
+    return () => video.removeEventListener('ended', handleVideoEnd);
+  }, [currentVideo]);
+  
   const fadeInUp = {
     initial: { opacity: 0, y: 60 },
     animate: { opacity: 1, y: 0 },
@@ -30,22 +53,22 @@ export default function Home() {
 
   const features = [
     {
-      icon: <Printer className="h-8 w-8" />,
+      icon: "/technology.gif",
       title: "Advanced Technology",
       description: "State-of-the-art 3D printers delivering precision and quality"
     },
     {
-      icon: <Zap className="h-8 w-8" />,
+      icon: "/fast.gif",
       title: "Fast Turnaround",
       description: "Quick production times without compromising on quality"
     },
     {
-      icon: <Shield className="h-8 w-8" />,
+      icon: "/high-quality.gif",
       title: "Quality Assured",
       description: "Every print meets our rigorous quality standards"
     },
     {
-      icon: <Clock className="h-8 w-8" />,
+      icon: "/helpdesk.gif",
       title: "24/7 Support",
       description: "Round-the-clock assistance for all your printing needs"
     }
@@ -55,28 +78,28 @@ export default function Home() {
     {
       title: "Custom 3D Printing",
       description: "Upload your design and get instant quotes",
-      image: "🎨",
+      image: "/custom.png",
       price: "From ₹500",
       link: "/services#custom"
     },
     {
       title: "Pre-designed Models",
       description: "Choose from our extensive library",
-      image: "📦",
+      image: "/predesigned-models.png",
       price: "From ₹250",
       link: "/products"
     },
     {
       title: "Prototyping",
       description: "Rapid prototyping for product development",
-      image: "⚙️",
+      image: "/prototype.png",
       price: "Custom",
       link: "/services#prototyping"
     },
     {
       title: "Mass Production",
       description: "Large-scale manufacturing solutions",
-      image: "🏭",
+      image: "/mass-production.png",
       price: "Quote",
       link: "/services#production"
     }
@@ -148,9 +171,9 @@ export default function Home() {
               variants={fadeInUp}
               className="flex flex-col sm:flex-row gap-4 justify-center items-center"
             >
-              <Link href="/products">
+              <Link href="/custom-print">
                 <Button size="lg" className="text-lg px-8">
-                  Browse Products
+                  Custom Print
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
@@ -241,16 +264,13 @@ export default function Home() {
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
           >
             {features.map((feature, index) => (
-              <motion.div key={index} variants={fadeInUp}>
-                <Card className="h-full hover:shadow-lg transition-all duration-300 hover:-translate-y-2 border-2 hover:border-primary/50">
-                  <CardHeader>
-                    <div className="h-16 w-16 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-4">
-                      {feature.icon}
-                    </div>
-                    <CardTitle>{feature.title}</CardTitle>
-                    <CardDescription>{feature.description}</CardDescription>
-                  </CardHeader>
-                </Card>
+              <motion.div key={index} variants={fadeInUp} className="h-full">
+                <FeatureCard
+                  icon={feature.icon}
+                  title={feature.title}
+                  description={feature.description}
+                  className="h-full"
+                />
               </motion.div>
             ))}
           </motion.div>
@@ -376,6 +396,59 @@ export default function Home() {
             ))}
           </motion.div>
         </div>
+      </section>
+
+      {/* Video Showcase Section */}
+      <section className="relative py-0 overflow-hidden">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="relative w-full"
+        >
+          {/* Video container */}
+          <div className="relative w-full h-[600px] md:h-[700px] lg:h-[800px] bg-black">
+            <motion.video
+              key={currentVideo}
+              ref={videoRef}
+              className="w-full h-full object-cover"
+              autoPlay
+              muted
+              playsInline
+              initial={{ opacity: 0, scale: 1.1 }}
+              animate={{ 
+                opacity: isTransitioning ? 0 : 1,
+                scale: isTransitioning ? 1.1 : 1
+              }}
+              transition={{ duration: 0.5 }}
+            >
+              <source src={videos[currentVideo]} type="video/mp4" />
+              Your browser does not support the video tag.
+            </motion.video>
+            
+            {/* Dark overlay for better text readability */}
+            <div className="absolute inset-0 bg-black/30" />
+            
+            {/* Content overlay */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="text-center px-4 z-10"
+              >
+                <h2 className="text-4xl md:text-6xl font-bold text-white mb-4 drop-shadow-lg">
+                  Precision <span className="text-[#4c9aff]">in Motion</span>
+                </h2>
+                <p className="text-xl md:text-2xl text-white/90 drop-shadow-md">
+                  Watch innovation come to life, layer by layer
+                </p>
+              </motion.div>
+            </div>
+          </div>
+        </motion.div>
       </section>
 
       {/* Testimonials Section */}
