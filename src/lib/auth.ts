@@ -59,7 +59,7 @@ export const authOptions: AuthOptions = {
       if (account && user) {
         return {
           accessToken: account.access_token,
-          accessTokenExpires: Date.now() + (account.expires_in || 3600) * 1000,
+          accessTokenExpires: Date.now() + ((account.expires_in as number) || 3600) * 1000,
           refreshToken: account.refresh_token,
           user,
         };
