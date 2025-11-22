@@ -10,7 +10,7 @@ export default function Footer() {
           {/* Company Info */}
           <div className="space-y-4">
               <Link href="/" className="inline-block">
-                <Image src="/logo.svg" alt="LayerForge" width={160} height={80} className="h-20 w-40" />
+                <Image src="/images/logo.svg" alt="LayerForge" width={160} height={80} className="h-20 w-40" />
               </Link>
             <p className="text-sm text-muted-foreground">
               Let&apos;s Build Something Extraordinary Together

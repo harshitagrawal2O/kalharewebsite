@@ -16,6 +16,25 @@ import {
   MobileNavToggle,
 } from "@/components/ui/resizable-navbar";
 
+const NavbarBrand = ({ visible }: { visible?: boolean }) => {
+  return (
+    <Link href="/" className="flex items-center space-x-2 relative z-20">
+      <div className="font-bold flex flex-col leading-tight">
+        <span className={`text-[#4c9aff] transition-all duration-300 ${visible ? 'text-lg' : 'text-xl'}`}>LayerForge</span>
+        <span 
+          className={`text-foreground dark:text-white transition-all duration-300 origin-top-left ${
+            visible 
+              ? 'h-0 opacity-0 scale-0 overflow-hidden' 
+              : 'h-auto opacity-100 scale-100 text-xl'
+          }`}
+        >
+          Technologies.
+        </span>
+      </div>
+    </Link>
+  );
+};
+
 export default function Navbar() {
   const { cartCount } = useCart();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -41,12 +60,7 @@ export default function Navbar() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center h-16">
               {/* Logo */}
-              <Link href="/" className="flex items-center space-x-2">
-                <div className="text-xl font-bold flex flex-col leading-tight">
-                  <span className="text-[#4c9aff]">LayerForge</span>
-                  <span className="text-foreground dark:text-white">Technologies.</span>
-                </div>
-              </Link>
+              <NavbarBrand />
 
               {/* Desktop Navigation */}
               <div className="hidden md:flex items-center space-x-6">
@@ -74,7 +88,7 @@ export default function Navbar() {
                     )}
                   </Button>
                 </Link>
-                <Link href="/auth">
+                <Link href="/">
                   <Button variant="ghost" size="icon">
                     <User className="h-5 w-5" />
                   </Button>
@@ -120,7 +134,7 @@ export default function Navbar() {
                       )}
                     </Button>
                   </Link>
-                  <Link href="/auth" className="block">
+                  <Link href="/" className="block">
                     <Button variant="ghost" className="w-full justify-start">
                       <User className="mr-2 h-4 w-4" />
                       Sign In
@@ -137,12 +151,7 @@ export default function Navbar() {
       {/* Desktop Navigation */}
       <NavBody>
         {/* Logo */}
-        <Link href="/" className="flex items-center space-x-2 relative z-20">
-          <div className="text-xl font-bold flex flex-col leading-tight">
-            <span className="text-[#4c9aff]">LayerForge</span>
-            <span className="text-foreground dark:text-white">Technologies.</span>
-          </div>
-        </Link>
+        <NavbarBrand />
 
         {/* Navigation Items */}
         <NavItems items={navItems} />
@@ -159,7 +168,7 @@ export default function Navbar() {
               )}
             </Button>
           </Link>
-          <Link href="/auth">
+          <Link href="/">
             <Button variant="ghost" size="icon">
               <User className="h-5 w-5" />
             </Button>
@@ -171,12 +180,7 @@ export default function Navbar() {
       <MobileNav>
         <MobileNavHeader>
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2">
-            <div className="text-lg font-bold flex flex-col leading-tight">
-              <span className="text-[#4c9aff]">LayerForge</span>
-              <span className="text-foreground dark:text-white">Technologies.</span>
-            </div>
-          </Link>
+          <NavbarBrand />
 
           {/* Mobile Menu Toggle */}
           <MobileNavToggle
@@ -212,7 +216,7 @@ export default function Navbar() {
                 )}
               </Button>
             </Link>
-            <Link href="/auth" className="block w-full">
+            <Link href="/" className="block w-full">
               <Button variant="ghost" className="w-full justify-start">
                 <User className="mr-2 h-4 w-4" />
                 Sign In

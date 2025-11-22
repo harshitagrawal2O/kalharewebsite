@@ -93,32 +93,32 @@ export default function ServicesPage() {
     {
       name: "PLA",
       description: "Eco-friendly, easy to print",
-      image: "/pla.png"
+      image: "/images/pla.png"
     },
     {
       name: "ABS",
       description: "Strong and durable",
-      image: "/abs.png"
+      image: "/images/abs.png"
     },
     {
       name: "PETG",
       description: "Weather resistant",
-      image: "/petg.png"
+      image: "/images/petg.png"
     },
     {
       name: "Resin",
       description: "High detail finish",
-      image: "/resin.png"
+      image: "/images/resin.png"
     },
     {
       name: "Nylon",
       description: "Flexible and tough",
-      image: "/nylon.png"
+      image: "/images/nylon.png"
     },
     {
       name: "TPU",
       description: "Rubber-like flexibility",
-      image: "/tpu.png"
+      image: "/images/tpu.png"
     }
   ];
 

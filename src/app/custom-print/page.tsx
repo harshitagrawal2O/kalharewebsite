@@ -73,7 +73,7 @@ export default function CustomPrint() {
       name: "PLA", 
       description: "Most popular, eco-friendly",
       icon: "🌱",
-      image: "/pla.png",
+      image: "/images/pla.png",
       detailedContent: "PLA (Polylactic Acid) is a biodegradable thermoplastic derived from renewable resources like corn starch or sugarcane. It's the most popular 3D printing material due to its ease of use, low warping, and environmental friendliness. PLA produces minimal odor during printing and offers excellent detail resolution. Ideal for prototypes, decorative items, and general-purpose prints. However, it has lower heat resistance (starts softening around 60°C) and is more brittle compared to other materials.",
       price: 10
     },
@@ -82,7 +82,7 @@ export default function CustomPrint() {
       name: "ABS", 
       description: "Strong, heat resistant",
       icon: "💪",
-      image: "/abs.png",
+      image: "/images/abs.png",
       detailedContent: "ABS (Acrylonitrile Butadiene Styrene) is a petroleum-based thermoplastic known for its strength, durability, and heat resistance. It can withstand temperatures up to 100°C, making it suitable for functional parts and mechanical components. ABS is impact-resistant and can be smoothed with acetone vapor for a glossy finish. However, it requires a heated bed for printing and produces stronger fumes. Commonly used in automotive parts, toys (like LEGO bricks), and enclosures.",
       price: 12
     },
@@ -91,7 +91,7 @@ export default function CustomPrint() {
       name: "PETG", 
       description: "Durable, flexible",
       icon: "🔧",
-      image: "/petg.png",
+      image: "/images/petg.png",
       detailedContent: "PETG (Polyethylene Terephthalate Glycol) combines the best properties of PLA and ABS. It offers excellent layer adhesion, durability, and chemical resistance while being easier to print than ABS. PETG is food-safe (when properly printed), weather-resistant, and has good flexibility. It's transparent in its natural form and can be colored easily. Perfect for mechanical parts, outdoor applications, protective cases, and functional prototypes that need to withstand stress.",
       price: 15
     },
@@ -100,7 +100,7 @@ export default function CustomPrint() {
       name: "Resin", 
       description: "High detail, smooth finish",
       icon: "✨",
-      image: "/resin.png",
+      image: "/images/resin.png",
       detailedContent: "Resin (Photopolymer) is used in SLA/DLP 3D printing, cured by UV light. It produces incredibly smooth surfaces with fine details down to 25 microns layer height. Ideal for miniatures, jewelry, dental models, and highly detailed prototypes. Resin prints require post-processing (washing and curing) and are generally more brittle than FDM materials. Various types include standard, tough, flexible, castable, and dental resins. Note: Uncured resin is toxic and requires careful handling.",
       price: 20
     },
@@ -109,7 +109,7 @@ export default function CustomPrint() {
       name: "Nylon", 
       description: "Industrial strength",
       icon: "⚙️",
-      image: "/nylon.png",
+      image: "/images/nylon.png",
       detailedContent: "Nylon (Polyamide) is an engineering-grade material offering exceptional strength, flexibility, and wear resistance. It has excellent layer adhesion and can withstand repeated stress and friction. Nylon is hygroscopic (absorbs moisture from air), which can affect print quality if not stored properly. It requires high printing temperatures (240-260°C) and works best with an enclosed printer. Perfect for gears, hinges, functional parts, tools, and applications requiring durability and toughness.",
       price: 25
     },
@@ -118,7 +118,7 @@ export default function CustomPrint() {
       name: "TPU", 
       description: "Flexible, rubber-like",
       icon: "🔮",
-      image: "/tpu.png",
+      image: "/images/tpu.png",
       detailedContent: "TPU (Thermoplastic Polyurethane) is a flexible, rubber-like material that can bend and compress without breaking. It offers excellent elasticity, abrasion resistance, and impact absorption. TPU can stretch up to 3 times its original length and bounce back to shape. It's resistant to oil, grease, and abrasion. Ideal for phone cases, wearables, seals, gaskets, and any application requiring flexibility. Printing TPU requires slower speeds and careful calibration due to its flexible nature.",
       price: 18
     }

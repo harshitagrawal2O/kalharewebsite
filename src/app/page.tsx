@@ -14,7 +14,7 @@ import { CardSpotlight } from "@/components/ui/card-spotlight";
 import { cn } from "@/lib/utils";
 import { useState, useRef, useEffect } from "react";
 
-const videos = ['/printing.mp4', '/printing2.mp4'];
+const videos = ['/videos/printing.mp4', '/videos/printing2.mp4'];
 
 export default function Home() {
   const [currentVideo, setCurrentVideo] = useState(0);
@@ -53,22 +53,22 @@ export default function Home() {
 
   const features = [
     {
-      icon: "/technology.gif",
+      icon: "/icons/technology.gif",
       title: "Advanced Technology",
       description: "State-of-the-art 3D printers delivering precision and quality"
     },
     {
-      icon: "/fast.gif",
+      icon: "/icons/fast.gif",
       title: "Fast Turnaround",
       description: "Quick production times without compromising on quality"
     },
     {
-      icon: "/high-quality.gif",
+      icon: "/icons/high-quality.gif",
       title: "Quality Assured",
       description: "Every print meets our rigorous quality standards"
     },
     {
-      icon: "/helpdesk.gif",
+      icon: "/icons/helpdesk.gif",
       title: "24/7 Support",
       description: "Round-the-clock assistance for all your printing needs"
     }
@@ -78,25 +78,25 @@ export default function Home() {
     {
       title: "Custom 3D Printing",
       description: "Upload your design and get instant quotes",
-      image: "/custom.png",
+      image: "/images/custom.png",
       link: "/services#custom"
     },
     {
       title: "Pre-designed Models",
       description: "Choose from our extensive library",
-      image: "/predesigned-models.png",
+      image: "/images/predesigned-models.png",
       link: "/products"
     },
     {
       title: "Prototyping",
       description: "Rapid prototyping for product development",
-      image: "/prototype.png",
+      image: "/images/prototype.png",
       link: "/services#prototyping"
     },
     {
       title: "Mass Production",
       description: "Large-scale manufacturing solutions",
-      image: "/mass-production.png",
+      image: "/images/mass-production.png",
       link: "/services#production"
     }
   ];
@@ -484,15 +484,15 @@ export default function Home() {
             Join thousands of satisfied customers and bring your ideas to life today
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/products">
+            <Link href="/custom-print">
               <Button size="lg" variant="secondary" className="text-lg px-8 bg-white hover:bg-white/90 text-[#1a365d]">
-                Browse Products
+                Custom Print
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
-            <Link href="/contact">
+            <Link href="/services">
               <Button size="lg" variant="outline" className="text-lg px-8 bg-transparent text-white border-white hover:bg-white/10">
-                Contact Us
+                Services
               </Button>
             </Link>
           </div>
