@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "motion/react";
 
 import { useState } from "react";
 import Image from "next/image";
+import { Button } from "@/components/ui/button";
 
 export const HoverEffect = ({
   items,
@@ -62,12 +63,22 @@ export const HoverEffect = ({
             )}
             <CardTitle>{item.title}</CardTitle>
             <CardDescription>{item.description}</CardDescription>
-            {item.price && (
-              <div className="mt-4 text-2xl font-bold bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
-                {item.price}
-              </div>
-            )}
           </Card>
+          <div className="absolute bottom-4 right-4 z-30">
+            <Button
+              size="sm"
+              variant="ghost"
+              className="text-primary hover:text-primary hover:bg-primary/10"
+              onClick={(e) => {
+                e.preventDefault();
+                const message = `Hello! I am interested in your ${item.title} service. Please provide me with a quote.`;
+                const whatsappUrl = `https://api.whatsapp.com/send?phone=919129958671&text=${encodeURIComponent(message)}`;
+                window.open(whatsappUrl, '_blank');
+              }}
+            >
+              Get Quote →
+            </Button>
+          </div>
         </a>
       ))}
     </div>
@@ -84,11 +95,11 @@ export const Card = ({
   return (
     <div
       className={cn(
-        "rounded-2xl h-full w-full p-4 overflow-hidden bg-white dark:bg-black border border-gray-200 dark:border-white/[0.2] group-hover:border-primary relative z-20 shadow-sm",
+        "rounded-2xl h-full w-full p-4 overflow-hidden bg-white dark:bg-black border border-gray-200 dark:border-white/[0.2] group-hover:border-primary relative z-20 shadow-sm flex flex-col",
         className
       )}
     >
-      <div className="relative z-50">
+      <div className="relative z-50 flex-1">
         <div className="p-4">{children}</div>
       </div>
     </div>

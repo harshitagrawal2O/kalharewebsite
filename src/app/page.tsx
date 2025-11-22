@@ -79,28 +79,24 @@ export default function Home() {
       title: "Custom 3D Printing",
       description: "Upload your design and get instant quotes",
       image: "/custom.png",
-      price: "From ₹500",
       link: "/services#custom"
     },
     {
       title: "Pre-designed Models",
       description: "Choose from our extensive library",
       image: "/predesigned-models.png",
-      price: "From ₹250",
       link: "/products"
     },
     {
       title: "Prototyping",
       description: "Rapid prototyping for product development",
       image: "/prototype.png",
-      price: "Custom",
       link: "/services#prototyping"
     },
     {
       title: "Mass Production",
       description: "Large-scale manufacturing solutions",
       image: "/mass-production.png",
-      price: "Quote",
       link: "/services#production"
     }
   ];
@@ -144,22 +140,22 @@ export default function Home() {
                 words={[
                   {
                     text: "Where",
-                    className: "text-slate-900 dark:text-slate-100"
+                    className: "text-slate-900 dark:text-slate-100 text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl"
                   },
                   {
                     text: "Imagination",
-                    className: "text-slate-900 dark:text-slate-100"
+                    className: "text-slate-900 dark:text-slate-100 text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl"
                   },
                   {
                     text: "Takes",
-                    className: "text-slate-900 dark:text-slate-100"
+                    className: "text-slate-900 dark:text-slate-100 text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl"
                   },
                   {
                     text: "Shape",
-                    className: "text-[#4c9aff]"
+                    className: "text-[#4c9aff] text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl"
                   },
                 ]}
-                className="text-5xl md:text-7xl font-bold tracking-tight justify-center"
+                className="font-bold tracking-tight justify-center"
                 cursorClassName="bg-[#4c9aff]"
               />
               <p className="text-xl md:text-2xl text-slate-700 max-w-3xl mx-auto">
@@ -306,8 +302,7 @@ export default function Home() {
                 title: service.title,
                 description: service.description,
                 link: service.link,
-                image: service.image,
-                price: service.price
+                image: service.image
               }))}
               className="max-w-7xl mx-auto"
             />
