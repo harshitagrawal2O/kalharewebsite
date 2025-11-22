@@ -186,6 +186,11 @@ export default function ServicesPage() {
                       <CardItem
                         translateZ="60"
                         as="button"
+                        onClick={() => {
+                          const message = `Hello! I am interested in your ${service.title} service. Please provide me with a quote.`;
+                          const whatsappUrl = `https://api.whatsapp.com/send?phone=9129958671&text=${encodeURIComponent(message)}`;
+                          window.open(whatsappUrl, '_blank');
+                        }}
                         className="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold"
                       >
                         Get Quote

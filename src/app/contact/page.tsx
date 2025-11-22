@@ -12,22 +12,23 @@ export default function ContactPage() {
     {
       icon: <MapPin className="h-6 w-6" />,
       title: "Visit Us",
-      details: ["Varanasi, Uttar Pradesh", "India"]
+      details: ["Varanasi, Uttar Pradesh", "India"],
+      link: "https://maps.app.goo.gl/9dJbJQDqEGbHyx6w9"
     },
     {
       icon: <Phone className="h-6 w-6" />,
       title: "Call Us",
-      details: ["+91 91299 58671", "Mon-Sat, 9AM-9PM IST"]
+      details: ["+91 91299 58671", "All days 9AM-9PM IST"]
     },
     {
       icon: <Mail className="h-6 w-6" />,
       title: "Email Us",
-      details: ["hello@gmail.com", "www.layerforgetech.com"]
+      details: ["layerforge.tech@gmail.com", "www.layerforgetech.com"]
     },
     {
       icon: <Clock className="h-6 w-6" />,
       title: "Business Hours",
-      details: ["Monday - Saturday: 9AM - 7PM", "Sunday: Closed"]
+      details: ["Monday - Saturday: 9AM - 9PM", "Sunday: Closed"]
     }
   ];
 
@@ -71,22 +72,22 @@ export default function ContactPage() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <label className="text-sm font-medium">First Name</label>
-                      <Input placeholder="John" />
+                      <Input placeholder="First Name" />
                     </div>
                     <div className="space-y-2">
                       <label className="text-sm font-medium">Last Name</label>
-                      <Input placeholder="Doe" />
+                      <Input placeholder="Last Name" />
                     </div>
                   </div>
 
                   <div className="space-y-2">
                     <label className="text-sm font-medium">Email</label>
-                    <Input type="email" placeholder="john@example.com" />
+                    <Input type="email" placeholder="user@example.com" />
                   </div>
 
                   <div className="space-y-2">
                     <label className="text-sm font-medium">Phone (Optional)</label>
-                    <Input type="tel" placeholder="+1 (555) 000-0000" />
+                    <Input type="tel" placeholder="+91 00000 00000" />
                   </div>
 
                   <div className="space-y-2">
@@ -102,13 +103,13 @@ export default function ContactPage() {
                     />
                   </div>
 
-                  <div className="space-y-2">
+                  {/* <div className="space-y-2">
                     <label className="text-sm font-medium">Upload File (Optional)</label>
                     <Input type="file" />
                     <p className="text-xs text-muted-foreground">
                       Supported formats: STL, OBJ, 3MF (Max 50MB)
                     </p>
-                  </div>
+                  </div> */}
 
                   <Button size="lg" className="w-full">
                     <Send className="mr-2 h-5 w-5" />
@@ -132,7 +133,7 @@ export default function ContactPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
               >
-                <Card>
+                <Card className={info.link ? "cursor-pointer hover:shadow-lg transition-shadow" : ""} onClick={() => info.link && window.open(info.link, '_blank')}>
                   <CardHeader>
                     <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-2">
                       {info.icon}
@@ -145,20 +146,32 @@ export default function ContactPage() {
                         {detail}
                       </p>
                     ))}
+                    {info.link && (
+                      <p className="text-xs text-primary mt-2 flex items-center gap-1">
+                        Click to view on map
+                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                      </p>
+                    )}
                   </CardContent>
                 </Card>
               </motion.div>
             ))}
 
-            {/* Map Placeholder */}
+            {/* Map */}
             <Card className="overflow-hidden">
               <CardContent className="p-0">
-                <div className="h-48 bg-secondary/50 flex items-center justify-center text-muted-foreground">
-                  <div className="text-center">
-                    <MapPin className="h-12 w-12 mx-auto mb-2" />
-                    <p>Map Location</p>
-                  </div>
-                </div>
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3607.2!2d83.008667!3d25.282333!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjXCsDE2JzU2LjQiTiA4M8KwMDAnMzEuMiJF!5e0!3m2!1sen!2sin!4v1234567890!5m2!1sen!2sin"
+                  width="100%"
+                  height="300"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="w-full"
+                />
               </CardContent>
             </Card>
           </motion.div>

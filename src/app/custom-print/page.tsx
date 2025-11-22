@@ -343,7 +343,7 @@ Please review my requirements and provide:
 Thank you!`;
 
     const whatsappNumber = '919129958671'; // Replace with your WhatsApp number
-    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   };
 
@@ -633,101 +633,80 @@ Thank you!`;
                     </div>
                   )}
                 </AnimatePresence>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 auto-rows-fr">
                   {materials.map((material) => (
-                    <CardContainer key={material.id} className="inter-var" containerClassName="py-0">
-                      <CardBody className="relative w-auto h-auto">
-                        <motion.div
-                          layoutId={`card-${material.id}-${id}`}
-                          className="relative"
-                        >
-                          {material.id === 'pla' && (
-                            <div className="absolute top-0 left-0 z-10 overflow-hidden w-20 h-20 pointer-events-none">
-                              <div className="absolute top-3 -left-7 w-28 h-7 bg-gradient-to-r from-rose-500 via-rose-600 to-rose-700 transform -rotate-45 shadow-lg flex items-center justify-center">
-                                <span className="text-white text-[11px] font-bold tracking-widest uppercase drop-shadow-sm">
-                                  Popular
-                                </span>
-                              </div>
-                            </div>
-                          )}
-                          <button
-                            onClick={() => setSelectedMaterial(material.id)}
-                            className={`w-full rounded-xl border text-left transition-all duration-300 overflow-hidden group ${
-                              selectedMaterial === material.id
-                                ? 'border-primary shadow-lg shadow-primary/20 bg-primary/5'
-                                : 'border-border/50 hover:border-primary/50 hover:shadow-md bg-card'
-                            }`}
+                    <motion.div
+                      key={material.id}
+                      layoutId={`card-${material.id}-${id}`}
+                      className="relative h-full"
+                    >
+                      {material.id === 'pla' && (
+                        <div className="absolute top-0 left-0 z-10 overflow-hidden w-20 h-20 pointer-events-none">
+                          <div className="absolute top-3 -left-7 w-28 h-7 bg-gradient-to-r from-rose-500 via-rose-600 to-rose-700 transform -rotate-45 shadow-lg flex items-center justify-center">
+                            <span className="text-white text-[11px] font-bold tracking-widest uppercase drop-shadow-sm">
+                              Popular
+                            </span>
+                          </div>
+                        </div>
+                      )}
+                      <button
+                        onClick={() => setSelectedMaterial(material.id)}
+                        className={`w-full h-full flex flex-col rounded-xl border text-left transition-all duration-300 overflow-hidden group ${
+                          selectedMaterial === material.id
+                            ? 'border-primary shadow-lg shadow-primary/20 bg-primary/5'
+                            : 'border-border/50 hover:border-primary/50 hover:shadow-md bg-card'
+                        }`}
+                      >
+                        <div className="relative w-full h-28 overflow-hidden bg-muted/50">
+                          <Image
+                            src={material.image}
+                            alt={material.name}
+                            fill
+                            className="object-cover transition-transform duration-300 group-hover:scale-105"
+                          />
+                        </div>
+                        <div className="p-3 flex flex-col flex-1 w-full">
+                          <motion.h3
+                            layoutId={`title-${material.id}-${id}`}
+                            className="font-semibold mb-1 text-sm"
                           >
-                            <CardItem
-                              translateZ="50"
-                              className="w-full"
+                            {material.name}
+                          </motion.h3>
+                          <motion.p
+                            layoutId={`description-${material.id}-${id}`}
+                            className="text-xs text-muted-foreground mb-3"
+                          >
+                            {material.description}
+                          </motion.p>
+                          <div className="w-full flex justify-end mt-auto">
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              className="text-primary hover:text-primary hover:bg-primary/10 h-5 px-1.5 text-[10px] gap-0.5"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setExpandedMaterial(material.id);
+                              }}
                             >
-                              <div className="relative w-full h-28 overflow-hidden bg-muted/50">
-                                <Image
-                                  src={material.image}
-                                  alt={material.name}
-                                  fill
-                                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+                              Know More
+                              <svg 
+                                className="w-3 h-3" 
+                                fill="none" 
+                                stroke="currentColor" 
+                                viewBox="0 0 24 24"
+                              >
+                                <path 
+                                  strokeLinecap="round" 
+                                  strokeLinejoin="round" 
+                                  strokeWidth={2} 
+                                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" 
                                 />
-                              </div>
-                            </CardItem>
-                            <div className="p-3">
-                              <CardItem
-                                translateZ="60"
-                                className="w-full"
-                              >
-                                <motion.h3
-                                  layoutId={`title-${material.id}-${id}`}
-                                  className="font-semibold mb-1 text-sm"
-                                >
-                                  {material.name}
-                                </motion.h3>
-                              </CardItem>
-                              <CardItem
-                                translateZ="40"
-                                className="w-full"
-                              >
-                                <motion.p
-                                  layoutId={`description-${material.id}-${id}`}
-                                  className="text-xs text-muted-foreground mb-3"
-                                >
-                                  {material.description}
-                                </motion.p>
-                              </CardItem>
-                              <CardItem
-                                translateZ="70"
-                                className="w-full flex justify-end"
-                              >
-                                <Button
-                                  variant="ghost"
-                                  size="sm"
-                                  className="text-primary hover:text-primary hover:bg-primary/10 h-5 px-1.5 text-[10px] gap-0.5"
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                    setExpandedMaterial(material.id);
-                                  }}
-                                >
-                                  Know More
-                                  <svg 
-                                    className="w-3 h-3" 
-                                    fill="none" 
-                                    stroke="currentColor" 
-                                    viewBox="0 0 24 24"
-                                  >
-                                    <path 
-                                      strokeLinecap="round" 
-                                      strokeLinejoin="round" 
-                                      strokeWidth={2} 
-                                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" 
-                                    />
-                                  </svg>
-                                </Button>
-                              </CardItem>
-                            </div>
-                          </button>
-                        </motion.div>
-                      </CardBody>
-                    </CardContainer>
+                              </svg>
+                            </Button>
+                          </div>
+                        </div>
+                      </button>
+                    </motion.div>
                   ))}
                 </div>
               </CardContent>
