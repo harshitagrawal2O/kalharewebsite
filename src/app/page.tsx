@@ -125,60 +125,60 @@ export default function Home() {
   return (
     <div className="overflow-hidden">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center bg-white pt-16 overflow-hidden">
+      <section className="relative min-h-screen flex items-center justify-center bg-white pt-20 sm:pt-24 pb-12 sm:pb-16 overflow-hidden">
         <div className="absolute inset-0 w-full h-full bg-white z-20 [mask-image:radial-gradient(transparent,white)] pointer-events-none" />
         <Boxes />
         <motion.div
           initial="initial"
           animate="animate"
           variants={stagger}
-          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-20"
+          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-20 relative z-20 w-full"
         >
-          <div className="text-center space-y-8">
-            <motion.div variants={fadeInUp} className="space-y-4">
+          <div className="text-center space-y-6 sm:space-y-8">
+            <motion.div variants={fadeInUp} className="space-y-3 sm:space-y-4">
               <TypewriterEffectSmooth 
                 words={[
                   {
                     text: "Where",
-                    className: "text-slate-900 dark:text-slate-100 text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl"
+                    className: "text-slate-900 dark:text-slate-100 text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl"
                   },
                   {
                     text: "Imagination",
-                    className: "text-slate-900 dark:text-slate-100 text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl"
+                    className: "text-slate-900 dark:text-slate-100 text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl"
                   },
                   {
                     text: "Takes",
-                    className: "text-slate-900 dark:text-slate-100 text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl"
+                    className: "text-slate-900 dark:text-slate-100 text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl"
                   },
                   {
                     text: "Shape",
-                    className: "text-[#4c9aff] text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl"
+                    className: "text-[#4c9aff] text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl"
                   },
                 ]}
                 className="font-bold tracking-tight justify-center"
                 cursorClassName="bg-[#4c9aff]"
               />
-              <p className="text-xl md:text-2xl text-slate-700 max-w-3xl mx-auto">
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-700 max-w-3xl mx-auto px-4">
                 At LayerForge, we fuse creativity and technology to transform your boldest ideas into precision-built reality — one layer at a time.
               </p>
             </motion.div>
 
             <motion.div
               variants={fadeInUp}
-              className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center px-4"
             >
-              <Link href="/custom-print">
-                <Button size="lg" className="text-lg px-8">
+              <Link href="/custom-print" className="w-full sm:w-auto">
+                <Button size="lg" className="text-base sm:text-lg px-6 sm:px-8 w-full sm:w-auto">
                   Custom Print
-                  <ArrowRight className="ml-2 h-5 w-5" />
+                  <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
                 </Button>
               </Link>
               <PointerHighlight
                 rectangleClassName="border-[#4c9aff]"
                 pointerClassName="text-[#4c9aff]"
               >
-                <Link href="/services">
-                  <Button size="lg" variant="outline" className="text-lg px-8 relative z-10">
+                <Link href="/services" className="w-full sm:w-auto">
+                  <Button size="lg" variant="outline" className="text-base sm:text-lg px-6 sm:px-8 relative z-10 w-full sm:w-auto">
                     Our Services
                   </Button>
                 </Link>
@@ -187,19 +187,19 @@ export default function Home() {
 
             <motion.div
               variants={fadeInUp}
-              className="pt-12 flex justify-center gap-12 text-center flex-wrap"
+              className="pt-8 sm:pt-12 flex justify-center gap-6 sm:gap-8 md:gap-12 text-center flex-wrap px-4"
             >
-              <div>
-                <div className="text-4xl font-bold text-gradient">10K+</div>
-                <div className="text-slate-600 dark:text-slate-400">Orders Completed</div>
+              <div className="min-w-[100px]">
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-gradient">10K+</div>
+                <div className="text-xs sm:text-sm md:text-base text-slate-600 dark:text-slate-400">Orders Completed</div>
               </div>
-              <div>
-                <div className="text-4xl font-bold text-gradient">5K+</div>
-                <div className="text-slate-600 dark:text-slate-400">Happy Clients</div>
+              <div className="min-w-[100px]">
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-gradient">5K+</div>
+                <div className="text-xs sm:text-sm md:text-base text-slate-600 dark:text-slate-400">Happy Clients</div>
               </div>
-              <div>
-                <div className="text-4xl font-bold text-gradient">99%</div>
-                <div className="text-slate-600 dark:text-slate-400">Satisfaction</div>
+              <div className="min-w-[100px]">
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-gradient">99%</div>
+                <div className="text-xs sm:text-sm md:text-base text-slate-600 dark:text-slate-400">Satisfaction</div>
               </div>
             </motion.div>
           </div>
@@ -215,7 +215,7 @@ export default function Home() {
             repeat: Infinity,
             ease: "easeInOut"
           }}
-          className="absolute top-1/4 left-10 text-6xl opacity-10 z-10"
+          className="absolute top-1/4 left-4 sm:left-10 text-4xl sm:text-5xl md:text-6xl opacity-10 z-10 hidden sm:block"
         >
           🎨
         </motion.div>
@@ -228,7 +228,7 @@ export default function Home() {
             repeat: Infinity,
             ease: "easeInOut"
           }}
-          className="absolute bottom-1/4 right-10 text-6xl opacity-10 z-10"
+          className="absolute bottom-1/4 right-4 sm:right-10 text-4xl sm:text-5xl md:text-6xl opacity-10 z-10 hidden sm:block"
         >
           ⚙️
         </motion.div>
