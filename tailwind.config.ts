@@ -10,7 +10,9 @@ const config: Config = {
   theme: {
   	extend: {
       fontFamily: {
-        logo: ['var(--font-outfit)'],
+        sans: ['var(--font-inter)'],
+        heading: ['var(--font-montserrat)'],
+        logo: ['var(--font-montserrat)'],
       },
   		colors: {
   			background: 'hsl(var(--background))',
