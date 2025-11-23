@@ -23,7 +23,7 @@ export default function ContactPage() {
     {
       icon: <Mail className="h-6 w-6" />,
       title: "Email Us",
-      details: ["layerforge.tech@gmail.com", "www.layerforgetech.com"]
+      details: ["info@layerforgetech.com", "www.layerforgetech.com"]
     },
     {
       icon: <Clock className="h-6 w-6" />,

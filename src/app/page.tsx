@@ -140,19 +140,19 @@ export default function Home() {
                 words={[
                   {
                     text: "Where",
-                    className: "text-slate-900 dark:text-slate-100 text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl"
+                    className: "text-slate-900 dark:text-slate-100 text-xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl"
                   },
                   {
                     text: "Imagination",
-                    className: "text-slate-900 dark:text-slate-100 text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl"
+                    className: "text-slate-900 dark:text-slate-100 text-xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl"
                   },
                   {
                     text: "Takes",
-                    className: "text-slate-900 dark:text-slate-100 text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl"
+                    className: "text-slate-900 dark:text-slate-100 text-xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl"
                   },
                   {
                     text: "Shape",
-                    className: "text-[#4c9aff] text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl"
+                    className: "text-[#4c9aff] text-xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl"
                   },
                 ]}
                 className="font-bold tracking-tight justify-center"
@@ -205,33 +205,8 @@ export default function Home() {
           </div>
         </motion.div>
 
-        {/* Floating Elements */}
-        <motion.div
-          animate={{
-            y: [0, -20, 0],
-          }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          className="absolute top-1/4 left-4 sm:left-10 text-4xl sm:text-5xl md:text-6xl opacity-10 z-10 hidden sm:block"
-        >
-          🎨
-        </motion.div>
-        <motion.div
-          animate={{
-            y: [0, 20, 0],
-          }}
-          transition={{
-            duration: 5,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          className="absolute bottom-1/4 right-4 sm:right-10 text-4xl sm:text-5xl md:text-6xl opacity-10 z-10 hidden sm:block"
-        >
-          ⚙️
-        </motion.div>
+      
+        
       </section>
 
       {/* Features Section */}

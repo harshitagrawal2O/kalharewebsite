@@ -113,15 +113,15 @@ export default function Footer() {
                 </span>
               </li>
               <li className="flex items-center space-x-3">
-                <Phone className="h-5 w-5 text-primary" />
+                <Phone className="h-4 w-4 text-primary" />
                 <a href="tel:+919129958671" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                   +91 91299 58671
                 </a>
               </li>
               <li className="flex items-center space-x-3">
-                <Mail className="h-5 w-5 text-primary" />
-                <a href="mailto:layerforge.tech@gmail.com" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  layerforge.tech@gmail.com
+                <Mail className="h-4 w-4 text-primary" />
+                <a href="mailto:info@layerforgetech.com" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  info@layerforgetech.com
                 </a>
               </li>
             </ul>

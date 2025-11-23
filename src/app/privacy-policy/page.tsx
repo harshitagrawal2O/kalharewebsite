@@ -278,7 +278,7 @@ export default function PrivacyPolicyPage() {
                 <div className="space-y-3">
                   <div className="flex items-center gap-3 p-4 bg-secondary/50 rounded-lg">
                     <Mail className="h-5 w-5 text-primary" />
-                    <span className="font-semibold text-foreground">layerforge.tech@gmail.com</span>
+                    <span className="font-semibold text-foreground">info@layerforgetech.com</span>
                   </div>
                   <div className="flex items-start gap-3 p-4 bg-secondary/50 rounded-lg">
                     <MapPin className="h-5 w-5 text-primary mt-1" />
