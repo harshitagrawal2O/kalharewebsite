@@ -22,10 +22,10 @@ const NavbarBrand = ({ visible }: { visible?: boolean }) => {
       <div className="font-bold flex flex-col leading-tight font-logo">
         <span className={`text-[#3aba24] transition-all duration-300 ${visible ? 'text-lg' : 'text-xl'}`}>LayerForge</span>
         <span 
-          className={`text-[#FFFFFF] bg-[#00203c] dark:bg-transparent px-2 py-0.5 rounded-md ml-1 transition-all duration-300 origin-top-left ${
+          className={`text-[#FFFFFF] bg-gradient-to-r from-[#062462] to-[#314a5d] dark:bg-transparent px-3 py-0.5 rounded-full ml-0.5 transition-all duration-300 origin-top-left shadow-sm ${
             visible 
               ? 'h-0 opacity-0 scale-0 overflow-hidden' 
-              : 'h-auto opacity-100 scale-100 text-lg'
+              : 'h-auto opacity-100 scale-100 text-base'
           }`}
         >
           Technologies.
