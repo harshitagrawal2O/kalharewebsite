@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin } from "lucide-react";
+import { Instagram, Linkedin, Mail, Phone, MapPin, Youtube } from "lucide-react";
+import { IconBrandReddit } from "@tabler/icons-react";
 
 export default function Footer() {
   return (
@@ -16,16 +17,16 @@ export default function Footer() {
               Let&apos;s Build Something Extraordinary Together
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                <Facebook className="h-5 w-5" />
+              <a href="https://youtube.com/@layerforgetechnologies?si=nRNDV3DbBDFLzvOA" className="text-muted-foreground hover:text-primary transition-colors">
+                <Youtube className="h-5 w-5" />
               </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                <Twitter className="h-5 w-5" />
+              <a href="https://www.reddit.com/u/Disastrous_Bird5618/s/Vnrk7n191V" className="text-muted-foreground hover:text-primary transition-colors">
+                <IconBrandReddit className="h-5 w-5" />
               </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+              <a href="https://www.instagram.com/layerforge.tech?igsh=M3ZkcmMwdDcxc2lm" className="text-muted-foreground hover:text-primary transition-colors">
                 <Instagram className="h-5 w-5" />
               </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+              <a href="https://www.linkedin.com/in/layerforge-technologies-363a19398?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app " className="text-muted-foreground hover:text-primary transition-colors">
                 <Linkedin className="h-5 w-5" />
               </a>
             </div>
