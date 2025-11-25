@@ -68,29 +68,29 @@ export default function AboutPage() {
 
   const team = [
     {
-      name: "Alex Johnson",
+      name: "Ankit Sharma",
       role: "Founder & CEO",
       emoji: "👨‍💼",
-      bio: "15 years in additive manufacturing"
-    },
-    {
-      name: "Sarah Chen",
-      role: "Head of Design",
-      emoji: "👩‍🎨",
-      bio: "Award-winning industrial designer"
-    },
-    {
-      name: "Mike Rodriguez",
-      role: "Technical Director",
-      emoji: "👨‍🔧",
-      bio: "Expert in 3D printing technologies"
-    },
-    {
-      name: "Emma Williams",
-      role: "Customer Success",
-      emoji: "👩‍💻",
-      bio: "Dedicated to client satisfaction"
+      bio: ""
     }
+    // {
+    //   name: "Sarah Chen",
+    //   role: "Head of Design",
+    //   emoji: "👩‍🎨",
+    //   bio: "Award-winning industrial designer"
+    // },
+    // {
+    //   name: "Mike Rodriguez",
+    //   role: "Technical Director",
+    //   emoji: "👨‍🔧",
+    //   bio: "Expert in 3D printing technologies"
+    // },
+    // {
+    //   name: "Emma Williams",
+    //   role: "Customer Success",
+    //   emoji: "👩‍💻",
+    //   bio: "Dedicated to client satisfaction"
+    // }
   ];
 
   const stats = [
