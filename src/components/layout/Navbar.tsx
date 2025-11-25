@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
@@ -18,19 +19,15 @@ import {
 
 const NavbarBrand = ({ visible }: { visible?: boolean }) => {
   return (
-    <Link href="/" className="flex items-center space-x-2 relative z-20">
-      <div className="font-bold flex flex-col leading-tight font-logo">
-        <span className={`text-[#3aba24] transition-all duration-300 ${visible ? 'text-lg' : 'text-xl'}`}>LayerForge</span>
-        <span 
-          className={`text-[#FFFFFF] bg-gradient-to-r from-[#062462] to-[#314a5d] dark:bg-transparent px-3 py-0.5 rounded-full ml-0.5 transition-all duration-300 origin-top-left shadow-sm ${
-            visible 
-              ? 'h-0 opacity-0 scale-0 overflow-hidden' 
-              : 'h-auto opacity-100 scale-100 text-base'
-          }`}
-        >
-          Technologies.
-        </span>
-      </div>
+    <Link href="/" className="flex items-center relative z-20">
+      <Image
+        src="/images/logo-2.png"
+        alt="LayerForge Technologies"
+        width={visible ? 120 : 160}
+        height={visible ? 36 : 48}
+        className={`transition-all duration-300 object-contain ${visible ? 'h-9' : 'h-12'}`}
+        priority
+      />
     </Link>
   );
 };
