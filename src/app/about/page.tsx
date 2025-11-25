@@ -147,9 +147,9 @@ export default function AboutPage() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <Card className="h-full bg-gradient-to-br from-[#4c9aff]/10 to-transparent">
+              <Card className="h-full bg-gradient-to-br from-[#094ba0]/10 to-transparent">
                 <CardHeader>
-                  <Target className="h-12 w-12 text-[#4c9aff] mb-4" />
+                  <Target className="h-12 w-12 text-[#094ba0] mb-4" />
                   <CardTitle className="text-3xl">Our Philosophy</CardTitle>
                   <CardDescription className="text-base mt-4">
                     Design boldly. Build intelligently. Create beautifully.
@@ -256,7 +256,7 @@ export default function AboutPage() {
               >
                 <Card className="h-full text-center hover:shadow-lg transition-all hover:-translate-y-1">
                   <CardHeader>
-                    <div className="h-16 w-16 rounded-full bg-gradient-to-br from-primary/10 to-[#4c9aff]/10 flex items-center justify-center text-primary mx-auto mb-4">
+                    <div className="h-16 w-16 rounded-full bg-gradient-to-br from-primary/10 to-[#094ba0]/10 flex items-center justify-center text-primary mx-auto mb-4">
                       {client.icon}
                     </div>
                     <CardTitle className="text-lg">{client.title}</CardTitle>

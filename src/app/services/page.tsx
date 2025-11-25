@@ -344,7 +344,7 @@ export default function ServicesPage() {
                       {/* Title with slide-in effect */}
                       <motion.h3 
                         className="font-bold text-lg mb-2 relative z-10"
-                        whileHover={{ scale: 1.05, color: "#4c9aff" }}
+                        whileHover={{ scale: 1.05, color: "#094ba0" }}
                         transition={{ duration: 0.2 }}
                       >
                         {step.title}

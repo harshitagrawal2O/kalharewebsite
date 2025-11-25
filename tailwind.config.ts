@@ -11,7 +11,7 @@ const config: Config = {
   	extend: {
       fontFamily: {
         sans: ['var(--font-inter)'],
-        heading: ['var(--font-montserrat)'],
+        heading: ['var(--font-poppins)'],
         logo: ['var(--font-montserrat)'],
       },
   		colors: {

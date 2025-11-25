@@ -152,11 +152,11 @@ export default function Home() {
                   },
                   {
                     text: "Shape",
-                    className: "text-[#4c9aff] text-xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl"
+                    className: "text-[#094ba0] text-xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl"
                   },
                 ]}
                 className="font-bold tracking-tight justify-center"
-                cursorClassName="bg-[#4c9aff]"
+                cursorClassName="bg-[#094ba0]"
               />
               <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-700 max-w-3xl mx-auto px-4">
                 At LayerForge, we fuse creativity and technology to transform your boldest ideas into precision-built reality — one layer at a time.
@@ -174,8 +174,8 @@ export default function Home() {
                 </Button>
               </Link>
               <PointerHighlight
-                rectangleClassName="border-[#4c9aff]"
-                pointerClassName="text-[#4c9aff]"
+                rectangleClassName="border-[#094ba0]"
+                pointerClassName="text-[#094ba0]"
               >
                 <Link href="/services" className="w-full sm:w-auto">
                   <Button size="lg" variant="outline" className="text-base sm:text-lg px-6 sm:px-8 relative z-10 w-full sm:w-auto">
@@ -410,7 +410,7 @@ export default function Home() {
                 className="text-center px-4 z-10"
               >
                 <h2 className="text-4xl md:text-6xl font-bold text-white mb-4 drop-shadow-lg">
-                  Precision <span className="text-[#4c9aff]">in Motion</span>
+                  Precision <span className="text-[#094ba0]">in Motion</span>
                 </h2>
                 <p className="text-xl md:text-2xl text-white/90 drop-shadow-md">
                   Watch innovation come to life, layer by layer
@@ -444,7 +444,7 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-[#4c9aff] to-[#2563eb]">
+      <section className="py-20 bg-gradient-to-r from-[#094ba0] to-[#4975d5]">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}

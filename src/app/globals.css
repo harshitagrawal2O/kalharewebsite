@@ -11,7 +11,7 @@
     --card-foreground: 222 47% 11%;
     --popover: 0 0% 100%;
     --popover-foreground: 222 47% 11%;
-    --primary: 217 91% 60%;
+    --primary: 209 91% 33%;
     --primary-foreground: 0 0% 100%;
     --secondary: 214 32% 91%;
     --secondary-foreground: 222 47% 11%;
@@ -45,7 +45,7 @@
     --card-foreground: 210 40% 98%;
     --popover: 222 47% 11%;
     --popover-foreground: 210 40% 98%;
-    --primary: 217 91% 60%;
+    --primary: 209 91% 33%;
     --primary-foreground: 0 0% 100%;
     --secondary: 217 33% 17%;
     --secondary-foreground: 210 40% 98%;
@@ -80,7 +80,7 @@
 
 @layer utilities {
   .text-gradient {
-    @apply bg-gradient-to-r from-[#4c9aff] to-[#2563eb] bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-[#094ba0] to-[#4975d5] bg-clip-text text-transparent;
   }
   
   .mask-radial-from-20\% {
