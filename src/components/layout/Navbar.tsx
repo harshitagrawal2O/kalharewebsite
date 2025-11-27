@@ -19,13 +19,13 @@ import {
 
 const NavbarBrand = ({ visible }: { visible?: boolean }) => {
   return (
-    <Link href="/" className="flex items-center relative z-20">
+    <Link href="/" className={`flex items-center relative z-20 ${visible ? 'rounded-md overflow-hidden' : ''}`}>
       <Image
         src="/images/logo-2.png"
         alt="LayerForge Technologies"
-        width={visible ? 120 : 160}
-        height={visible ? 36 : 48}
-        className={`transition-all duration-300 object-contain ${visible ? 'h-9' : 'h-12'}`}
+        width={visible ? 100 : 160}
+        height={visible ? 40 : 48}
+        className={`transition-all duration-300 object-contain ${visible ? 'h-10 rounded-l shadow-sm' : 'h-12'}`}
         priority
       />
     </Link>

@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Mail, Phone, MapPin, Clock, Send } from "lucide-react";
+import { useState } from "react";
 
 export default function ContactPage() {
   const contactInfo = [
@@ -31,6 +32,41 @@ export default function ContactPage() {
       details: ["Monday - Saturday: 9AM - 9PM", "Sunday: Closed"]
     }
   ];
+
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [subject, setSubject] = useState("");
+  const [message, setMessage] = useState("");
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    // Basic required check for message
+    if (!message.trim()) {
+      alert("Please enter a message before sending.");
+      return;
+    }
+
+    // Build WhatsApp message
+    const lines = [];
+    if (firstName || lastName) lines.push(`Name: ${firstName} ${lastName}`);
+    if (email) lines.push(`Email: ${email}`);
+    if (phone) lines.push(`Phone: ${phone}`);
+    if (subject) lines.push(`Subject: ${subject}`);
+    lines.push("Message:");
+    lines.push(message);
+
+    const text = encodeURIComponent(lines.join("\n"));
+
+    // Use your business number (international format without +)
+    const waNumber = "919129958671";
+    const url = `https://wa.me/${waNumber}?text=${text}`;
+
+    // Redirect to WhatsApp
+    window.location.href = url;
+  };
 
   return (
     <div className="min-h-screen pt-24 pb-16">
@@ -68,31 +104,31 @@ export default function ContactPage() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <form className="space-y-6">
+                <form className="space-y-6" onSubmit={handleSubmit}>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <label className="text-sm font-medium">First Name</label>
-                      <Input placeholder="First Name" />
+                      <Input placeholder="First Name" value={firstName} onChange={(e) => setFirstName((e.target as HTMLInputElement).value)} />
                     </div>
                     <div className="space-y-2">
                       <label className="text-sm font-medium">Last Name</label>
-                      <Input placeholder="Last Name" />
+                      <Input placeholder="Last Name" value={lastName} onChange={(e) => setLastName((e.target as HTMLInputElement).value)} />
                     </div>
                   </div>
 
                   <div className="space-y-2">
                     <label className="text-sm font-medium">Email</label>
-                    <Input type="email" placeholder="user@example.com" />
+                    <Input type="email" placeholder="user@example.com" value={email} onChange={(e) => setEmail((e.target as HTMLInputElement).value)} />
                   </div>
 
                   <div className="space-y-2">
                     <label className="text-sm font-medium">Phone (Optional)</label>
-                    <Input type="tel" placeholder="+91 00000 00000" />
+                    <Input type="tel" placeholder="+91 00000 00000" value={phone} onChange={(e) => setPhone((e.target as HTMLInputElement).value)} />
                   </div>
 
                   <div className="space-y-2">
                     <label className="text-sm font-medium">Subject</label>
-                    <Input placeholder="How can we help you?" />
+                    <Input placeholder="How can we help you?" value={subject} onChange={(e) => setSubject((e.target as HTMLInputElement).value)} />
                   </div>
 
                   <div className="space-y-2">
@@ -100,6 +136,8 @@ export default function ContactPage() {
                     <Textarea 
                       placeholder="Tell us about your project or inquiry..." 
                       rows={6}
+                      value={message}
+                      onChange={(e) => setMessage((e.target as HTMLTextAreaElement).value)}
                     />
                   </div>
 
@@ -111,9 +149,9 @@ export default function ContactPage() {
                     </p>
                   </div> */}
 
-                  <Button size="lg" className="w-full">
+                  <Button type="submit" size="lg" className="w-full">
                     <Send className="mr-2 h-5 w-5" />
-                    Send Message
+                    Send Message via WhatsApp
                   </Button>
                 </form>
               </CardContent>

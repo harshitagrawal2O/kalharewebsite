@@ -110,11 +110,11 @@ export default function ServicesPage() {
       description: "High detail finish",
       image: "/images/resin.png"
     },
-    {
-      name: "Nylon",
-      description: "Flexible and tough",
-      image: "/images/nylon.png"
-    },
+    // {
+    //   name: "Nylon",
+    //   description: "Flexible and tough",
+    //   image: "/images/nylon.png"
+    // },
     {
       name: "TPU",
       description: "Rubber-like flexibility",
@@ -227,7 +227,7 @@ export default function ServicesPage() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
             {materials.map((material, index) => (
               <motion.div
                 key={index}

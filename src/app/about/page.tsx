@@ -73,31 +73,13 @@ export default function AboutPage() {
       emoji: "👨‍💼",
       bio: ""
     }
-    // {
-    //   name: "Sarah Chen",
-    //   role: "Head of Design",
-    //   emoji: "👩‍🎨",
-    //   bio: "Award-winning industrial designer"
-    // },
-    // {
-    //   name: "Mike Rodriguez",
-    //   role: "Technical Director",
-    //   emoji: "👨‍🔧",
-    //   bio: "Expert in 3D printing technologies"
-    // },
-    // {
-    //   name: "Emma Williams",
-    //   role: "Customer Success",
-    //   emoji: "👩‍💻",
-    //   bio: "Dedicated to client satisfaction"
-    // }
   ];
 
   const stats = [
-    { number: "10,000+", label: "Projects Completed" },
-    { number: "5,000+", label: "Happy Clients" },
-    { number: "50+", label: "Team Members" },
-    { number: "15+", label: "Years Experience" }
+  { number: "1500+", label: "Projects Delivered" },
+  { number: "1000+", label: "Happy Clients" },
+  { number: "95%", label: "Client Satisfaction" },
+  { number: "5x", label: "Faster Delivery Than Industry" }
   ];
 
   return (
@@ -286,7 +268,7 @@ export default function AboutPage() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-16">
             {team.map((member, index) => (
               <motion.div
                 key={index}

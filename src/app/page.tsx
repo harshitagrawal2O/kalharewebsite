@@ -190,11 +190,11 @@ export default function Home() {
               className="pt-8 sm:pt-12 flex justify-center gap-6 sm:gap-8 md:gap-12 text-center flex-wrap px-4"
             >
               <div className="min-w-[100px]">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-gradient">10K+</div>
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-gradient">1500+</div>
                 <div className="text-xs sm:text-sm md:text-base text-slate-600 dark:text-slate-400">Orders Completed</div>
               </div>
               <div className="min-w-[100px]">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-gradient">5K+</div>
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-gradient">1000+</div>
                 <div className="text-xs sm:text-sm md:text-base text-slate-600 dark:text-slate-400">Happy Clients</div>
               </div>
               <div className="min-w-[100px]">

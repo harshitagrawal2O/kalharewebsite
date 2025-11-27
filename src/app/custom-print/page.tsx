@@ -104,15 +104,15 @@ export default function CustomPrint() {
       detailedContent: "Resin (Photopolymer) is used in SLA/DLP 3D printing, cured by UV light. It produces incredibly smooth surfaces with fine details down to 25 microns layer height. Ideal for miniatures, jewelry, dental models, and highly detailed prototypes. Resin prints require post-processing (washing and curing) and are generally more brittle than FDM materials. Various types include standard, tough, flexible, castable, and dental resins. Note: Uncured resin is toxic and requires careful handling.",
       price: 20
     },
-    { 
-      id: "nylon", 
-      name: "Nylon", 
-      description: "Industrial strength",
-      icon: "⚙️",
-      image: "/images/nylon.png",
-      detailedContent: "Nylon (Polyamide) is an engineering-grade material offering exceptional strength, flexibility, and wear resistance. It has excellent layer adhesion and can withstand repeated stress and friction. Nylon is hygroscopic (absorbs moisture from air), which can affect print quality if not stored properly. It requires high printing temperatures (240-260°C) and works best with an enclosed printer. Perfect for gears, hinges, functional parts, tools, and applications requiring durability and toughness.",
-      price: 25
-    },
+    // { 
+    //   id: "nylon", 
+    //   name: "Nylon", 
+    //   description: "Industrial strength",
+    //   icon: "⚙️",
+    //   image: "/images/nylon.png",
+    //   detailedContent: "Nylon (Polyamide) is an engineering-grade material offering exceptional strength, flexibility, and wear resistance. It has excellent layer adhesion and can withstand repeated stress and friction. Nylon is hygroscopic (absorbs moisture from air), which can affect print quality if not stored properly. It requires high printing temperatures (240-260°C) and works best with an enclosed printer. Perfect for gears, hinges, functional parts, tools, and applications requiring durability and toughness.",
+    //   price: 25
+    // },
     { 
       id: "tpu", 
       name: "TPU", 
@@ -135,8 +135,8 @@ export default function CustomPrint() {
     { id: "orange", name: "Orange", hex: "#F97316" },
     { id: "pink", name: "Pink", hex: "#EC4899" },
     { id: "gray", name: "Gray", hex: "#6B7280" },
-    { id: "multicolor", name: "Multicolor", hex: "linear-gradient(135deg, #EF4444 0%, #F59E0B 25%, #10B981 50%, #3B82F6 75%, #A855F7 100%)" },
-    { id: "transparent", name: "Transparent", hex: "repeating-conic-gradient(#ccc 0% 25%, transparent 0% 50%)" }
+    { id: "multicolor", name: "Multicolor", hex: "linear-gradient(135deg, #EF4444 0%, #F59E0B 25%, #10B981 50%, #3B82F6 75%, #A855F7 100%)" }
+    // { id: "transparent", name: "Transparent", hex: "repeating-conic-gradient(#ccc 0% 25%, transparent 0% 50%)" }
   ];
 
   const finishes = [
