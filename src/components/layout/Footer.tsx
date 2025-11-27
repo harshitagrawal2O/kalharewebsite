@@ -17,7 +17,7 @@ export default function Footer() {
               Let&apos;s Build Something Extraordinary Together
             </p>
             <div className="flex space-x-4 mt-2">
-              <a href="https://x.com/layerforge" target="_blank" rel="noopener noreferrer" aria-label="Twitter (X)" className="text-white hover:text-primary transition-colors">
+              <a href="https://x.com/Layerforge_tech?t=3gna8-ESRaWk5BZLSKJANA&s=08" target="_blank" rel="noopener noreferrer" aria-label="Twitter (X)" className="text-white hover:text-primary transition-colors">
                 <IconBrandTwitter className="h-5 w-5" />
               </a>
               <a href="https://youtube.com/@layerforgetechnologies?si=nRNDV3DbBDFLzvOA" target="_blank" rel="noopener noreferrer" className="text-white hover:text-primary transition-colors">
