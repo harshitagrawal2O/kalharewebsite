@@ -135,7 +135,7 @@ export default function ServicesPage() {
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
               Our <span className="text-gradient">Services</span>
             </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-xl text-foreground max-w-3xl mx-auto">
               Comprehensive 3D printing solutions tailored to your needs
             </p>
           </motion.div>
@@ -157,14 +157,14 @@ export default function ServicesPage() {
                   <CardBody className="bg-gray-50 relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-auto sm:w-[25rem] h-auto rounded-xl p-6 border">
                     <CardItem
                       translateZ="50"
-                      className="text-xl font-bold text-neutral-600 dark:text-white mb-2"
+                      className="text-xl font-bold text-foreground dark:text-white mb-2"
                     >
                       {service.title}
                     </CardItem>
                     <CardItem
                       as="p"
                       translateZ="60"
-                      className="text-neutral-500 text-sm max-w-sm mt-2 dark:text-neutral-300 mb-4"
+                      className="text-foreground text-sm max-w-sm mt-2 dark:text-neutral-300 mb-4"
                     >
                       {service.description}
                     </CardItem>
@@ -178,7 +178,7 @@ export default function ServicesPage() {
                         {service.features.map((feature, i) => (
                           <li key={i} className="flex items-start gap-2">
                             <Check className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                            <span className="text-sm text-neutral-600 dark:text-neutral-300">{feature}</span>
+                            <span className="text-sm text-foreground dark:text-neutral-300">{feature}</span>
                           </li>
                         ))}
                       </ul>
@@ -222,7 +222,7 @@ export default function ServicesPage() {
             <h2 className="text-4xl font-bold mb-4">
               Available <span className="text-gradient">Materials</span>
             </h2>
-            <p className="text-xl text-muted-foreground">
+            <p className="text-xl text-foreground">
               Choose from a wide range of high-quality materials
             </p>
           </motion.div>
@@ -247,7 +247,7 @@ export default function ServicesPage() {
                       />
                     </div>
                     <h3 className="font-bold text-lg mb-2">{material.name}</h3>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-sm text-foreground">
                       {material.description}
                     </p>
                   </CardContent>
@@ -270,7 +270,7 @@ export default function ServicesPage() {
             <h2 className="text-4xl font-bold mb-4">
               Our <span className="text-gradient">Process</span>
             </h2>
-            <p className="text-xl text-muted-foreground">
+            <p className="text-xl text-foreground">
               Simple, transparent, and efficient
             </p>
           </motion.div>
@@ -352,7 +352,7 @@ export default function ServicesPage() {
                       
                       {/* Description */}
                       <motion.p 
-                        className="text-sm text-muted-foreground relative z-10"
+                        className="text-sm text-foreground relative z-10"
                         initial={{ opacity: 0.7 }}
                         whileHover={{ opacity: 1 }}
                       >
