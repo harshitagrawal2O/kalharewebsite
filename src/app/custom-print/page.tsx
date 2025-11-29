@@ -502,7 +502,7 @@ Thank you!`;
                         className="mt-1 h-4 w-4"
                       />
                       <label htmlFor="drive-permission" className="text-sm text-muted-foreground">
-                        I give permission to read and write files on my Google Drive for uploading and sharing this file.
+                        I gave permission to read files from Google Drive for uploading and sharing this file.
                       </label>
                     </div>
                   </>
