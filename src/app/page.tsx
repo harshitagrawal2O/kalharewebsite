@@ -140,19 +140,19 @@ export default function Home() {
                 words={[
                   {
                     text: "Where",
-                    className: "text-slate-900 dark:text-slate-100 text-xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl"
+                    className: "font-heading text-slate-900 dark:text-slate-100 text-xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl"
                   },
                   {
                     text: "Imagination",
-                    className: "text-slate-900 dark:text-slate-100 text-xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl"
+                    className: "font-heading text-slate-900 dark:text-slate-100 text-xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl"
                   },
                   {
                     text: "Takes",
-                    className: "text-slate-900 dark:text-slate-100 text-xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl"
+                    className: "font-heading text-slate-900 dark:text-slate-100 text-xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl"
                   },
                   {
                     text: "Shape",
-                    className: "text-[#094ba0] text-xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl"
+                    className: "font-heading text-[#094ba0] text-xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl"
                   },
                 ]}
                 className="font-bold tracking-tight justify-center"
