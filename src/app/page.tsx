@@ -158,7 +158,7 @@ export default function Home() {
                 className="font-bold tracking-tight justify-center"
                 cursorClassName="bg-[#094ba0]"
               />
-              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-700 max-w-3xl mx-auto px-4">
+              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-foreground max-w-3xl mx-auto px-4">
                 At LayerForge, we fuse creativity and technology to transform your boldest ideas into precision-built reality — one layer at a time.
               </p>
             </motion.div>
