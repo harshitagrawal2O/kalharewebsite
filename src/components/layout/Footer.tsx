@@ -23,7 +23,7 @@ export default function Footer() {
               <a href="https://youtube.com/@layerforgetechnologies?si=nRNDV3DbBDFLzvOA" target="_blank" rel="noopener noreferrer" className="text-white hover:text-primary transition-colors">
                 <Youtube className="h-5 w-5" />
               </a>
-              <a href="https://www.reddit.com/u/Disastrous_Bird5618/s/Vnrk7n191V" target="_blank" rel="noopener noreferrer" className="text-white hover:text-primary transition-colors">
+              <a href="https://www.reddit.com/user/layerforge_tech/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-primary transition-colors">
                 <IconBrandReddit className="h-5 w-5" />
               </a>
               <a href="https://www.instagram.com/layerforge.tech?igsh=M3ZkcmMwdDcxc2lm" target="_blank" rel="noopener noreferrer" className="text-white hover:text-primary transition-colors">
