@@ -38,6 +38,7 @@ export default function CustomPrint() {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [uploadedFiles, setUploadedFiles] = useState<Array<{ name: string; size: number; url: string }>>([]);
   const [uploading, setUploading] = useState(false);
+  const [permissionChecked, setPermissionChecked] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
   const [selectedMaterial, setSelectedMaterial] = useState("");
   const [selectedColor, setSelectedColor] = useState("");
@@ -148,6 +149,12 @@ export default function CustomPrint() {
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (!files || files.length === 0) return;
+
+    // Require explicit permission checkbox before uploading
+    if (!permissionChecked) {
+      alert('Please allow read/write permission for uploaded files by checking the box below.');
+      return;
+    }
 
     // Check if user is signed in
     if (!session || !session.accessToken) {
@@ -451,7 +458,14 @@ Thank you!`;
                     />
                     
                     <div 
-                      onClick={() => !uploading && fileInputRef.current?.click()}
+                      onClick={() => {
+                        if (uploading) return;
+                        if (!permissionChecked) {
+                          alert('Please allow read/write permission for uploaded files by checking the box below.');
+                          return;
+                        }
+                        fileInputRef.current?.click();
+                      }}
                       className={`border-2 border-dashed border-primary/50 rounded-lg p-8 text-center hover:border-primary hover:bg-primary/5 transition-all ${uploading ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
                     >
                       <Upload className="h-12 w-12 text-primary mx-auto mb-4" />
@@ -477,6 +491,20 @@ Thank you!`;
                         </div>
                       </div>
                     )}
+
+                    {/* Permission checkbox required for Drive read/write */}
+                    <div className="mt-4 flex items-start gap-2">
+                      <input
+                        id="drive-permission"
+                        type="checkbox"
+                        checked={permissionChecked}
+                        onChange={(e) => setPermissionChecked(e.target.checked)}
+                        className="mt-1 h-4 w-4"
+                      />
+                      <label htmlFor="drive-permission" className="text-sm text-muted-foreground">
+                        I give permission to read and write files on my Google Drive for uploading and sharing this file.
+                      </label>
+                    </div>
                   </>
                 )}
 
