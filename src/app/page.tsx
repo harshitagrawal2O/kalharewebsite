@@ -104,21 +104,27 @@ export default function Home() {
   const testimonials = [
     {
       quote: "LayerForge transformed my designs into reality. The quality is outstanding! Their attention to detail and commitment to excellence is unmatched in the industry.",
-      name: "Sarah Johnson",
+      name: "Anurag Singh",
       designation: "Product Designer",
-      src: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&h=500&fit=crop"
+      src: "https://media.licdn.com/dms/image/v2/D5603AQEFuNOySAf3xA/profile-displayphoto-scale_400_400/B56ZmvjPJ7IYAg-/0/1759586875670?e=1766016000&v=beta&t=nfoOZPWx-xYyqYJhix0YnFH0UxnBdxotrnWYTqpLyEo"
     },
     {
       quote: "Fast turnaround and excellent customer service. Highly recommended! They helped bring my product vision to life with incredible precision and professionalism.",
-      name: "Michael Chen",
+      name: "Harshit Agrawal",
       designation: "Entrepreneur",
-      src: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=500&fit=crop"
+      src: "https://media.licdn.com/dms/image/v2/D5603AQHGIbaTVhguDw/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1715881696505?e=1766016000&v=beta&t=ZRbmEouRQeoaEw1AjJtx48TGaxz-0QlCWzBqb9PWtSY"
+    },
+      {
+      quote: "Fast turnaround and excellent customer service. Highly recommended! They helped bring my product vision to life with incredible precision and professionalism.",
+      name: "Rohit Sharma",
+      designation: "Entrepreneur",
+      src: "https://media.licdn.com/dms/image/v2/D5603AQHGIbaTVhguDw/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1715881696505?e=1766016000&v=beta&t=ZRbmEouRQeoaEw1AjJtx48TGaxz-0QlCWzBqb9PWtSY"
     },
     {
       quote: "Perfect for architectural models. The precision is incredible. LayerForge has become an essential partner in our design process, delivering consistent quality every time.",
-      name: "Emily Davis",
+      name: "Rahul Verma",
       designation: "Architect",
-      src: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=500&h=500&fit=crop"
+      src: "https://th.bing.com/th/id/OIP.ui7WXb215uL4YUjd48qGKwAAAA?w=179&h=180&c=7&r=0&o=7&dpr=2&pid=1.7&rm=3"
     }
   ];
 
