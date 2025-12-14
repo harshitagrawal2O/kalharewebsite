@@ -142,7 +142,7 @@ export default function Home() {
           <div className="text-center space-y-6 sm:space-y-8">
             <motion.div variants={fadeInUp} className="space-y-3 sm:space-y-4">
               <motion.h1 
-                className="text-xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight justify-center font-heading text-slate-900 dark:text-slate-100"
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight justify-center font-heading text-slate-900 dark:text-slate-100"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
@@ -152,7 +152,7 @@ export default function Home() {
                   Shape
                 </span>
               </motion.h1>
-              <p className="text-xs sm:text-base md:text-lg lg:text-xl text-foreground max-w-3xl mx-auto px-4">
+              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-foreground max-w-3xl mx-auto px-4">
                 At LayerForge, we fuse creativity and technology to transform your boldest ideas into precision-built reality — one layer at a time.
               </p>
             </motion.div>

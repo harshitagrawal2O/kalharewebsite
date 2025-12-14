@@ -592,41 +592,40 @@ Thank you!`;
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="flex justify-center mb-12"
+          className="flex justify-center mb-12 px-4"
         >
-          <div className="relative flex items-center bg-white dark:bg-slate-950 rounded-full p-1.5 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <div className="relative flex items-center bg-white dark:bg-slate-950 rounded-full p-1 sm:p-1.5 border border-slate-200 dark:border-slate-800 shadow-sm w-full max-w-md sm:max-w-lg">
             {/* Sliding Background */}
             <motion.div
-              className="absolute top-1.5 bottom-1.5 rounded-full bg-[#094ba0] shadow-md"
+              className="absolute top-1 bottom-1 sm:top-1.5 sm:bottom-1.5 rounded-full bg-[#094ba0] shadow-md"
               initial={false}
               animate={{
-                left: activeTab === "3d-print" ? "0.375rem" : "50%",
-                right: activeTab === "3d-print" ? "50%" : "0.375rem",
+                left: activeTab === "3d-print" ? "0.25rem" : "50%",
+                right: activeTab === "3d-print" ? "50%" : "0.25rem",
               }}
               transition={{
-                type: "spring",
-                stiffness: 200,
-                damping: 40,
+                duration: 0.3,
+                ease: "easeInOut"
               }}
             />
             
             <button
               onClick={() => setActiveTab("3d-print")}
-              className={`relative z-10 flex items-center justify-center gap-2 px-8 py-3 rounded-full text-sm font-semibold transition-colors duration-200 w-48 ${
+              className={`relative z-10 flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-8 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm font-semibold transition-colors duration-200 flex-1 ${
                 activeTab === "3d-print" ? "text-white" : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200"
               }`}
             >
-              <Layers className="w-4 h-4" />
+              <Layers className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               <span>3D Print</span>
             </button>
             
             <button
               onClick={() => setActiveTab("lithophane")}
-              className={`relative z-10 flex items-center justify-center gap-2 px-8 py-3 rounded-full text-sm font-semibold transition-colors duration-200 w-48 ${
+              className={`relative z-10 flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-8 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm font-semibold transition-colors duration-200 flex-1 ${
                 activeTab === "lithophane" ? "text-white" : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200"
               }`}
             >
-              <Sparkles className="w-4 h-4" />
+              <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               <span>Lithophane</span>
             </button>
           </div>
@@ -638,9 +637,9 @@ Thank you!`;
           <>
           {/* Left Column - Configuration */}
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.3 }}
             className="lg:col-span-2 space-y-6"
           >
             {/* File Upload */}
@@ -1131,9 +1130,9 @@ Thank you!`;
           <>
           {/* Left Column - Configuration */}
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.3 }}
             className="lg:col-span-2 space-y-6"
           >
             {/* Image Upload */}
@@ -1421,9 +1420,9 @@ Thank you!`;
 
           {/* Right Column - Summary */}
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.3 }}
             className="lg:col-span-1"
           >
             <Card className="sticky top-24">
