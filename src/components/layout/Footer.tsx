@@ -5,7 +5,7 @@ import { IconBrandReddit, IconBrandTwitter } from "@tabler/icons-react";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#083058] border-t border-border text-white relative z-10">
+    <footer className="bg-[#001c3d] border-t border-border text-white relative z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12 text-center">
           {/* Company Info */}
