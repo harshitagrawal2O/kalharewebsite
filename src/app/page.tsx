@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { FeatureCard } from "@/components/ui/feature-card";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { Boxes } from "@/components/ui/background-boxes";
-import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
 import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
 import { PointerHighlight } from "@/components/ui/pointer-highlight";
 import { HoverEffect } from "@/components/ui/card-hover-effect";
@@ -114,11 +113,11 @@ export default function Home() {
       designation: "Entrepreneur",
       src: "https://media.licdn.com/dms/image/v2/D5603AQHGIbaTVhguDw/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1715881696505?e=1766016000&v=beta&t=ZRbmEouRQeoaEw1AjJtx48TGaxz-0QlCWzBqb9PWtSY"
     },
-      {
-      quote: "Fast turnaround and excellent customer service. Highly recommended! They helped bring my product vision to life with incredible precision and professionalism.",
-      name: "Rohit Sharma",
+    {
+      quote: "LayerForge delivered exceptional results — fast, reliable, and the surface finish was flawless. I will be using them for all future prototypes and highly recommend their services.",
+      name: "Sanya Sharma",
       designation: "Entrepreneur",
-      src: "https://media.licdn.com/dms/image/v2/D5603AQHGIbaTVhguDw/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1715881696505?e=1766016000&v=beta&t=ZRbmEouRQeoaEw1AjJtx48TGaxz-0QlCWzBqb9PWtSY"
+      src: "https://th.bing.com/th/id/OIP.n2KTVjAP5M8JEq6iEiNgKwHaHa?w=171&h=180&c=7&r=0&o=7&dpr=1.4&pid=1.7&rm=3"
     },
     {
       quote: "Perfect for architectural models. The precision is incredible. LayerForge has become an essential partner in our design process, delivering consistent quality every time.",
@@ -142,29 +141,18 @@ export default function Home() {
         >
           <div className="text-center space-y-6 sm:space-y-8">
             <motion.div variants={fadeInUp} className="space-y-3 sm:space-y-4">
-              <TypewriterEffectSmooth 
-                words={[
-                  {
-                    text: "Where",
-                    className: "font-heading text-slate-900 dark:text-slate-100 text-xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl"
-                  },
-                  {
-                    text: "Imagination",
-                    className: "font-heading text-slate-900 dark:text-slate-100 text-xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl"
-                  },
-                  {
-                    text: "Takes",
-                    className: "font-heading text-slate-900 dark:text-slate-100 text-xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl"
-                  },
-                  {
-                    text: "Shape",
-                    className: "font-heading text-[#094ba0] text-xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl"
-                  },
-                ]}
-                className="font-bold tracking-tight justify-center"
-                cursorClassName="bg-[#094ba0]"
-              />
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-foreground max-w-3xl mx-auto px-4">
+              <motion.h1 
+                className="text-xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight justify-center font-heading text-slate-900 dark:text-slate-100"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+              >
+                Where Imagination Takes{" "}
+                <span className="text-[#094ba0] block w-full sm:inline-block sm:w-auto mt-2 sm:mt-0">
+                  Shape
+                </span>
+              </motion.h1>
+              <p className="text-xs sm:text-base md:text-lg lg:text-xl text-foreground max-w-3xl mx-auto px-4">
                 At LayerForge, we fuse creativity and technology to transform your boldest ideas into precision-built reality — one layer at a time.
               </p>
             </motion.div>
@@ -174,7 +162,7 @@ export default function Home() {
               className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center px-4"
             >
               <Link href="/custom-print" className="w-full sm:w-auto">
-                <Button size="lg" className="text-base sm:text-lg px-6 sm:px-8 w-full sm:w-auto">
+                <Button size="lg" className="text-base sm:text-lg px-6 sm:px-8 w-full sm:w-auto h-12 sm:h-11">
                   Custom Print
                   <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
                 </Button>
@@ -184,7 +172,7 @@ export default function Home() {
                 pointerClassName="text-[#094ba0]"
               >
                 <Link href="/services" className="w-full sm:w-auto">
-                  <Button size="lg" variant="outline" className="text-base sm:text-lg px-6 sm:px-8 relative z-10 w-full sm:w-auto">
+                  <Button size="lg" variant="outline" className="text-base sm:text-lg px-6 sm:px-8 relative z-10 w-full sm:w-auto h-12 sm:h-11">
                     Our Services
                   </Button>
                 </Link>

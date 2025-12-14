@@ -5,7 +5,7 @@ import { IconBrandReddit, IconBrandTwitter } from "@tabler/icons-react";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#083058] border-t border-border text-white">
+    <footer className="bg-[#083058] border-t border-border text-white relative z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12 text-center">
           {/* Company Info */}
@@ -17,13 +17,13 @@ export default function Footer() {
               Let&apos;s Build Something Extraordinary Together
             </p>
             <div className="flex space-x-4 mt-2">
-              <a href="https://x.com/Layerforge_tech?t=3gna8-ESRaWk5BZLSKJANA&s=08" target="_blank" rel="noopener noreferrer" aria-label="Twitter (X)" className="text-white hover:text-primary transition-colors">
+              <a href="https://x.com/layerforge" target="_blank" rel="noopener noreferrer" aria-label="Twitter (X)" className="text-white hover:text-primary transition-colors">
                 <IconBrandTwitter className="h-5 w-5" />
               </a>
               <a href="https://youtube.com/@layerforgetechnologies?si=nRNDV3DbBDFLzvOA" target="_blank" rel="noopener noreferrer" className="text-white hover:text-primary transition-colors">
                 <Youtube className="h-5 w-5" />
               </a>
-              <a href="https://www.reddit.com/user/layerforge_tech/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-primary transition-colors">
+              <a href="https://www.reddit.com/u/Disastrous_Bird5618/s/Vnrk7n191V" target="_blank" rel="noopener noreferrer" className="text-white hover:text-primary transition-colors">
                 <IconBrandReddit className="h-5 w-5" />
               </a>
               <a href="https://www.instagram.com/layerforge.tech?igsh=M3ZkcmMwdDcxc2lm" target="_blank" rel="noopener noreferrer" className="text-white hover:text-primary transition-colors">
