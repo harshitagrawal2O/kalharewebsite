@@ -13,17 +13,17 @@ import { CardSpotlight } from "@/components/ui/card-spotlight";
 import { cn } from "@/lib/utils";
 import { useState, useRef, useEffect } from "react";
 
-const videos = ['/videos/printing.mp4', '/videos/printing2.mp4'];
+const videos = ["/videos/printing.mp4", "/videos/printing2.mp4"];
 
 export default function Home() {
   const [currentVideo, setCurrentVideo] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
-  
+
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
-    
+
     const handleVideoEnd = () => {
       setIsTransitioning(true);
       setTimeout(() => {
@@ -31,46 +31,47 @@ export default function Home() {
         setIsTransitioning(false);
       }, 500);
     };
-    
-    video.addEventListener('ended', handleVideoEnd);
-    return () => video.removeEventListener('ended', handleVideoEnd);
+
+    video.addEventListener("ended", handleVideoEnd);
+    return () => video.removeEventListener("ended", handleVideoEnd);
   }, [currentVideo]);
-  
+
   const fadeInUp = {
     initial: { opacity: 0, y: 60 },
     animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.6 }
+    transition: { duration: 0.6 },
   };
 
   const stagger = {
     animate: {
       transition: {
-        staggerChildren: 0.1
-      }
-    }
+        staggerChildren: 0.1,
+      },
+    },
   };
 
   const features = [
     {
       icon: "/icons/technology.gif",
       title: "Advanced Technology",
-      description: "State-of-the-art 3D printers delivering precision and quality"
+      description:
+        "State-of-the-art 3D printers delivering precision and quality",
     },
     {
       icon: "/icons/fast.gif",
       title: "Fast Turnaround",
-      description: "Quick production times without compromising on quality"
+      description: "Quick production times without compromising on quality",
     },
     {
       icon: "/icons/high-quality.gif",
       title: "Quality Assured",
-      description: "Every print meets our rigorous quality standards"
+      description: "Every print meets our rigorous quality standards",
     },
     {
       icon: "/icons/helpdesk.gif",
       title: "24/7 Support",
-      description: "Round-the-clock assistance for all your printing needs"
-    }
+      description: "Round-the-clock assistance for all your printing needs",
+    },
   ];
 
   const services = [
@@ -78,53 +79,45 @@ export default function Home() {
       title: "Custom 3D Printing",
       description: "Upload your design and get instant quotes",
       image: "/images/custom.png",
-      link: "/services#custom"
-    },
-    {
-      title: "Pre-designed Models",
-      description: "Choose from our extensive library",
-      image: "/images/predesigned-models.png",
-      link: "/products"
+      link: "/services#custom",
     },
     {
       title: "Prototyping",
       description: "Rapid prototyping for product development",
       image: "/images/prototype.png",
-      link: "/services#prototyping"
+      link: "/services#prototyping",
     },
-    {
-      title: "Mass Production",
-      description: "Large-scale manufacturing solutions",
-      image: "/images/mass-production.png",
-      link: "/services#production"
-    }
   ];
 
   const testimonials = [
     {
-      quote: "LayerForge transformed my designs into reality. The quality is outstanding! Their attention to detail and commitment to excellence is unmatched in the industry.",
+      quote:
+        "LayerForge transformed my designs into reality. The quality is outstanding! Their attention to detail and commitment to excellence is unmatched in the industry.",
       name: "Anurag Singh",
       designation: "Product Designer",
-      src: "https://media.licdn.com/dms/image/v2/D5603AQEFuNOySAf3xA/profile-displayphoto-scale_400_400/B56ZmvjPJ7IYAg-/0/1759586875670?e=1766016000&v=beta&t=nfoOZPWx-xYyqYJhix0YnFH0UxnBdxotrnWYTqpLyEo"
+      src: "https://media.licdn.com/dms/image/v2/D5603AQEFuNOySAf3xA/profile-displayphoto-scale_400_400/B56ZmvjPJ7IYAg-/0/1759586875670?e=1766016000&v=beta&t=nfoOZPWx-xYyqYJhix0YnFH0UxnBdxotrnWYTqpLyEo",
     },
     {
-      quote: "Fast turnaround and excellent customer service. Highly recommended! They helped bring my product vision to life with incredible precision and professionalism.",
+      quote:
+        "Fast turnaround and excellent customer service. Highly recommended! They helped bring my product vision to life with incredible precision and professionalism.",
       name: "Harshit Agrawal",
       designation: "Entrepreneur",
-      src: "https://media.licdn.com/dms/image/v2/D5603AQHGIbaTVhguDw/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1715881696505?e=1766016000&v=beta&t=ZRbmEouRQeoaEw1AjJtx48TGaxz-0QlCWzBqb9PWtSY"
+      src: "https://media.licdn.com/dms/image/v2/D5603AQHGIbaTVhguDw/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1715881696505?e=1766016000&v=beta&t=ZRbmEouRQeoaEw1AjJtx48TGaxz-0QlCWzBqb9PWtSY",
     },
     {
-      quote: "LayerForge delivered exceptional results — fast, reliable, and the surface finish was flawless. I will be using them for all future prototypes and highly recommend their services.",
+      quote:
+        "LayerForge delivered exceptional results — fast, reliable, and the surface finish was flawless. I will be using them for all future prototypes and highly recommend their services.",
       name: "Sanya Sharma",
       designation: "Entrepreneur",
-      src: "https://th.bing.com/th/id/OIP.n2KTVjAP5M8JEq6iEiNgKwHaHa?w=171&h=180&c=7&r=0&o=7&dpr=1.4&pid=1.7&rm=3"
+      src: "https://th.bing.com/th/id/OIP.n2KTVjAP5M8JEq6iEiNgKwHaHa?w=171&h=180&c=7&r=0&o=7&dpr=1.4&pid=1.7&rm=3",
     },
     {
-      quote: "Perfect for architectural models. The precision is incredible. LayerForge has become an essential partner in our design process, delivering consistent quality every time.",
+      quote:
+        "Perfect for architectural models. The precision is incredible. LayerForge has become an essential partner in our design process, delivering consistent quality every time.",
       name: "Rahul Verma",
       designation: "Architect",
-      src: "https://th.bing.com/th/id/OIP.ui7WXb215uL4YUjd48qGKwAAAA?w=179&h=180&c=7&r=0&o=7&dpr=2&pid=1.7&rm=3"
-    }
+      src: "https://th.bing.com/th/id/OIP.ui7WXb215uL4YUjd48qGKwAAAA?w=179&h=180&c=7&r=0&o=7&dpr=2&pid=1.7&rm=3",
+    },
   ];
 
   return (
@@ -141,19 +134,20 @@ export default function Home() {
         >
           <div className="text-center space-y-6 sm:space-y-8">
             <motion.div variants={fadeInUp} className="space-y-3 sm:space-y-4">
-              <motion.h1 
+              <motion.h1
                 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight justify-center font-heading text-slate-900 dark:text-slate-100"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
               >
-                Where Imagination Takes{" "}
+                Professional Additive Manufacturing &{" "}
                 <span className="text-[#094ba0] block w-full sm:inline-block sm:w-auto mt-2 sm:mt-0">
-                  Shape
+                  Rapid Prototyping
                 </span>
               </motion.h1>
               <p className="text-sm sm:text-base md:text-lg lg:text-xl text-foreground max-w-3xl mx-auto px-4">
-                At LayerForge, we fuse creativity and technology to transform your boldest ideas into precision-built reality — one layer at a time.
+                From digital concepts to functional prototypes, built with
+                precision.
               </p>
             </motion.div>
 
@@ -162,8 +156,11 @@ export default function Home() {
               className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center px-4"
             >
               <Link href="/custom-print" className="w-full sm:w-auto">
-                <Button size="lg" className="text-base sm:text-lg px-6 sm:px-8 w-full sm:w-auto h-12 sm:h-11">
-                  Custom Print
+                <Button
+                  size="lg"
+                  className="text-base sm:text-lg px-6 sm:px-8 w-full sm:w-auto h-12 sm:h-11"
+                >
+                  Get a Quote
                   <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
                 </Button>
               </Link>
@@ -172,7 +169,11 @@ export default function Home() {
                 pointerClassName="text-[#094ba0]"
               >
                 <Link href="/services" className="w-full sm:w-auto">
-                  <Button size="lg" variant="outline" className="text-base sm:text-lg px-6 sm:px-8 relative z-10 w-full sm:w-auto h-12 sm:h-11">
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="text-base sm:text-lg px-6 sm:px-8 relative z-10 w-full sm:w-auto h-12 sm:h-11"
+                  >
                     Our Services
                   </Button>
                 </Link>
@@ -184,23 +185,32 @@ export default function Home() {
               className="pt-8 sm:pt-12 flex justify-center gap-6 sm:gap-8 md:gap-12 text-center flex-wrap px-4"
             >
               <div className="min-w-[100px]">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-gradient">1500+</div>
-                <div className="text-xs sm:text-sm md:text-base text-slate-600 dark:text-slate-400">Orders Completed</div>
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-gradient">
+                  Precisely
+                </div>
+                <div className="text-xs sm:text-sm md:text-base text-slate-600 dark:text-slate-400">
+                  Accurate
+                </div>
               </div>
               <div className="min-w-[100px]">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-gradient">1000+</div>
-                <div className="text-xs sm:text-sm md:text-base text-slate-600 dark:text-slate-400">Happy Clients</div>
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-gradient">
+                  Happy
+                </div>
+                <div className="text-xs sm:text-sm md:text-base text-slate-600 dark:text-slate-400">
+                  Clients
+                </div>
               </div>
               <div className="min-w-[100px]">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-gradient">99%</div>
-                <div className="text-xs sm:text-sm md:text-base text-slate-600 dark:text-slate-400">Satisfaction</div>
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-gradient">
+                  99%
+                </div>
+                <div className="text-xs sm:text-sm md:text-base text-slate-600 dark:text-slate-400">
+                  Satisfaction
+                </div>
               </div>
             </motion.div>
           </div>
         </motion.div>
-
-      
-        
       </section>
 
       {/* Features Section */}
@@ -266,12 +276,12 @@ export default function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <HoverEffect 
-              items={services.map(service => ({
+            <HoverEffect
+              items={services.map((service) => ({
                 title: service.title,
                 description: service.description,
                 link: service.link,
-                image: service.image
+                image: service.image,
               }))}
               className="max-w-7xl mx-auto"
             />
@@ -323,21 +333,27 @@ export default function Home() {
               {
                 step: "01",
                 title: "Choose or Upload",
-                description: "Select from our designs or upload your own 3D model"
+                description:
+                  "Select from our designs or upload your own 3D model",
               },
               {
                 step: "02",
                 title: "Customize & Quote",
-                description: "Select materials, colors, and get instant pricing"
+                description:
+                  "Select materials, colors, and get instant pricing",
               },
               {
                 step: "03",
                 title: "We Print & Ship",
-                description: "We print your model and deliver it to your door"
-              }
+                description: "We print your model and deliver it to your door",
+              },
             ].map((item, index) => (
-              <motion.div key={index} variants={fadeInUp} className="relative flex items-center gap-4">
-                <CardSpotlight 
+              <motion.div
+                key={index}
+                variants={fadeInUp}
+                className="relative flex items-center gap-4"
+              >
+                <CardSpotlight
                   className="h-full text-center p-8 bg-white dark:bg-neutral-950 border-gray-200 flex-1"
                   radius={400}
                   color="rgba(76, 154, 255, 0.25)"
@@ -345,7 +361,9 @@ export default function Home() {
                   <div className="text-6xl font-bold text-primary/20 mb-4">
                     {item.step}
                   </div>
-                  <h3 className="text-xl font-bold mb-4 text-foreground">{item.title}</h3>
+                  <h3 className="text-xl font-bold mb-4 text-foreground">
+                    {item.title}
+                  </h3>
                   <p className="text-base text-muted-foreground">
                     {item.description}
                   </p>
@@ -381,19 +399,19 @@ export default function Home() {
               muted
               playsInline
               initial={{ opacity: 0, scale: 1.1 }}
-              animate={{ 
+              animate={{
                 opacity: isTransitioning ? 0 : 1,
-                scale: isTransitioning ? 1.1 : 1
+                scale: isTransitioning ? 1.1 : 1,
               }}
               transition={{ duration: 0.5 }}
             >
               <source src={videos[currentVideo]} type="video/mp4" />
               Your browser does not support the video tag.
             </motion.video>
-            
+
             {/* Dark overlay for better text readability */}
             <div className="absolute inset-0 bg-black/30" />
-            
+
             {/* Content overlay */}
             <div className="absolute inset-0 flex items-center justify-center">
               <motion.div
@@ -429,7 +447,7 @@ export default function Home() {
               What Our <span className="text-gradient">Clients Say</span>
             </h2>
             <p className="text-xl text-muted-foreground">
-              Trusted by thousands of satisfied customers
+              Trusted by many customers
             </p>
           </motion.div>
 
@@ -450,17 +468,26 @@ export default function Home() {
             Ready to Get Started?
           </h2>
           <p className="text-xl text-white/90 mb-8">
-            Join thousands of satisfied customers and bring your ideas to life today
+            Join thousands of satisfied customers and bring your ideas to life
+            today
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/custom-print">
-              <Button size="lg" variant="secondary" className="text-lg px-8 bg-white hover:bg-white/90 text-[#1a365d]">
-                Custom Print
+              <Button
+                size="lg"
+                variant="secondary"
+                className="text-lg px-8 bg-white hover:bg-white/90 text-[#1a365d]"
+              >
+                Get a quote
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
             <Link href="/services">
-              <Button size="lg" variant="outline" className="text-lg px-8 bg-transparent text-white border-white hover:bg-white/10">
+              <Button
+                size="lg"
+                variant="outline"
+                className="text-lg px-8 bg-transparent text-white border-white hover:bg-white/10"
+              >
                 Services
               </Button>
             </Link>

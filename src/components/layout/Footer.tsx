@@ -1,6 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Instagram, Linkedin, Mail, Phone, MapPin, Youtube } from "lucide-react";
+import {
+  Instagram,
+  Linkedin,
+  Mail,
+  Phone,
+  MapPin,
+  Youtube,
+} from "lucide-react";
 import { IconBrandReddit, IconBrandTwitter } from "@tabler/icons-react";
 
 export default function Footer() {
@@ -11,25 +18,49 @@ export default function Footer() {
           {/* Company Info */}
           <div className="space-y-4 flex flex-col items-center">
             <Link href="/" className="inline-block">
-              <Image src="/images/logo.svg" alt="LayerForge" width={160} height={80} className="h-20 w-40" />
+              <Image
+                src="/images/logo.svg"
+                alt="LayerForge"
+                width={160}
+                height={80}
+                className="h-20 w-40"
+              />
             </Link>
             <p className="text-sm text-white/90">
               Let&apos;s Build Something Extraordinary Together
             </p>
             <div className="flex space-x-4 mt-2">
-              <a href="https://x.com/layerforge" target="_blank" rel="noopener noreferrer" aria-label="Twitter (X)" className="text-white hover:text-primary transition-colors">
+              <a
+                href="https://x.com/Layerforge_tech"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Twitter (X)"
+                className="text-white hover:text-primary transition-colors"
+              >
                 <IconBrandTwitter className="h-5 w-5" />
               </a>
-              <a href="https://youtube.com/@layerforgetechnologies?si=nRNDV3DbBDFLzvOA" target="_blank" rel="noopener noreferrer" className="text-white hover:text-primary transition-colors">
+              <a
+                href="https://youtube.com/@layerforgetechnologies?si=nRNDV3DbBDFLzvOA"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white hover:text-primary transition-colors"
+              >
                 <Youtube className="h-5 w-5" />
               </a>
-              <a href="https://www.reddit.com/u/Disastrous_Bird5618/s/Vnrk7n191V" target="_blank" rel="noopener noreferrer" className="text-white hover:text-primary transition-colors">
-                <IconBrandReddit className="h-5 w-5" />
-              </a>
-              <a href="https://www.instagram.com/layerforge.tech?igsh=M3ZkcmMwdDcxc2lm" target="_blank" rel="noopener noreferrer" className="text-white hover:text-primary transition-colors">
+              <a
+                href="https://www.instagram.com/layerforge.tech?igsh=M3ZkcmMwdDcxc2lm"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white hover:text-primary transition-colors"
+              >
                 <Instagram className="h-5 w-5" />
               </a>
-              <a href="https://www.linkedin.com/in/layerforge-technologies-363a19398?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app " target="_blank" rel="noopener noreferrer" className="text-white hover:text-primary transition-colors">
+              <a
+                href="https://www.linkedin.com/in/layerforge-technologies-363a19398?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app "
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white hover:text-primary transition-colors"
+              >
                 <Linkedin className="h-5 w-5" />
               </a>
             </div>
@@ -37,24 +68,30 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div className="flex flex-col items-center">
-            <h4 className="text-white font-semibold mb-4 text-lg">Quick Links</h4>
+            <h4 className="text-white font-semibold mb-4 text-lg">
+              Quick Links
+            </h4>
             <ul className="space-y-2">
-              {["Home", "Products", "Services", "About", "Contact"].map((item) => (
-                <li key={item}>
-                  <Link
-                    href={`/${item.toLowerCase()}`}
-                    className="text-sm text-white/80 hover:text-white transition-colors"
-                  >
-                    {item}
-                  </Link>
-                </li>
-              ))}
+              {["Home", "Products", "Services", "About", "Contact"].map(
+                (item) => (
+                  <li key={item}>
+                    <Link
+                      href={`/${item.toLowerCase()}`}
+                      className="text-sm text-white/80 hover:text-white transition-colors"
+                    >
+                      {item}
+                    </Link>
+                  </li>
+                ),
+              )}
             </ul>
           </div>
 
           {/* Services */}
           <div className="flex flex-col items-center">
-            <h4 className="text-white font-semibold mb-4 text-lg">Our Services</h4>
+            <h4 className="text-white font-semibold mb-4 text-lg">
+              Our Services
+            </h4>
             <ul className="space-y-2">
               {[
                 "3D Printing",
@@ -108,7 +145,9 @@ export default function Footer() {
 
           {/* Contact Info */}
           <div className="flex flex-col items-center">
-            <h4 className="text-white font-semibold mb-4 text-lg">Contact Us</h4>
+            <h4 className="text-white font-semibold mb-4 text-lg">
+              Contact Us
+            </h4>
             <ul className="space-y-3">
               <li className="flex items-center space-x-3">
                 <MapPin className="h-5 w-5 text-primary" />
@@ -118,13 +157,19 @@ export default function Footer() {
               </li>
               <li className="flex items-center space-x-3">
                 <Phone className="h-5 w-5 text-primary" />
-                <a href="tel:+919129958671" className="text-sm text-white/80 hover:text-white transition-colors whitespace-nowrap">
+                <a
+                  href="tel:+919129958671"
+                  className="text-sm text-white/80 hover:text-white transition-colors whitespace-nowrap"
+                >
                   +91 91299 58671
                 </a>
               </li>
               <li className="flex items-center space-x-3">
                 <Mail className="h-5 w-5 text-primary" />
-                <a href="mailto:info@layerforgetech.com" className="text-sm text-white/80 hover:text-white transition-colors whitespace-nowrap">
+                <a
+                  href="mailto:info@layerforgetech.com"
+                  className="text-sm text-white/80 hover:text-white transition-colors whitespace-nowrap"
+                >
                   info@layerforgetech.com
                 </a>
               </li>
@@ -138,15 +183,24 @@ export default function Footer() {
               © {new Date().getFullYear()} LayerForge. All rights reserved.
             </p>
             <div className="flex gap-4 text-xs text-white/80">
-              <Link href="/terms" className="text-white hover:text-primary transition-colors">
+              <Link
+                href="/terms"
+                className="text-white hover:text-primary transition-colors"
+              >
                 Terms
               </Link>
               <span>•</span>
-              <Link href="/privacy-policy" className="text-white hover:text-primary transition-colors">
+              <Link
+                href="/privacy-policy"
+                className="text-white hover:text-primary transition-colors"
+              >
                 Privacy
               </Link>
               <span>•</span>
-              <Link href="/refund-policy" className="text-white hover:text-primary transition-colors">
+              <Link
+                href="/refund-policy"
+                className="text-white hover:text-primary transition-colors"
+              >
                 Refund Policy
               </Link>
             </div>
