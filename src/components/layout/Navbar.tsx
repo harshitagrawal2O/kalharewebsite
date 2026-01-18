@@ -2,234 +2,137 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { ShoppingCart, User } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
-import {
-  Navbar as ResizableNavbar,
-  NavBody,
-  NavItems,
-  MobileNav,
-  MobileNavHeader,
-  MobileNavMenu,
-  MobileNavToggle,
-} from "@/components/ui/resizable-navbar";
+import clsx from "clsx";
 
-const NavbarBrand = ({ visible }: { visible?: boolean }) => {
-  return (
-    <Link
-      href="/"
-      className={`flex items-center relative z-20 ${visible ? "rounded-md overflow-hidden" : ""}`}
-    >
-      <Image
-        src="/images/logo-2.png"
-        alt="LayerForge Technologies"
-        width={visible ? 100 : 160}
-        height={visible ? 40 : 48}
-        className={`transition-all duration-300 object-contain ${visible ? "h-10 rounded-l shadow-sm" : "h-12"}`}
-        priority
-      />
-    </Link>
-  );
-};
+const NavbarBrand = () => (
+  <Link href="/" className="flex-shrink-0">
+    <Image
+      src="/images/logo-2.png"
+      alt="LayerForge Technologies"
+      width={160}
+      height={48}
+      priority
+      className="h-10 w-auto max-w-[140px] lg:max-w-[160px] object-contain transition-all duration-300"
+    />
+  </Link>
+);
 
 export default function Navbar() {
   const { cartCount } = useCart();
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
-  // Disable resize on custom-print page
   const disableResize = pathname === "/custom-print";
 
   const navItems = [
     { name: "Home", link: "/" },
-    { name: "Manufacturing Services", link: "/custom-print" },
+    { name: "Manufact. Services", link: "/custom-print" },
     { name: "Capabilities", link: "/products" },
     { name: "Applications", link: "/services" },
-    { name: "About Us", link: "/about" },
+    { name: "About", link: "/about" },
     { name: "Contact", link: "/contact" },
   ];
 
+  // Scroll detection
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <>
-      {disableResize ? (
-        // Static navbar for custom-print page
-        <nav className="fixed w-full z-50 bg-background/80 backdrop-blur-lg border-b border-border shadow-lg">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between items-center h-16">
-              {/* Logo */}
-              <NavbarBrand />
-
-              {/* Desktop Navigation */}
-              <div className="hidden md:flex items-center space-x-6">
-                {navItems.map((item) => (
-                  <Link
-                    key={item.name}
-                    href={item.link}
-                    className="text-foreground/80 hover:text-foreground transition-colors relative group text-sm"
-                  >
-                    {item.name}
-                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
-                  </Link>
-                ))}
-              </div>
-
-              {/* Right Side Actions */}
-              <div className="hidden md:flex items-center space-x-2">
-                <Link href="/cart">
-                  <Button variant="ghost" size="icon" className="relative">
-                    <ShoppingCart className="h-5 w-5" />
-                    {cartCount > 0 && (
-                      <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                        {cartCount}
-                      </span>
-                    )}
-                  </Button>
-                </Link>
-                <Link href="/">
-                  <Button variant="ghost" size="icon">
-                    <User className="h-5 w-5" />
-                  </Button>
-                </Link>
-              </div>
-
-              {/* Mobile Menu Button */}
-              <button
-                className="md:hidden"
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              >
-                <MobileNavToggle isOpen={isMobileMenuOpen} onClick={() => {}} />
-              </button>
-            </div>
-          </div>
-
-          {/* Mobile Menu */}
-          {isMobileMenuOpen && (
-            <div className="md:hidden bg-background border-b border-border">
-              <div className="px-4 py-4 space-y-3">
-                {navItems.map((item, idx) => (
-                  <Link
-                    key={`mobile-link-${idx}`}
-                    href={item.link}
-                    className="block py-2 text-foreground/80 hover:text-foreground transition-colors"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-                <div className="pt-4 space-y-2 border-t border-border">
-                  <Link href="/cart" className="block">
-                    <Button
-                      variant="outline"
-                      className="w-full relative justify-start"
-                    >
-                      <ShoppingCart className="mr-2 h-4 w-4" />
-                      Cart
-                      {cartCount > 0 && (
-                        <span className="ml-auto bg-primary text-primary-foreground text-xs rounded-full px-2 py-0.5">
-                          {cartCount}
-                        </span>
-                      )}
-                    </Button>
-                  </Link>
-                  <Link href="/" className="block">
-                    <Button variant="ghost" className="w-full justify-start">
-                      <User className="mr-2 h-4 w-4" />
-                      Sign In
-                    </Button>
-                  </Link>
-                </div>
-              </div>
-            </div>
-          )}
-        </nav>
-      ) : (
-        // Resizable navbar for other pages
-        <ResizableNavbar disableResize={disableResize}>
-          {/* Desktop Navigation */}
-          <NavBody>
-            {/* Logo */}
-            <NavbarBrand />
-
-            {/* Navigation Items */}
-            <NavItems items={navItems} />
-
-            {/* Right Side Actions */}
-            <div className="flex items-center space-x-2 relative z-20">
-              <Link href="/cart">
-                <Button variant="ghost" size="icon" className="relative">
-                  <ShoppingCart className="h-5 w-5" />
-                  {cartCount > 0 && (
-                    <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                      {cartCount}
-                    </span>
-                  )}
-                </Button>
-              </Link>
-              <Link href="/">
-                <Button variant="ghost" size="icon">
-                  <User className="h-5 w-5" />
-                </Button>
-              </Link>
-            </div>
-          </NavBody>
-
-          {/* Mobile Navigation */}
-          <MobileNav>
-            <MobileNavHeader>
-              {/* Logo */}
-              <NavbarBrand />
-
-              {/* Mobile Menu Toggle */}
-              <MobileNavToggle
-                isOpen={isMobileMenuOpen}
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              />
-            </MobileNavHeader>
-
-            {/* Mobile Menu */}
-            <MobileNavMenu
-              isOpen={isMobileMenuOpen}
-              onClose={() => setIsMobileMenuOpen(false)}
-            >
-              {navItems.map((item, idx) => (
-                <a
-                  key={`mobile-link-${idx}`}
-                  href={item.link}
-                  className="block w-full py-2 text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white transition-colors"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {item.name}
-                </a>
-              ))}
-              <div className="pt-4 space-y-2 w-full border-t border-neutral-200 dark:border-neutral-800">
-                <Link href="/cart" className="block w-full">
-                  <Button
-                    variant="outline"
-                    className="w-full relative justify-start"
-                  >
-                    <ShoppingCart className="mr-2 h-4 w-4" />
-                    Cart
-                    {cartCount > 0 && (
-                      <span className="ml-auto bg-primary text-primary-foreground text-xs rounded-full px-2 py-0.5">
-                        {cartCount}
-                      </span>
-                    )}
-                  </Button>
-                </Link>
-                <Link href="/" className="block w-full">
-                  <Button variant="ghost" className="w-full justify-start">
-                    <User className="mr-2 h-4 w-4" />
-                    Sign In
-                  </Button>
-                </Link>
-              </div>
-            </MobileNavMenu>
-          </MobileNav>
-        </ResizableNavbar>
+    <header
+      className={clsx(
+        "fixed top-0 z-50 transition-all duration-300",
+        "w-full flex justify-center",
+        "bg-background/80 backdrop-blur-lg border-b border-border",
       )}
-    </>
+    >
+      {/* NAV CONTAINER */}
+      <nav
+        className={clsx(
+          "flex items-center h-16 px-4",
+          "transition-all duration-300 ease-in-out",
+          "w-full md:rounded-xl",
+          scrolled && !disableResize ? "md:w-[80%] shadow-lg" : "md:w-full",
+        )}
+      >
+        {/* LEFT */}
+        <div className="flex-shrink-0">
+          <NavbarBrand />
+        </div>
+
+        {/* CENTER */}
+        <div className="hidden md:flex flex-1 justify-center min-w-0">
+          <div className="flex gap-6 whitespace-nowrap">
+            {navItems.map((item) => (
+              <Link
+                key={item.name}
+                href={item.link}
+                className="text-sm text-foreground/80 hover:text-foreground transition"
+              >
+                {item.name}
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        {/* RIGHT */}
+        <div className="flex-shrink-0 flex items-center space-x-2">
+          <Link href="/cart">
+            <Button variant="ghost" size="icon" aria-label="Cart">
+              <ShoppingCart className="h-5 w-5" />
+              {cartCount > 0 && (
+                <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-xs h-5 w-5 rounded-full flex items-center justify-center">
+                  {cartCount}
+                </span>
+              )}
+            </Button>
+          </Link>
+          <Link href="/">
+            <Button variant="ghost" size="icon" aria-label="User">
+              <User className="h-5 w-5" />
+            </Button>
+          </Link>
+
+          {/* MOBILE TOGGLE */}
+          <button
+            className="md:hidden ml-1"
+            aria-label="Toggle menu"
+            onClick={() => setMobileOpen(!mobileOpen)}
+          >
+            <div className="space-y-1">
+              <span className="block h-0.5 w-6 bg-foreground" />
+              <span className="block h-0.5 w-6 bg-foreground" />
+              <span className="block h-0.5 w-6 bg-foreground" />
+            </div>
+          </button>
+        </div>
+      </nav>
+
+      {/* MOBILE MENU */}
+      {mobileOpen && (
+        <div className="md:hidden absolute top-16 w-full bg-background border-t border-border">
+          <div className="p-4 space-y-3">
+            {navItems.map((item) => (
+              <Link
+                key={item.name}
+                href={item.link}
+                className="block py-2 text-foreground/80 hover:text-foreground"
+                onClick={() => setMobileOpen(false)}
+              >
+                {item.name}
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
+    </header>
   );
 }
