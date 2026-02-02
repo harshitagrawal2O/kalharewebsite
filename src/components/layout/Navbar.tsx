@@ -84,8 +84,8 @@ export default function Navbar() {
         </div>
 
         {/* RIGHT */}
-        {/* <div className="flex-shrink-0 flex items-center space-x-2">
-          <Link href="/cart">
+        <div className="flex-shrink-0 flex items-center space-x-2">
+          {/* <Link href="/cart">
             <Button variant="ghost" size="icon" aria-label="Cart">
               <ShoppingCart className="h-5 w-5" />
               {cartCount > 0 && (
