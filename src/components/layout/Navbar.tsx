@@ -84,7 +84,7 @@ export default function Navbar() {
         </div>
 
         {/* RIGHT */}
-        <div className="flex-shrink-0 flex items-center space-x-2">
+        {/* <div className="flex-shrink-0 flex items-center space-x-2">
           <Link href="/cart">
             <Button variant="ghost" size="icon" aria-label="Cart">
               <ShoppingCart className="h-5 w-5" />
@@ -99,7 +99,7 @@ export default function Navbar() {
             <Button variant="ghost" size="icon" aria-label="User">
               <User className="h-5 w-5" />
             </Button>
-          </Link>
+          </Link> */}
 
           {/* MOBILE TOGGLE */}
           <button
