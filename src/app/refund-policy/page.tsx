@@ -1,5 +1,4 @@
 "use client";
-
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { RefreshCw, XCircle, CheckCircle, Mail } from "lucide-react";
@@ -17,7 +16,8 @@ export default function RefundPolicyPage() {
           >
             <RefreshCw className="h-16 w-16 text-primary mx-auto mb-6" />
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              Refund & <span className="text-gradient">Cancellation Policy</span>
+              Refund &{" "}
+              <span className="text-gradient">Cancellation Policy</span>
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Understanding our refund and cancellation terms
@@ -40,12 +40,18 @@ export default function RefundPolicyPage() {
               </CardHeader>
               <CardContent className="space-y-4 text-muted-foreground">
                 <p>
-                  At LayerForge, each project is custom-produced based on client specifications. 
-                  As a result, we follow a <span className="font-semibold text-foreground">strict no-refund policy once an order has been confirmed and production has begun.</span>
+                  At LayerForge, each project is custom-produced based on client
+                  specifications. As a result, we follow a{" "}
+                  <span className="font-semibold text-foreground">
+                    strict no-refund policy once an order has been confirmed and
+                    production has begun.
+                  </span>
                 </p>
                 <p>
-                  However, clients may request order cancellation before printing starts, provided no material has been processed or purchased. 
-                  In such cases, a partial refund may be issued after deducting administrative and processing costs.
+                  However, clients may request order cancellation before
+                  printing starts, provided no material has been processed or
+                  purchased. In such cases, a partial refund may be issued after
+                  deducting administrative and processing costs.
                 </p>
               </CardContent>
             </Card>
@@ -60,22 +66,28 @@ export default function RefundPolicyPage() {
               <CardHeader>
                 <CardTitle className="text-xl flex items-center gap-2">
                   <XCircle className="h-6 w-6 text-destructive" />
-                  Refunds are Not Applicable For:
+                  Refunds are Not Applicable For
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
                 <ul className="space-y-2">
                   <li className="flex items-start gap-3">
-                    <span className="text-destructive mt-1">•</span>
-                    <span className="text-muted-foreground">Completed or in-progress prints</span>
+                    <span className="text-destructive mt-1">✗</span>
+                    <span className="text-muted-foreground">
+                      Completed or in-progress prints
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-destructive mt-1">•</span>
-                    <span className="text-muted-foreground">Design or modeling services already rendered</span>
+                    <span className="text-destructive mt-1">✗</span>
+                    <span className="text-muted-foreground">
+                      Design or modeling services already rendered
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-destructive mt-1">•</span>
-                    <span className="text-muted-foreground">Delays caused by courier or logistics partners</span>
+                    <span className="text-destructive mt-1">✗</span>
+                    <span className="text-muted-foreground">
+                      Delays caused by courier or logistics partners
+                    </span>
                   </li>
                 </ul>
               </CardContent>
@@ -96,8 +108,12 @@ export default function RefundPolicyPage() {
               </CardHeader>
               <CardContent className="text-muted-foreground">
                 <p>
-                  If an order is found to have a manufacturing defect or quality issue directly attributable to LayerForge, 
-                  we will offer a <span className="font-semibold text-foreground">reprint or suitable replacement at no additional cost</span>, after verification.
+                  If an order is found to have a manufacturing defect or quality
+                  issue directly attributable to LayerForge, we will offer a{" "}
+                  <span className="font-semibold text-foreground">
+                    reprint or suitable replacement at no additional cost
+                  </span>
+                  , after verification.
                 </p>
               </CardContent>
             </Card>
@@ -122,8 +138,12 @@ export default function RefundPolicyPage() {
                 <div className="flex items-center gap-3 p-4 bg-secondary/50 rounded-lg">
                   <Mail className="h-5 w-5 text-primary" />
                   <div>
-                    <p className="font-semibold text-foreground">support@layerforge.in</p>
-                    <p className="text-sm text-muted-foreground">Within 48 hours of receiving your order</p>
+                    <p className="font-semibold text-foreground">
+                      info@layerforgetech.com
+                    </p>
+                    <p className="text-sm text-muted-foreground">
+                      Within 48 hours of receiving your order
+                    </p>
                   </div>
                 </div>
               </CardContent>

@@ -1,20 +1,26 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card";
 import { Button } from "@/components/ui/button";
 import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
-import { 
-  Printer, 
-  Pencil, 
-  Zap, 
-  Package, 
-  Users, 
-  Sparkles, 
-  Shield, 
+import {
+  Printer,
+  Pencil,
+  Zap,
+  Package,
+  Users,
+  Sparkles,
+  Shield,
   Clock,
-  Check
+  Check,
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -24,13 +30,26 @@ export default function ServicesPage() {
     {
       icon: <Printer className="h-12 w-12" />,
       title: "3D Printing Services",
-      description: "Professional 3D printing with various materials and finishes",
+      description:
+        "Professional 3D printing with various materials and finishes",
       features: [
         "Multiple material options",
         "Various color choices",
         "Different finish types",
-        "High precision printing"
-      ]
+        "High precision printing",
+      ],
+    },
+    {
+      icon: <Printer className="h-12 w-12" />,
+      title: "3D Printing Services",
+      description:
+        "Professional 3D printing with various materials and finishes",
+      features: [
+        "Multiple material options",
+        "Various color choices",
+        "Different finish types",
+        "High precision printing",
+      ],
     },
     {
       icon: <Pencil className="h-12 w-12" />,
@@ -40,8 +59,8 @@ export default function ServicesPage() {
         "Professional CAD modeling",
         "Design consultation",
         "Unlimited revisions",
-        "Fast turnaround"
-      ]
+        "Fast turnaround",
+      ],
     },
     {
       icon: <Zap className="h-12 w-12" />,
@@ -51,8 +70,8 @@ export default function ServicesPage() {
         "24-48 hour turnaround",
         "Multiple iterations",
         "Design feedback",
-        "Testing support"
-      ]
+        "Testing support",
+      ],
     },
     {
       icon: <Package className="h-12 w-12" />,
@@ -62,8 +81,8 @@ export default function ServicesPage() {
         "Bulk pricing",
         "Quality consistency",
         "Fast production",
-        "Logistics support"
-      ]
+        "Logistics support",
+      ],
     },
     {
       icon: <Users className="h-12 w-12" />,
@@ -73,8 +92,8 @@ export default function ServicesPage() {
         "Technology selection",
         "Material advice",
         "Design optimization",
-        "Cost reduction"
-      ]
+        "Cost reduction",
+      ],
     },
     {
       icon: <Sparkles className="h-12 w-12" />,
@@ -84,31 +103,31 @@ export default function ServicesPage() {
         "Sanding & smoothing",
         "Painting & coating",
         "Assembly services",
-        "Quality inspection"
-      ]
-    }
+        "Quality inspection",
+      ],
+    },
   ];
 
   const materials = [
     {
       name: "PLA",
       description: "Eco-friendly, easy to print",
-      image: "/images/pla.png"
+      image: "/images/pla.png",
     },
     {
       name: "ABS",
       description: "Strong and durable",
-      image: "/images/abs.png"
+      image: "/images/abs.png",
     },
     {
       name: "PETG",
       description: "Weather resistant",
-      image: "/images/petg.png"
+      image: "/images/petg.png",
     },
     {
       name: "Resin",
       description: "High detail finish",
-      image: "/images/resin.png"
+      image: "/images/resin.png",
     },
     // {
     //   name: "Nylon",
@@ -118,8 +137,8 @@ export default function ServicesPage() {
     {
       name: "TPU",
       description: "Rubber-like flexibility",
-      image: "/images/tpu.png"
-    }
+      image: "/images/tpu.png",
+    },
   ];
 
   return (
@@ -178,27 +197,28 @@ export default function ServicesPage() {
                         {service.features.map((feature, i) => (
                           <li key={i} className="flex items-start gap-2">
                             <Check className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                            <span className="text-sm text-foreground dark:text-neutral-300">{feature}</span>
+                            <span className="text-sm text-foreground dark:text-neutral-300">
+                              {feature}
+                            </span>
                           </li>
                         ))}
                       </ul>
                     </CardItem>
                     <div className="flex justify-end items-center pt-4 border-t">
-                      <CardItem
-                        translateZ="60"
-                        as="div"
-                      >
+                      <CardItem translateZ="60" as="div">
                         <HoverBorderGradient
                           as="button"
                           onClick={() => {
                             const message = `Hello! I am interested in your ${service.title} service. Please provide me with a quote.`;
                             const whatsappUrl = `https://api.whatsapp.com/send?phone=9129958671&text=${encodeURIComponent(message)}`;
-                            window.open(whatsappUrl, '_blank');
+                            window.open(whatsappUrl, "_blank");
                           }}
                           containerClassName="rounded-xl"
                           className="bg-gray-100 text-black"
                         >
-                          <span className="text-sm font-semibold">Get Quote</span>
+                          <span className="text-sm font-semibold">
+                            Get Quote
+                          </span>
                         </HoverBorderGradient>
                       </CardItem>
                     </div>
@@ -239,8 +259,8 @@ export default function ServicesPage() {
                 <Card className="text-center hover:shadow-lg transition-all overflow-hidden">
                   <CardContent className="pt-6">
                     <div className="h-20 w-20 rounded-full mx-auto mb-4 overflow-hidden bg-muted relative">
-                      <Image 
-                        src={material.image} 
+                      <Image
+                        src={material.image}
                         alt={material.name}
                         fill
                         className="object-cover"
@@ -277,10 +297,26 @@ export default function ServicesPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 relative">
             {[
-              { icon: <Pencil />, title: "Design", desc: "Upload or create your design" },
-              { icon: <Shield />, title: "Review", desc: "We check and optimize" },
-              { icon: <Printer />, title: "Print", desc: "Professional 3D printing" },
-              { icon: <Package />, title: "Deliver", desc: "Fast shipping to your door" }
+              {
+                icon: <Pencil />,
+                title: "Design",
+                desc: "Upload or create your design",
+              },
+              {
+                icon: <Shield />,
+                title: "Review",
+                desc: "We check and optimize",
+              },
+              {
+                icon: <Printer />,
+                title: "Print",
+                desc: "Professional 3D printing",
+              },
+              {
+                icon: <Package />,
+                title: "Deliver",
+                desc: "Fast shipping to your door",
+              },
             ].map((step, index) => (
               <div key={index} className="relative">
                 <motion.div
@@ -292,30 +328,30 @@ export default function ServicesPage() {
                   <Card className="text-center h-full hover:shadow-2xl transition-all duration-300 group hover:-translate-y-2 border-2 hover:border-primary/50">
                     <CardContent className="pt-6 relative overflow-hidden">
                       {/* Animated background gradient on hover */}
-                      <motion.div 
+                      <motion.div
                         className="absolute inset-0 bg-gradient-to-br from-primary/10 via-purple-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                         initial={false}
                       />
-                      
+
                       {/* Step number */}
-                      <motion.div 
+                      <motion.div
                         className="absolute top-4 right-4 text-6xl font-bold text-primary/5 group-hover:text-primary/10 transition-colors duration-300"
                         whileHover={{ scale: 1.2, rotate: 5 }}
                       >
                         {index + 1}
                       </motion.div>
-                      
+
                       {/* Icon with advanced animations */}
-                      <motion.div 
+                      <motion.div
                         className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center text-primary mx-auto mb-4 relative z-10"
-                        whileHover={{ 
+                        whileHover={{
                           scale: 1.1,
                           rotate: 360,
-                          backgroundColor: "rgba(76, 154, 255, 0.2)"
+                          backgroundColor: "rgba(76, 154, 255, 0.2)",
                         }}
-                        transition={{ 
+                        transition={{
                           rotate: { duration: 0.6, ease: "easeInOut" },
-                          scale: { duration: 0.2 }
+                          scale: { duration: 0.2 },
                         }}
                       >
                         <motion.div
@@ -324,7 +360,7 @@ export default function ServicesPage() {
                         >
                           {step.icon}
                         </motion.div>
-                        
+
                         {/* Pulse ring effect */}
                         <motion.div
                           className="absolute inset-0 rounded-full border-2 border-primary opacity-0 group-hover:opacity-100"
@@ -336,31 +372,31 @@ export default function ServicesPage() {
                           transition={{
                             duration: 1.5,
                             repeat: Infinity,
-                            ease: "easeOut"
+                            ease: "easeOut",
                           }}
                         />
                       </motion.div>
-                      
+
                       {/* Title with slide-in effect */}
-                      <motion.h3 
+                      <motion.h3
                         className="font-bold text-lg mb-2 relative z-10"
                         whileHover={{ scale: 1.05, color: "#094ba0" }}
                         transition={{ duration: 0.2 }}
                       >
                         {step.title}
                       </motion.h3>
-                      
+
                       {/* Description */}
-                      <motion.p 
+                      <motion.p
                         className="text-sm text-foreground relative z-10"
                         initial={{ opacity: 0.7 }}
                         whileHover={{ opacity: 1 }}
                       >
                         {step.desc}
                       </motion.p>
-                      
+
                       {/* Progress indicator */}
-                      <motion.div 
+                      <motion.div
                         className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-primary to-purple-600"
                         initial={{ width: "0%" }}
                         whileInView={{ width: "100%" }}
@@ -370,7 +406,7 @@ export default function ServicesPage() {
                     </CardContent>
                   </Card>
                 </motion.div>
-                
+
                 {/* Connector arrow between steps (not on last item) */}
                 {index < 3 && (
                   <motion.div
@@ -380,10 +416,10 @@ export default function ServicesPage() {
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.1 + 0.3 }}
                   >
-                    <motion.svg 
-                      width="24" 
-                      height="24" 
-                      viewBox="0 0 24 24" 
+                    <motion.svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
                       fill="none"
                       className="text-primary drop-shadow-lg"
                       animate={{
@@ -392,14 +428,14 @@ export default function ServicesPage() {
                       transition={{
                         duration: 1.5,
                         repeat: Infinity,
-                        ease: "easeInOut"
+                        ease: "easeInOut",
                       }}
                     >
-                      <path 
-                        d="M5 12h14m-7-7l7 7-7 7" 
-                        stroke="currentColor" 
-                        strokeWidth="2" 
-                        strokeLinecap="round" 
+                      <path
+                        d="M5 12h14m-7-7l7 7-7 7"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
                         strokeLinejoin="round"
                       />
                     </motion.svg>
@@ -435,7 +471,11 @@ export default function ServicesPage() {
                   </Button>
                 </Link>
                 <Link href="/products">
-                  <Button size="lg" variant="outline" className="bg-transparent text-white border-white hover:bg-white/10">
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="bg-transparent text-white border-white hover:bg-white/10"
+                  >
                     Browse Products
                   </Button>
                 </Link>

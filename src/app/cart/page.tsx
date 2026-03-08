@@ -1,7 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Minus, Plus, Trash2, ShoppingBag, ArrowRight } from "lucide-react";
@@ -12,13 +19,16 @@ export default function CartPage() {
   const { cartItems, updateQuantity, removeFromCart } = useCart();
 
   const handleUpdateQuantity = (id: string, delta: number) => {
-    const item = cartItems.find(i => i.id === id);
+    const item = cartItems.find((i) => i.id === id);
     if (item) {
       updateQuantity(id, item.quantity + delta);
     }
   };
 
-  const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const subtotal = cartItems.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0,
+  );
   const shipping = subtotal > 2500 ? 0 : 9.99;
   const tax = subtotal * 0.08;
   const total = subtotal + shipping + tax;
@@ -35,7 +45,8 @@ export default function CartPage() {
             Shopping <span className="text-gradient">Cart</span>
           </h1>
           <p className="text-muted-foreground">
-            {cartItems.length} {cartItems.length === 1 ? 'item' : 'items'} in your cart
+            {cartItems.length} {cartItems.length === 1 ? "item" : "items"} in
+            your cart
           </p>
         </motion.div>
 
@@ -47,7 +58,9 @@ export default function CartPage() {
             <Card className="text-center py-16">
               <CardContent>
                 <ShoppingBag className="h-24 w-24 mx-auto text-muted-foreground mb-6" />
-                <CardTitle className="text-2xl mb-4">Your cart is empty</CardTitle>
+                <CardTitle className="text-2xl mb-4">
+                  Your cart is empty
+                </CardTitle>
                 <CardDescription className="mb-6">
                   Start adding some amazing 3D printed products!
                 </CardDescription>
@@ -76,7 +89,9 @@ export default function CartPage() {
                       <div className="flex gap-6">
                         <div className="text-6xl">🖨️</div>
                         <div className="flex-1">
-                          <h3 className="font-semibold text-lg mb-2">{item.name}</h3>
+                          <h3 className="font-semibold text-lg mb-2">
+                            {item.name}
+                          </h3>
                           {item.fileName && (
                             <p className="text-sm text-muted-foreground mb-1">
                               File: {item.fileName}
@@ -84,7 +99,9 @@ export default function CartPage() {
                           )}
                           {(item.material || item.color || item.finish) && (
                             <div className="text-sm text-muted-foreground mb-2 space-y-1">
-                              {item.material && <p>Material: {item.material}</p>}
+                              {item.material && (
+                                <p>Material: {item.material}</p>
+                              )}
                               {item.color && <p>Color: {item.color}</p>}
                               {item.finish && <p>Finish: {item.finish}</p>}
                             </div>
@@ -102,7 +119,9 @@ export default function CartPage() {
                               <Button
                                 size="icon"
                                 variant="outline"
-                                onClick={() => handleUpdateQuantity(item.id, -1)}
+                                onClick={() =>
+                                  handleUpdateQuantity(item.id, -1)
+                                }
                               >
                                 <Minus className="h-4 w-4" />
                               </Button>
@@ -129,7 +148,9 @@ export default function CartPage() {
                           </div>
                         </div>
                         <div className="text-right">
-                          <p className="text-sm text-muted-foreground mb-1">Total</p>
+                          <p className="text-sm text-muted-foreground mb-1">
+                            Total
+                          </p>
                           <p className="text-xl font-bold">
                             ₹{(item.price * item.quantity).toFixed(2)}
                           </p>
@@ -154,7 +175,9 @@ export default function CartPage() {
                 <CardContent className="space-y-4">
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Subtotal</span>
-                    <span className="font-semibold">₹{subtotal.toFixed(2)}</span>
+                    <span className="font-semibold">
+                      ₹{subtotal.toFixed(2)}
+                    </span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Shipping</span>
@@ -166,11 +189,6 @@ export default function CartPage() {
                       )}
                     </span>
                   </div>
-                  {shipping > 0 && (
-                    <p className="text-xs text-muted-foreground">
-                      Free shipping on orders over ₹2500
-                    </p>
-                  )}
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Tax (8%)</span>
                     <span className="font-semibold">₹{tax.toFixed(2)}</span>
@@ -213,10 +231,6 @@ export default function CartPage() {
                     <div className="flex items-center gap-2">
                       <div className="h-2 w-2 rounded-full bg-green-500" />
                       <span>Secure Checkout</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <div className="h-2 w-2 rounded-full bg-green-500" />
-                      <span>30-Day Money Back Guarantee</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <div className="h-2 w-2 rounded-full bg-green-500" />
