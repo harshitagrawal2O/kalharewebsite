@@ -23,8 +23,10 @@ export const BackgroundRippleEffect = ({
       ref={ref}
       className={cn(
         "absolute inset-0 h-full w-full",
-        "[--cell-border-color:var(--color-neutral-300)] [--cell-fill-color:var(--color-neutral-100)] [--cell-shadow-color:var(--color-neutral-500)]",
-        "dark:[--cell-border-color:var(--color-neutral-700)] dark:[--cell-fill-color:var(--color-neutral-900)] dark:[--cell-shadow-color:var(--color-neutral-800)]",
+        // Slate borders on an Off-White fill — the grid is a divider surface,
+        // which is exactly what Slate is for.
+        "[--cell-border-color:hsl(var(--border))] [--cell-fill-color:hsl(var(--background))] [--cell-shadow-color:hsl(var(--brand-slate))]",
+        "dark:[--cell-border-color:hsl(var(--border))] dark:[--cell-fill-color:hsl(var(--card))] dark:[--cell-shadow-color:hsl(var(--brand-steel))]",
       )}
     >
       <div className="relative h-auto w-auto overflow-hidden">
@@ -71,7 +73,7 @@ const DivGrid = ({
   rows = 7,
   cols = 30,
   cellSize = 56,
-  borderColor = "#3f3f46",
+  borderColor = "hsl(var(--border))",
   fillColor = "rgba(14,165,233,0.3)",
   clickedCell = null,
   onCellClick = () => {},

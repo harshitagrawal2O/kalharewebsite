@@ -7,17 +7,18 @@ export default function RefundPolicyPage() {
   return (
     <div className="min-h-screen pt-24 pb-16">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary/10 via-background to-primary/5 py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden bg-secondary/60 py-20">
+        <div className="pointer-events-none absolute -left-32 top-0 h-72 w-72 rounded-full bg-cta/10 blur-3xl" />
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-center"
           >
             <RefreshCw className="h-16 w-16 text-primary mx-auto mb-6" />
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">
+            <h1 className="text-5xl md:text-6xl font-extrabold tracking-display mb-6">
               Refund &{" "}
-              <span className="text-gradient">Cancellation Policy</span>
+              <span className="text-cta">Cancellation Policy</span>
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Understanding our refund and cancellation terms
@@ -38,7 +39,7 @@ export default function RefundPolicyPage() {
               <CardHeader>
                 <CardTitle className="text-2xl">Our Refund Policy</CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4 text-muted-foreground">
+              <CardContent className="space-y-4 text-foreground">
                 <p>
                   At LayerForge, each project is custom-produced based on client
                   specifications. As a result, we follow a{" "}

@@ -10,11 +10,46 @@ const config: Config = {
   theme: {
   	extend: {
       fontFamily: {
-        sans: ['var(--font-inter)'],
-        heading: ['var(--font-poppins)'],
-        logo: ['var(--font-montserrat)'],
+        // Outfit — secondary typeface, carries body copy and UI.
+        sans: [
+          'var(--font-outfit)',
+          'ui-sans-serif',
+          'system-ui',
+          '-apple-system',
+          'Segoe UI',
+          'Helvetica Neue',
+          'Arial',
+          'sans-serif',
+        ],
+        // Lufga — primary typeface, carries headings and the wordmark.
+        // Falls through to Outfit until the licensed files are installed.
+        heading: [
+          'var(--font-lufga)',
+          'var(--font-outfit)',
+          'ui-sans-serif',
+          'system-ui',
+          'Segoe UI',
+          'Arial',
+          'sans-serif',
+        ],
+        logo: [
+          'var(--font-lufga)',
+          'var(--font-outfit)',
+          'ui-sans-serif',
+          'system-ui',
+          'sans-serif',
+        ],
       },
   		colors: {
+        // Raw brand palette — reach for these only when a semantic token
+        // genuinely does not fit (logo marks, illustrations, charts).
+        brand: {
+          teal: 'hsl(var(--brand-teal))',
+          orange: 'hsl(var(--brand-orange))',
+          steel: 'hsl(var(--brand-steel))',
+          slate: 'hsl(var(--brand-slate))',
+          offwhite: 'hsl(var(--brand-offwhite))',
+        },
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {
@@ -29,6 +64,11 @@ const config: Config = {
   				DEFAULT: 'hsl(var(--primary))',
   				foreground: 'hsl(var(--primary-foreground))'
   			},
+        cta: {
+          DEFAULT: 'hsl(var(--cta))',
+          foreground: 'hsl(var(--cta-foreground))',
+          strong: 'hsl(var(--cta-strong))',
+        },
   			secondary: {
   				DEFAULT: 'hsl(var(--secondary))',
   				foreground: 'hsl(var(--secondary-foreground))'
@@ -45,6 +85,10 @@ const config: Config = {
   				DEFAULT: 'hsl(var(--destructive))',
   				foreground: 'hsl(var(--destructive-foreground))'
   			},
+        success: {
+          DEFAULT: 'hsl(var(--success))',
+          foreground: 'hsl(var(--success-foreground))',
+        },
   			border: 'hsl(var(--border))',
   			input: 'hsl(var(--input))',
   			ring: 'hsl(var(--ring))',
@@ -61,6 +105,23 @@ const config: Config = {
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
   		},
+      boxShadow: {
+        // Shadows tinted with Teal Blue rather than neutral black, so depth
+        // reads as part of the palette instead of sitting on top of it.
+        brand: '0 10px 30px -12px hsl(var(--brand-teal) / 0.28)',
+        'brand-lg': '0 24px 60px -20px hsl(var(--brand-teal) / 0.35)',
+        cta: '0 10px 28px -10px hsl(var(--brand-orange) / 0.55)',
+      },
+      letterSpacing: {
+        // Lufga is a large-x-height geometric — display sizes want it tighter.
+        display: '-0.03em',
+      },
+      transitionTimingFunction: {
+        // The overshoot curve used by the colour swatches. Named here because
+        // `ease-[cubic-bezier(...)]` as an arbitrary value is ambiguous to
+        // Tailwind and warns on every build.
+        overshoot: 'cubic-bezier(0.175, 0.885, 0.32, 1.1)',
+      },
   		keyframes: {
   			'accordion-down': {
   				from: {
@@ -85,7 +146,7 @@ const config: Config = {
   				},
   				'50%': {
   					transform: 'scale(1.1)',
-  					backgroundColor: 'rgba(59, 130, 246, 0.4)',
+  					backgroundColor: 'hsl(var(--brand-orange) / 0.4)',
   				},
   				'100%': {
   					transform: 'scale(1)',
@@ -100,7 +161,7 @@ const config: Config = {
   		}
   	}
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
 };
 
 export default config;

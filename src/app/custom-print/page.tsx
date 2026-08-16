@@ -416,12 +416,12 @@ Thank you!`;
           className="text-center mb-12 relative"
         >
           <div className="relative inline-block">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 relative z-10">
-              Custom <span className="text-gradient">3D Printing</span>
+            <h1 className="text-4xl md:text-5xl font-extrabold tracking-display mb-4 relative z-10">
+              Custom <span className="text-cta">3D Printing</span>
             </h1>
             <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
               <SparklesCore
-                particleColor="#fbbf24"
+                particleColor="#F86400"
                 background="transparent"
                 minSize={1}
                 maxSize={3}
@@ -647,7 +647,7 @@ Thank you!`;
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
-                      className="fixed inset-0 bg-black/50 h-full w-full z-50"
+                      className="fixed inset-0 bg-brand-teal/60 h-full w-full z-50"
                     />
                   )}
                 </AnimatePresence>
@@ -664,15 +664,15 @@ Thank you!`;
                             opacity: 0,
                             transition: { duration: 0.05 },
                           }}
-                          className="flex absolute top-2 right-2 lg:hidden items-center justify-center bg-white rounded-full h-6 w-6 z-[110]"
+                          className="flex absolute top-2 right-2 lg:hidden items-center justify-center bg-card rounded-full h-6 w-6 z-[110]"
                           onClick={() => setExpandedMaterial(null)}
                         >
-                          <X className="h-4 w-4 text-black" />
+                          <X className="h-4 w-4 text-primary" />
                         </motion.button>
                         <motion.div
                           layoutId={`card-${expandedMaterial}-${id}`}
                           ref={materialCardRef}
-                          className="w-full max-w-[500px] h-full md:h-fit md:max-h-[90%] flex flex-col bg-white dark:bg-neutral-900 sm:rounded-3xl overflow-hidden shadow-2xl"
+                          className="w-full max-w-[500px] h-full md:h-fit md:max-h-[90%] flex flex-col bg-card sm:rounded-lg overflow-hidden shadow-brand-lg"
                         >
                           <div className="relative w-full h-48 overflow-hidden bg-muted">
                             <Image
@@ -693,7 +693,7 @@ Thank you!`;
                               <div>
                                 <motion.h3
                                   layoutId={`title-${expandedMaterial}-${id}`}
-                                  className="text-2xl font-bold text-neutral-700 dark:text-neutral-200"
+                                  className="font-heading text-2xl font-bold text-primary"
                                 >
                                   {
                                     materials.find(
@@ -703,7 +703,7 @@ Thank you!`;
                                 </motion.h3>
                                 <motion.p
                                   layoutId={`description-${expandedMaterial}-${id}`}
-                                  className="text-neutral-600 dark:text-neutral-400"
+                                  className="text-muted-foreground"
                                 >
                                   {
                                     materials.find(
@@ -727,7 +727,7 @@ Thank you!`;
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 exit={{ opacity: 0 }}
-                                className="text-neutral-600 text-sm md:text-base max-h-[400px] pb-6 overflow-auto dark:text-neutral-400 [scrollbar-width:thin]"
+                                className="text-muted-foreground text-sm md:text-base max-h-[400px] pb-6 overflow-auto [scrollbar-width:thin]"
                               >
                                 <h4 className="font-semibold mb-3 flex items-center gap-2 text-primary">
                                   <Info className="h-5 w-5" />
@@ -773,8 +773,10 @@ Thank you!`;
                     >
                       {material.id === "pla" && (
                         <div className="absolute top-0 left-0 z-10 overflow-hidden w-20 h-20 pointer-events-none">
-                          <div className="absolute top-3 -left-7 w-28 h-7 bg-gradient-to-r from-rose-500 via-rose-600 to-rose-700 transform -rotate-45 shadow-lg flex items-center justify-center">
-                            <span className="text-white text-[11px] font-bold tracking-widest uppercase drop-shadow-sm">
+                          {/* "Popular" ribbon in Blaze Orange — the palette's
+                              designated attention colour. */}
+                          <div className="absolute top-3 -left-7 w-28 h-7 bg-cta transform -rotate-45 shadow-cta flex items-center justify-center">
+                            <span className="font-heading text-cta-foreground text-[11px] font-bold tracking-widest uppercase drop-shadow-sm">
                               Popular
                             </span>
                           </div>
@@ -782,10 +784,10 @@ Thank you!`;
                       )}
                       <button
                         onClick={() => setSelectedMaterial(material.id)}
-                        className={`w-full h-full flex flex-col rounded-xl border text-left transition-all duration-300 overflow-hidden group ${
+                        className={`w-full h-full flex flex-col rounded-lg border text-left transition-all duration-300 overflow-hidden group ${
                           selectedMaterial === material.id
-                            ? "border-primary shadow-lg shadow-primary/20 bg-primary/5"
-                            : "border-border/50 hover:border-primary/50 hover:shadow-md bg-card"
+                            ? "border-cta shadow-cta bg-accent"
+                            : "border-border hover:border-cta/50 hover:shadow-brand bg-card"
                         }`}
                       >
                         <div className="relative w-full h-28 overflow-hidden bg-muted/50">
@@ -873,7 +875,7 @@ Thank you!`;
                       <button
                         onClick={() => setSelectedColor(color.id)}
                         data-color={color.name}
-                        className="relative w-full h-10 border-none outline-none bg-transparent cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.175,0.885,0.32,1.1)] hover:scale-150 hover:-translate-y-2 hover:z-[99999] [&:hover+*]:scale-[1.3] [&:hover+*]:-translate-y-1 [&:hover+*]:z-[9999] [&:hover+*+*]:scale-[1.15] [&:hover+*+*]:-translate-y-0.5 [&:hover+*+*]:z-[999] has-[+*:hover]:scale-[1.3] has-[+*:hover]:-translate-y-1 has-[+*:hover]:z-[9999] has-[+*+*:hover]:scale-[1.15] has-[+*+*:hover]:-translate-y-0.5 has-[+*+*:hover]:z-[999] active:scale-95"
+                        className="relative w-full h-10 border-none outline-none bg-transparent cursor-pointer transition-all duration-500 ease-overshoot hover:scale-150 hover:-translate-y-2 hover:z-[99999] [&:hover+*]:scale-[1.3] [&:hover+*]:-translate-y-1 [&:hover+*]:z-[9999] [&:hover+*+*]:scale-[1.15] [&:hover+*+*]:-translate-y-0.5 [&:hover+*+*]:z-[999] has-[+*:hover]:scale-[1.3] has-[+*:hover]:-translate-y-1 has-[+*:hover]:z-[9999] has-[+*+*:hover]:scale-[1.15] has-[+*+*:hover]:-translate-y-0.5 has-[+*+*:hover]:z-[999] active:scale-95"
                         style={{
                           ["--color-bg" as string]:
                             color.id === "transparent"
@@ -882,13 +884,13 @@ Thank you!`;
                         }}
                       >
                         <div
-                          className={`absolute inset-0 w-10 h-10 rounded-lg pointer-events-none transition-all duration-500 ease-[cubic-bezier(0.175,0.885,0.32,1.1)] shadow-md ${
+                          className={`absolute inset-0 w-10 h-10 rounded-lg pointer-events-none transition-all duration-500 ease-overshoot shadow-md ${
                             selectedColor === color.id
-                              ? "scale-110 ring-[3px] ring-primary shadow-xl"
+                              ? "scale-110 ring-[3px] ring-cta shadow-xl"
                               : ""
                           } ${
                             color.id === "multicolor"
-                              ? "border-2 border-white dark:border-gray-800"
+                              ? "border-2 border-card"
                               : ""
                           }`}
                           style={{
@@ -900,7 +902,7 @@ Thank you!`;
                                   : color.hex,
                           }}
                         />
-                        <div className="absolute left-1/2 -translate-x-1/2 bottom-[52px] text-[10px] leading-[14px] px-2 py-1 bg-black text-white rounded-md pointer-events-none opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-500 ease-[cubic-bezier(0.175,0.885,0.32,1.1)] whitespace-nowrap z-[1000]">
+                        <div className="absolute left-1/2 -translate-x-1/2 bottom-[52px] text-[10px] leading-[14px] px-2 py-1 bg-brand-teal text-brand-offwhite rounded-md pointer-events-none opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-500 ease-overshoot whitespace-nowrap z-[1000]">
                           {color.name}
                         </div>
                       </button>
@@ -913,7 +915,7 @@ Thank you!`;
                             stiffness: 500,
                             damping: 15,
                           }}
-                          className="absolute -top-1 -right-1 w-[18px] h-[18px] bg-primary rounded-full flex items-center justify-center text-white text-xs z-10"
+                          className="absolute -top-1 -right-1 w-[18px] h-[18px] bg-cta rounded-full flex items-center justify-center text-cta-foreground text-xs z-10"
                         >
                           ✓
                         </motion.span>
@@ -1045,7 +1047,7 @@ Thank you!`;
 
                 <div className="border-t pt-4">
                   <div className="flex items-start gap-2 p-3 bg-primary/5 border border-primary/20 rounded-lg mb-4">
-                    <Info className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                    <Info className="h-5 w-5 text-cta mt-0.5 flex-shrink-0" />
                     <div className="text-sm">
                       <p className="font-semibold text-foreground mb-1">
                         Get Your Quote
@@ -1061,6 +1063,7 @@ Thank you!`;
                     <Button
                       onClick={handleWhatsAppQuote}
                       className="w-full"
+                      variant="cta"
                       size="lg"
                       disabled={
                         uploadedFiles.length === 0 ||
@@ -1074,7 +1077,7 @@ Thank you!`;
                   </div>
                 </div>
 
-                <div className="border-t pt-4 space-y-2 text-xs text-muted-foreground">
+                <div className="border-t border-border pt-4 space-y-2 text-xs text-muted-foreground">
                   <p>✓ Free file analysis & optimization</p>
                   <p>✓ Quality guarantee on all prints</p>
                   <p>✓ Fast turnaround time</p>

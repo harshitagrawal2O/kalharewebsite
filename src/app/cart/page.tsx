@@ -41,8 +41,8 @@ export default function CartPage() {
           animate={{ opacity: 1, y: 0 }}
           className="mb-8"
         >
-          <h1 className="text-4xl md:text-5xl font-bold mb-2">
-            Shopping <span className="text-gradient">Cart</span>
+          <h1 className="text-4xl md:text-5xl font-extrabold tracking-display mb-2">
+            Shopping <span className="text-cta">Cart</span>
           </h1>
           <p className="text-muted-foreground">
             {cartItems.length} {cartItems.length === 1 ? "item" : "items"} in
@@ -111,7 +111,7 @@ export default function CartPage() {
                               Notes: {item.notes}
                             </p>
                           )}
-                          <p className="text-2xl font-bold text-gradient mb-4">
+                          <p className="text-2xl font-bold text-cta mb-4">
                             ₹{item.price.toFixed(2)}
                           </p>
                           <div className="flex items-center gap-4">
@@ -183,7 +183,7 @@ export default function CartPage() {
                     <span className="text-muted-foreground">Shipping</span>
                     <span className="font-semibold">
                       {shipping === 0 ? (
-                        <span className="text-green-600">FREE</span>
+                        <span className="font-semibold text-success">FREE</span>
                       ) : (
                         `₹${shipping.toFixed(2)}`
                       )}
@@ -196,7 +196,7 @@ export default function CartPage() {
                   <div className="border-t pt-4">
                     <div className="flex justify-between text-lg font-bold">
                       <span>Total</span>
-                      <span className="text-gradient">₹{total.toFixed(2)}</span>
+                      <span className="text-cta">₹{total.toFixed(2)}</span>
                     </div>
                   </div>
 
@@ -212,7 +212,7 @@ export default function CartPage() {
                   </div>
                 </CardContent>
                 <CardFooter className="flex flex-col gap-3">
-                  <Button size="lg" className="w-full">
+                  <Button size="lg" variant="cta" className="w-full">
                     Proceed to Checkout
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
@@ -229,11 +229,11 @@ export default function CartPage() {
                 <CardContent className="pt-6">
                   <div className="space-y-3 text-sm text-muted-foreground">
                     <div className="flex items-center gap-2">
-                      <div className="h-2 w-2 rounded-full bg-green-500" />
+                      <div className="h-2 w-2 rounded-full bg-success" />
                       <span>Secure Checkout</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <div className="h-2 w-2 rounded-full bg-green-500" />
+                      <div className="h-2 w-2 rounded-full bg-success" />
                       <span>Free Shipping on Orders ₹2500+</span>
                     </div>
                   </div>

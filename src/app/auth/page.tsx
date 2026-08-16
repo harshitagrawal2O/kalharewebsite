@@ -12,7 +12,7 @@ export default function AuthPage() {
   const [isLogin, setIsLogin] = useState(true);
 
   return (
-    <div className="min-h-screen pt-24 pb-16 bg-gradient-to-br from-primary/10 via-background to-primary/5">
+    <div className="min-h-screen pt-24 pb-16 bg-secondary/60">
       <div className="max-w-md mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -113,7 +113,7 @@ export default function AuthPage() {
                       <input
                         type="checkbox"
                         id="remember"
-                        className="rounded border-gray-300"
+                        className="rounded border-input accent-[hsl(var(--cta))]"
                       />
                       <label
                         htmlFor="remember"

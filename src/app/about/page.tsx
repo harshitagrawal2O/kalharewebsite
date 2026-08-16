@@ -85,15 +85,17 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen pt-24 pb-16">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary/10 via-background to-primary/5 py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden bg-secondary/60 py-20">
+        <div className="pointer-events-none absolute -left-32 top-0 h-72 w-72 rounded-full bg-cta/10 blur-3xl" />
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-center"
           >
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              About <span className="text-gradient">LayerForge</span>
+            <span className="eyebrow mb-5">Who We Are</span>
+            <h1 className="text-5xl md:text-6xl font-extrabold tracking-display mb-6">
+              About <span className="text-cta">LayerForge</span>
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               A creative tech studio built for innovators, designers, and dreamers
@@ -111,7 +113,7 @@ export default function AboutPage() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <Card className="h-full bg-gradient-to-br from-primary/10 to-transparent">
+              <Card className="h-full border-l-4 border-l-primary bg-gradient-to-br from-secondary/70 to-transparent">
                 <CardHeader>
                   <Eye className="h-12 w-12 text-primary mb-4" />
                   <CardTitle className="text-3xl">Our Mission</CardTitle>
@@ -129,9 +131,9 @@ export default function AboutPage() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <Card className="h-full bg-gradient-to-br from-[#094ba0]/10 to-transparent">
+              <Card className="h-full border-l-4 border-l-cta bg-gradient-to-br from-accent to-transparent">
                 <CardHeader>
-                  <Target className="h-12 w-12 text-[#094ba0] mb-4" />
+                  <Target className="h-12 w-12 text-cta mb-4" />
                   <CardTitle className="text-3xl">Our Philosophy</CardTitle>
                   <CardDescription className="text-base mt-4">
                     Design boldly. Build intelligently. Create beautifully.
@@ -159,7 +161,7 @@ export default function AboutPage() {
                 transition={{ delay: index * 0.1 }}
                 className="text-center"
               >
-                <div className="text-4xl md:text-5xl font-bold text-gradient mb-2">
+                <div className="text-4xl md:text-5xl font-bold text-cta mb-2">
                   {stat.number}
                 </div>
                 <div className="text-muted-foreground">{stat.label}</div>
@@ -178,8 +180,8 @@ export default function AboutPage() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-4xl font-bold mb-4">
-              Why Choose <span className="text-gradient">LayerForge</span>
+            <h2 className="text-4xl font-extrabold tracking-display mb-4">
+              Why Choose <span className="text-cta">LayerForge</span>
             </h2>
             <p className="text-xl text-muted-foreground">
               The advantages that set us apart
@@ -195,9 +197,9 @@ export default function AboutPage() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
               >
-                <Card className="h-full text-center hover:shadow-lg transition-all">
+                <Card className="group h-full text-center transition-all hover:shadow-brand hover:border-cta/50">
                   <CardHeader>
-                    <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center text-primary mx-auto mb-4">
+                    <div className="h-16 w-16 rounded-full bg-secondary flex items-center justify-center text-primary mx-auto mb-4 transition-colors group-hover:bg-accent">
                       {value.icon}
                     </div>
                     <CardTitle>{value.title}</CardTitle>
@@ -219,8 +221,8 @@ export default function AboutPage() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-4xl font-bold mb-4">
-              Who We <span className="text-gradient">Work With</span>
+            <h2 className="text-4xl font-extrabold tracking-display mb-4">
+              Who We <span className="text-cta">Work With</span>
             </h2>
             <p className="text-xl text-muted-foreground">
               Serving diverse industries and creative professionals
@@ -236,9 +238,9 @@ export default function AboutPage() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
               >
-                <Card className="h-full text-center hover:shadow-lg transition-all hover:-translate-y-1">
+                <Card className="group h-full text-center transition-all hover:-translate-y-1 hover:shadow-brand hover:border-cta/50">
                   <CardHeader>
-                    <div className="h-16 w-16 rounded-full bg-gradient-to-br from-primary/10 to-[#094ba0]/10 flex items-center justify-center text-primary mx-auto mb-4">
+                    <div className="h-16 w-16 rounded-full bg-gradient-to-br from-secondary to-accent flex items-center justify-center text-primary mx-auto mb-4">
                       {client.icon}
                     </div>
                     <CardTitle className="text-lg">{client.title}</CardTitle>
@@ -260,8 +262,8 @@ export default function AboutPage() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-4xl font-bold mb-4">
-              Meet Our <span className="text-gradient">Team</span>
+            <h2 className="text-4xl font-extrabold tracking-display mb-4">
+              Meet Our <span className="text-cta">Team</span>
             </h2>
             <p className="text-xl text-muted-foreground">
               The experts behind your 3D printing success

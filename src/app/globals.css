@@ -2,70 +2,181 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ---------------------------------------------------------------------------
+   LUFGA — primary brand typeface (Adam Ladd)
+
+   Commercial font, not available on Google Fonts, so the files are not in the
+   repo. These rules are commented out ON PURPOSE: with no files present the
+   browser fires a failed request per weight on every page load.
+
+   TO ENABLE: drop the licensed .woff2 files into /public/fonts/lufga/ with the
+   filenames below, then delete this line and the closing one marked END LUFGA.
+   Nothing else changes — `font-heading` already resolves Lufga first.
+
+   Until then the stack falls through to Outfit, a geometric sans with close
+   enough metrics that enabling Lufga later will not shift layout.
+   See /public/fonts/lufga/README.md.
+--------------------------------------------------------------------------- */
+/*
+@font-face {
+  font-family: "Lufga";
+  src: url("/fonts/lufga/Lufga-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Lufga";
+  src: url("/fonts/lufga/Lufga-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Lufga";
+  src: url("/fonts/lufga/Lufga-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Lufga";
+  src: url("/fonts/lufga/Lufga-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Lufga";
+  src: url("/fonts/lufga/Lufga-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Lufga";
+  src: url("/fonts/lufga/Lufga-ExtraBold.woff2") format("woff2");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Lufga";
+  src: url("/fonts/lufga/Lufga-Black.woff2") format("woff2");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+*/
+/* END LUFGA */
+
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222 47% 11%;
-    --font-poppins: 'Poppins', 'Helvetica Neue', Arial, sans-serif;
-    --font-montserrat: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+    /* -- Brand palette ------------------------------------------------- */
+    /* Teal Blue    #033B55 — structure, authority, logo                  */
+    /* Blaze Orange #F86400 — energy, CTA, logo                           */
+    /* Steel Grey   #2C3E50 — body copy, documents                        */
+    /* Slate        #8FA3B1 — dividers, icons                             */
+    /* Off-White    #F5F4F0 — backgrounds                                 */
+    --brand-teal: 201 93% 17%;
+    --brand-orange: 24 100% 49%;
+    --brand-steel: 210 29% 24%;
+    --brand-slate: 204 16% 63%;
+    --brand-offwhite: 50 20% 95%;
+
+    /* Font stacks. --font-outfit is injected by next/font on <body>. */
+    --font-lufga: "Lufga";
+
+    /* -- Semantic tokens ----------------------------------------------- */
+    --background: 50 20% 95%; /* Off-White */
+    --foreground: 210 29% 24%; /* Steel Grey */
+
     --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
+    --card-foreground: 210 29% 24%;
+
     --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
-    --primary: 209 91% 33%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 214 32% 91%;
-    --secondary-foreground: 222 47% 11%;
-    --muted: 214 32% 91%;
-    /* Make muted text use the primary foreground color (black) on light mode */
-    --muted-foreground: 222 47% 11%;
-    --accent: 217 91% 95%;
-    --accent-foreground: 217 91% 30%;
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 217 91% 60%;
-    --radius: 0.5rem;
-    --chart-1: 217 91% 60%;
-    --chart-2: 212 95% 68%;
-    --chart-3: 210 100% 70%;
-    --chart-4: 199 89% 48%;
-    --chart-5: 188 94% 43%;
-    --color-neutral-100: #f5f5f5;
-    --color-neutral-300: #d4d4d4;
-    --color-neutral-500: #737373;
-    --color-neutral-700: #404040;
-    --color-neutral-800: #262626;
-    --color-neutral-900: #171717;
+    --popover-foreground: 210 29% 24%;
+
+    --primary: 201 93% 17%; /* Teal Blue */
+    --primary-foreground: 50 20% 97%;
+
+    /* CTA — Blaze Orange. `cta` is the brand colour as specified; `cta-strong`
+       is the darkened tone (#C24E00) that clears WCAG AA (4.8:1) against white
+       text at body sizes. Use cta-strong wherever the label is small. */
+    --cta: 24 100% 49%;
+    --cta-foreground: 0 0% 100%;
+    --cta-strong: 24 100% 38%;
+
+    --secondary: 204 16% 91%; /* Slate, lifted to a surface tint */
+    --secondary-foreground: 201 93% 17%;
+
+    --muted: 204 16% 93%;
+    --muted-foreground: 205 17% 38%; /* Slate darkened to clear AA on Off-White */
+
+    --accent: 24 100% 94%; /* Blaze Orange wash */
+    --accent-foreground: 22 100% 30%;
+
+    --destructive: 0 72% 45%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 158 64% 30%;
+    --success-foreground: 0 0% 100%;
+
+    --border: 204 16% 85%; /* Slate */
+    --input: 204 16% 82%;
+    --ring: 24 100% 49%; /* Blaze Orange focus ring */
+
+    --radius: 0.75rem;
+
+    --chart-1: 201 93% 17%;
+    --chart-2: 24 100% 49%;
+    --chart-3: 210 29% 24%;
+    --chart-4: 204 16% 63%;
+    --chart-5: 201 60% 40%;
   }
 
   .dark {
-    --background: 222 47% 11%;
-    --foreground: 210 40% 98%;
-    --card: 222 47% 11%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222 47% 11%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 209 91% 33%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 217 33% 17%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217 33% 17%;
-    /* In dark mode muted text should be light for contrast */
-    --muted-foreground: 210 40% 98%;
-    --accent: 217 33% 17%;
-    --accent-foreground: 217 91% 60%;
-    --destructive: 0 63% 31%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 217 33% 17%;
-    --input: 217 33% 17%;
-    --ring: 217 91% 60%;
-    --chart-1: 217 91% 60%;
-    --chart-2: 212 95% 68%;
-    --chart-3: 210 100% 70%;
-    --chart-4: 199 89% 48%;
-    --chart-5: 188 94% 43%;
+    --background: 201 70% 7%;
+    --foreground: 50 20% 95%;
+
+    --card: 210 29% 13%;
+    --card-foreground: 50 20% 95%;
+
+    --popover: 210 29% 13%;
+    --popover-foreground: 50 20% 95%;
+
+    /* Teal Blue is too dark to read on a dark ground — lift it toward Slate. */
+    --primary: 202 45% 72%;
+    --primary-foreground: 201 93% 12%;
+
+    --cta: 24 100% 52%;
+    --cta-foreground: 0 0% 100%;
+    --cta-strong: 24 100% 42%;
+
+    --secondary: 210 29% 19%;
+    --secondary-foreground: 50 20% 95%;
+
+    --muted: 210 29% 19%;
+    --muted-foreground: 204 16% 72%;
+
+    --accent: 210 29% 22%;
+    --accent-foreground: 24 100% 60%;
+
+    --destructive: 0 62% 45%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 158 55% 42%;
+    --success-foreground: 0 0% 100%;
+
+    --border: 210 29% 21%;
+    --input: 210 29% 24%;
+    --ring: 24 100% 52%;
+
+    --chart-1: 202 45% 72%;
+    --chart-2: 24 100% 52%;
+    --chart-3: 204 16% 63%;
+    --chart-4: 50 20% 95%;
+    --chart-5: 201 60% 55%;
   }
 }
 
@@ -74,23 +185,58 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground font-sans;
+    @apply bg-background text-foreground font-sans antialiased;
   }
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-heading;
+  /* Lufga carries every heading and the wordmark; Outfit carries everything
+     else. Tight tracking keeps Lufga's geometric forms from feeling airy. */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading tracking-tight text-primary;
+  }
+  ::selection {
+    @apply bg-cta text-cta-foreground;
+  }
+}
+
+@layer components {
+  /* Section eyebrow — small orange label above a heading. */
+  .eyebrow {
+    @apply inline-flex items-center gap-2 rounded-full bg-accent px-3 py-1 font-heading text-xs font-semibold uppercase tracking-[0.18em] text-accent-foreground;
+  }
+
+  /* Hairline divider in Slate, the colour's designated role. */
+  .rule {
+    @apply h-px w-full bg-border;
   }
 }
 
 @layer utilities {
-  .text-gradient {
-    @apply bg-gradient-to-r from-[#094ba0] to-[#4975d5] bg-clip-text text-transparent;
+  /* Headings use a solid highlight (`text-cta`), not a gradient — see the
+     typography note in CLAUDE.md. The gradient text utility was removed
+     deliberately; don't reintroduce it. */
+
+  .bg-brand-gradient {
+    @apply bg-gradient-to-br from-primary via-primary to-[hsl(201_93%_12%)];
   }
-  
+
+  /* Orange underline that grows on hover — used for nav and inline links. */
+  .link-underline {
+    @apply relative after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-0 after:bg-cta after:transition-all after:duration-300 hover:after:w-full;
+  }
+
   .mask-radial-from-20\% {
     mask-image: radial-gradient(circle at center, transparent 20%, black 100%);
-    -webkit-mask-image: radial-gradient(circle at center, transparent 20%, black 100%);
+    -webkit-mask-image: radial-gradient(
+      circle at center,
+      transparent 20%,
+      black 100%
+    );
   }
-  
+
   .mask-radial-at-top {
     mask-position: center top;
     -webkit-mask-position: center top;
@@ -98,10 +244,10 @@
 
   /* UploadThing styles */
   .ut-button:hover {
-    @apply bg-primary/80;
+    @apply bg-cta-strong;
   }
-  
+
   .ut-button:focus {
-    @apply ring-2 ring-primary ring-offset-2;
+    @apply ring-2 ring-ring ring-offset-2;
   }
 }

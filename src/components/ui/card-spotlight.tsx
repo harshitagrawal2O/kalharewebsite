@@ -7,7 +7,8 @@ import { cn } from "@/lib/utils";
 export const CardSpotlight = ({
   children,
   radius = 350,
-  color = "#262626",
+  // Blaze Orange wash by default — the spotlight is an energy cue.
+  color = "rgba(248, 100, 0, 0.18)",
   className,
   ...props
 }: {
@@ -56,13 +57,13 @@ export const CardSpotlight = ({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       className={cn(
-        "relative rounded-3xl border border-neutral-800 bg-neutral-950 p-8 overflow-hidden",
+        "relative rounded-lg border border-border bg-card p-8 overflow-hidden transition-shadow duration-300 hover:shadow-brand",
         className
       )}
       {...props}
     >
       <motion.div
-        className="pointer-events-none absolute -inset-px rounded-3xl opacity-0 transition duration-300"
+        className="pointer-events-none absolute -inset-px rounded-lg opacity-0 transition duration-300"
         style={{
           opacity,
           background: `radial-gradient(${radius}px circle at ${position.x}px ${position.y}px, ${color}, transparent 80%)`,

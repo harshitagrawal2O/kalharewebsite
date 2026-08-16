@@ -1,14 +1,23 @@
-import type { Metadata } from "next";
-import { Inter, Montserrat, Poppins } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Outfit } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { CartProvider } from "@/contexts/CartContext";
 import AuthProvider from "@/components/providers/auth-provider";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const montserrat = Montserrat({ subsets: ["latin"], variable: "--font-montserrat" });
-const poppins = Poppins({ subsets: ["latin"], weight: ["400","600","700"], variable: "--font-poppins" });
+// Secondary brand typeface. Variable font, so one request covers 100–900.
+// Lufga (primary) is a licensed font served from /public/fonts/lufga via
+// @font-face in globals.css — see that file for the install steps.
+const outfit = Outfit({
+  subsets: ["latin"],
+  variable: "--font-outfit",
+  display: "swap",
+});
+
+export const viewport: Viewport = {
+  themeColor: "#033B55",
+};
 
 export const metadata: Metadata = {
   title: "LayerForge - Professional 3D Printing Services",
@@ -33,7 +42,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${montserrat.variable} ${poppins.variable} font-sans`}>
+      <body className={`${outfit.variable} font-sans`}>
         <AuthProvider>
           <CartProvider>
             <Navbar />

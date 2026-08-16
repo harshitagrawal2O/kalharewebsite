@@ -10,8 +10,9 @@ export default function ProductsPage() {
   return (
     <div className="min-h-screen pt-24 pb-16">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary/10 via-background to-primary/5 py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden bg-secondary/60 py-20">
+        <div className="pointer-events-none absolute -right-32 top-0 h-72 w-72 rounded-full bg-cta/10 blur-3xl" />
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -25,7 +26,7 @@ export default function ProductsPage() {
             >
               <div className="relative">
                 <Package className="h-32 w-32 text-primary mx-auto animate-pulse" />
-                <Sparkles className="h-8 w-8 text-primary absolute -top-2 -right-2 animate-bounce" />
+                <Sparkles className="h-8 w-8 text-cta absolute -top-2 -right-2 animate-bounce" />
               </div>
             </motion.div>
             
@@ -33,9 +34,9 @@ export default function ProductsPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="text-5xl md:text-6xl font-bold mb-6"
+              className="text-5xl md:text-6xl font-extrabold tracking-display mb-6"
             >
-              Products <span className="text-gradient">Coming Soon</span>
+              Products <span className="text-cta">Coming Soon</span>
             </motion.h1>
             
             <motion.p 
@@ -55,12 +56,12 @@ export default function ProductsPage() {
               className="flex flex-col sm:flex-row gap-4 justify-center items-center"
             >
               <Link href="/custom-print">
-                <Button size="lg" className="text-lg px-8">
+                <Button size="lg" variant="cta">
                   Try Custom Printing Instead
                 </Button>
               </Link>
               <Link href="/contact">
-                <Button size="lg" variant="outline" className="text-lg px-8">
+                <Button size="lg" variant="outline">
                   Get Notified
                   <Bell className="ml-2 h-5 w-5" />
                 </Button>
@@ -79,8 +80,8 @@ export default function ProductsPage() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-4xl font-bold mb-4">
-              What to <span className="text-gradient">Expect</span>
+            <h2 className="text-4xl font-extrabold tracking-display mb-4">
+              What to <span className="text-cta">Expect</span>
             </h2>
             <p className="text-xl text-muted-foreground">
               Coming features in our product store
@@ -112,9 +113,9 @@ export default function ProductsPage() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
               >
-                <Card className="h-full text-center hover:shadow-lg transition-all">
+                <Card className="group h-full text-center transition-all hover:shadow-brand hover:border-cta/50">
                   <CardHeader>
-                    <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center text-primary mx-auto mb-4">
+                    <div className="h-16 w-16 rounded-full bg-secondary flex items-center justify-center text-primary mx-auto mb-4 transition-colors group-hover:bg-accent">
                       {feature.icon}
                     </div>
                     <CardTitle>{feature.title}</CardTitle>
@@ -135,9 +136,9 @@ export default function ProductsPage() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
           >
-            <Card className="border-primary/20">
+            <Card className="border-t-4 border-t-cta shadow-brand">
               <CardHeader>
-                <Bell className="h-12 w-12 text-primary mx-auto mb-4" />
+                <Bell className="h-12 w-12 text-cta mx-auto mb-4" />
                 <CardTitle className="text-3xl mb-4">Be the First to Know</CardTitle>
                 <CardDescription className="text-base">
                   Want to get notified when our product store launches? Contact us and we&apos;ll keep you updated.
@@ -145,7 +146,7 @@ export default function ProductsPage() {
               </CardHeader>
               <CardContent>
                 <Link href="/contact">
-                  <Button size="lg" className="text-lg px-8">
+                  <Button size="lg" variant="cta">
                     Notify Me at Launch
                   </Button>
                 </Link>

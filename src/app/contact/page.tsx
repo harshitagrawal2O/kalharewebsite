@@ -71,15 +71,17 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen pt-24 pb-16">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary/10 via-background to-primary/5 py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden bg-secondary/60 py-20">
+        <div className="pointer-events-none absolute -right-32 top-0 h-72 w-72 rounded-full bg-cta/10 blur-3xl" />
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-center"
           >
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              Get In <span className="text-gradient">Touch</span>
+            <span className="eyebrow mb-5">Contact</span>
+            <h1 className="text-5xl md:text-6xl font-extrabold tracking-display mb-6">
+              Get In <span className="text-cta">Touch</span>
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Have a question or project in mind? We&apos;d love to hear from you.
@@ -149,7 +151,7 @@ export default function ContactPage() {
                     </p>
                   </div> */}
 
-                  <Button type="submit" size="lg" className="w-full">
+                  <Button type="submit" size="lg" variant="cta" className="w-full">
                     <Send className="mr-2 h-5 w-5" />
                     Send Message via WhatsApp
                   </Button>
@@ -173,7 +175,7 @@ export default function ContactPage() {
               >
                 <Card className={info.link ? "cursor-pointer hover:shadow-lg transition-shadow" : ""} onClick={() => info.link && window.open(info.link, '_blank')}>
                   <CardHeader>
-                    <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-2">
+                    <div className="h-12 w-12 rounded-lg bg-accent flex items-center justify-center text-cta-strong mb-2">
                       {info.icon}
                     </div>
                     <CardTitle className="text-lg">{info.title}</CardTitle>
@@ -185,7 +187,7 @@ export default function ContactPage() {
                       </p>
                     ))}
                     {info.link && (
-                      <p className="text-xs text-primary mt-2 flex items-center gap-1">
+                      <p className="text-xs text-cta-strong mt-2 flex items-center gap-1">
                         Click to view on map
                         <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
@@ -222,8 +224,8 @@ export default function ContactPage() {
           viewport={{ once: true }}
           className="mt-20"
         >
-          <h2 className="text-3xl font-bold text-center mb-12">
-            Frequently Asked <span className="text-gradient">Questions</span>
+          <h2 className="text-3xl font-extrabold tracking-display text-center mb-12">
+            Frequently Asked <span className="text-cta">Questions</span>
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[

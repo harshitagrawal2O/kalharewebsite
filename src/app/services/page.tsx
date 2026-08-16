@@ -144,17 +144,19 @@ export default function ServicesPage() {
   return (
     <div className="min-h-screen pt-24 pb-16">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary/10 via-background to-purple-500/10 py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden bg-secondary/60 py-20">
+        <div className="pointer-events-none absolute -left-32 top-0 h-72 w-72 rounded-full bg-cta/10 blur-3xl" />
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-center"
           >
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              Our <span className="text-gradient">Services</span>
+            <span className="eyebrow mb-5">What We Do</span>
+            <h1 className="text-5xl md:text-6xl font-extrabold tracking-display mb-6">
+              Our <span className="text-cta">Services</span>
             </h1>
-            <p className="text-xl text-foreground max-w-3xl mx-auto">
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Comprehensive 3D printing solutions tailored to your needs
             </p>
           </motion.div>
@@ -173,22 +175,22 @@ export default function ServicesPage() {
                 transition={{ delay: index * 0.1 }}
               >
                 <CardContainer containerClassName="py-0">
-                  <CardBody className="bg-gray-50 relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-auto sm:w-[25rem] h-auto rounded-xl p-6 border">
+                  <CardBody className="bg-card relative group/card border-border w-auto sm:w-[25rem] h-auto rounded-lg p-6 border transition-shadow duration-300 hover:shadow-brand-lg">
                     <CardItem
                       translateZ="50"
-                      className="text-xl font-bold text-foreground dark:text-white mb-2"
+                      className="font-heading text-xl font-bold text-primary mb-2"
                     >
                       {service.title}
                     </CardItem>
                     <CardItem
                       as="p"
                       translateZ="60"
-                      className="text-foreground text-sm max-w-sm mt-2 dark:text-neutral-300 mb-4"
+                      className="text-muted-foreground text-sm max-w-sm mt-2 mb-4"
                     >
                       {service.description}
                     </CardItem>
                     <CardItem translateZ="100" className="w-full mb-4">
-                      <div className="h-16 w-16 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+                      <div className="h-16 w-16 rounded-lg bg-secondary flex items-center justify-center text-primary transition-colors group-hover/card:bg-accent group-hover/card:text-cta-strong">
                         {service.icon}
                       </div>
                     </CardItem>
@@ -196,15 +198,15 @@ export default function ServicesPage() {
                       <ul className="space-y-3">
                         {service.features.map((feature, i) => (
                           <li key={i} className="flex items-start gap-2">
-                            <Check className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                            <span className="text-sm text-foreground dark:text-neutral-300">
+                            <Check className="h-5 w-5 text-cta mt-0.5 flex-shrink-0" />
+                            <span className="text-sm text-foreground">
                               {feature}
                             </span>
                           </li>
                         ))}
                       </ul>
                     </CardItem>
-                    <div className="flex justify-end items-center pt-4 border-t">
+                    <div className="flex justify-end items-center pt-4 border-t border-border">
                       <CardItem translateZ="60" as="div">
                         <HoverBorderGradient
                           as="button"
@@ -214,7 +216,6 @@ export default function ServicesPage() {
                             window.open(whatsappUrl, "_blank");
                           }}
                           containerClassName="rounded-xl"
-                          className="bg-gray-100 text-black"
                         >
                           <span className="text-sm font-semibold">
                             Get Quote
@@ -239,10 +240,10 @@ export default function ServicesPage() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-4xl font-bold mb-4">
-              Available <span className="text-gradient">Materials</span>
+            <h2 className="text-4xl font-extrabold tracking-display mb-4">
+              Available <span className="text-cta">Materials</span>
             </h2>
-            <p className="text-xl text-foreground">
+            <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
               Choose from a wide range of high-quality materials
             </p>
           </motion.div>
@@ -256,9 +257,9 @@ export default function ServicesPage() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
               >
-                <Card className="text-center hover:shadow-lg transition-all overflow-hidden">
+                <Card className="group text-center transition-all overflow-hidden hover:shadow-brand hover:border-cta/50">
                   <CardContent className="pt-6">
-                    <div className="h-20 w-20 rounded-full mx-auto mb-4 overflow-hidden bg-muted relative">
+                    <div className="h-20 w-20 rounded-full mx-auto mb-4 overflow-hidden bg-secondary ring-2 ring-border transition-all group-hover:ring-cta/60 relative">
                       <Image
                         src={material.image}
                         alt={material.name}
@@ -266,7 +267,9 @@ export default function ServicesPage() {
                         className="object-cover"
                       />
                     </div>
-                    <h3 className="font-bold text-lg mb-2">{material.name}</h3>
+                    <h3 className="font-bold text-lg mb-2 text-primary">
+                      {material.name}
+                    </h3>
                     <p className="text-sm text-foreground">
                       {material.description}
                     </p>
@@ -287,10 +290,10 @@ export default function ServicesPage() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-4xl font-bold mb-4">
-              Our <span className="text-gradient">Process</span>
+            <h2 className="text-4xl font-extrabold tracking-display mb-4">
+              Our <span className="text-cta">Process</span>
             </h2>
-            <p className="text-xl text-foreground">
+            <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
               Simple, transparent, and efficient
             </p>
           </motion.div>
@@ -325,17 +328,17 @@ export default function ServicesPage() {
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
                 >
-                  <Card className="text-center h-full hover:shadow-2xl transition-all duration-300 group hover:-translate-y-2 border-2 hover:border-primary/50">
+                  <Card className="text-center h-full transition-all duration-300 group hover:-translate-y-2 hover:shadow-brand-lg border-2 hover:border-cta/50">
                     <CardContent className="pt-6 relative overflow-hidden">
                       {/* Animated background gradient on hover */}
                       <motion.div
-                        className="absolute inset-0 bg-gradient-to-br from-primary/10 via-purple-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                        className="absolute inset-0 bg-gradient-to-br from-accent via-secondary to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                         initial={false}
                       />
 
                       {/* Step number */}
                       <motion.div
-                        className="absolute top-4 right-4 text-6xl font-bold text-primary/5 group-hover:text-primary/10 transition-colors duration-300"
+                        className="absolute top-4 right-4 font-heading text-6xl font-extrabold tracking-display text-cta/15 group-hover:text-cta/30 transition-colors duration-300"
                         whileHover={{ scale: 1.2, rotate: 5 }}
                       >
                         {index + 1}
@@ -343,11 +346,11 @@ export default function ServicesPage() {
 
                       {/* Icon with advanced animations */}
                       <motion.div
-                        className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center text-primary mx-auto mb-4 relative z-10"
+                        className="h-16 w-16 rounded-full bg-secondary flex items-center justify-center text-primary mx-auto mb-4 relative z-10"
                         whileHover={{
                           scale: 1.1,
                           rotate: 360,
-                          backgroundColor: "rgba(76, 154, 255, 0.2)",
+                          backgroundColor: "rgba(248, 100, 0, 0.16)",
                         }}
                         transition={{
                           rotate: { duration: 0.6, ease: "easeInOut" },
@@ -363,7 +366,7 @@ export default function ServicesPage() {
 
                         {/* Pulse ring effect */}
                         <motion.div
-                          className="absolute inset-0 rounded-full border-2 border-primary opacity-0 group-hover:opacity-100"
+                          className="absolute inset-0 rounded-full border-2 border-cta opacity-0 group-hover:opacity-100"
                           initial={{ scale: 1, opacity: 0 }}
                           whileHover={{
                             scale: [1, 1.5, 1.5],
@@ -380,7 +383,7 @@ export default function ServicesPage() {
                       {/* Title with slide-in effect */}
                       <motion.h3
                         className="font-bold text-lg mb-2 relative z-10"
-                        whileHover={{ scale: 1.05, color: "#094ba0" }}
+                        whileHover={{ scale: 1.05, color: "#C24E00" }}
                         transition={{ duration: 0.2 }}
                       >
                         {step.title}
@@ -388,7 +391,7 @@ export default function ServicesPage() {
 
                       {/* Description */}
                       <motion.p
-                        className="text-sm text-foreground relative z-10"
+                        className="text-sm text-muted-foreground relative z-10"
                         initial={{ opacity: 0.7 }}
                         whileHover={{ opacity: 1 }}
                       >
@@ -397,7 +400,7 @@ export default function ServicesPage() {
 
                       {/* Progress indicator */}
                       <motion.div
-                        className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-primary to-purple-600"
+                        className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-primary to-cta"
                         initial={{ width: "0%" }}
                         whileInView={{ width: "100%" }}
                         viewport={{ once: true }}
@@ -421,7 +424,7 @@ export default function ServicesPage() {
                       height="24"
                       viewBox="0 0 24 24"
                       fill="none"
-                      className="text-primary drop-shadow-lg"
+                      className="text-brand-slate drop-shadow-lg"
                       animate={{
                         x: [0, 5, 0],
                       }}
@@ -455,18 +458,19 @@ export default function ServicesPage() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
           >
-            <Card className="bg-gradient-to-r from-primary to-purple-600 text-white">
-              <CardHeader className="text-center">
-                <CardTitle className="text-3xl mb-4">
+            <Card className="relative overflow-hidden border-0 bg-brand-gradient text-brand-offwhite shadow-brand-lg">
+              <div className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-cta/20 blur-3xl" />
+              <CardHeader className="relative z-10 text-center">
+                <CardTitle className="font-heading text-3xl font-extrabold tracking-display text-brand-offwhite mb-4">
                   Ready to Start Your Project?
                 </CardTitle>
-                <CardDescription className="text-white/90 text-lg">
+                <CardDescription className="text-brand-offwhite/80 text-lg">
                   Get a free quote and consultation today
                 </CardDescription>
               </CardHeader>
-              <CardContent className="flex flex-col sm:flex-row gap-4 justify-center">
+              <CardContent className="relative z-10 flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/contact">
-                  <Button size="lg" variant="secondary">
+                  <Button size="lg" variant="cta" className="w-full sm:w-auto">
                     Get Free Quote
                   </Button>
                 </Link>
@@ -474,7 +478,7 @@ export default function ServicesPage() {
                   <Button
                     size="lg"
                     variant="outline"
-                    className="bg-transparent text-white border-white hover:bg-white/10"
+                    className="w-full sm:w-auto border-brand-offwhite/30 bg-transparent text-brand-offwhite hover:border-cta hover:bg-brand-offwhite/10 hover:text-brand-offwhite"
                   >
                     Browse Products
                   </Button>

@@ -38,7 +38,7 @@ export const HoverEffect = ({
           <AnimatePresence mode="wait">
             {hoveredIndex === idx && (
               <motion.span
-                className="absolute inset-0 h-full w-full bg-neutral-200 dark:bg-slate-800/[0.8] block  rounded-3xl"
+                className="absolute inset-0 h-full w-full bg-accent block rounded-3xl"
                 initial={{ opacity: 0 }}
                 animate={{
                   opacity: 1,
@@ -68,7 +68,7 @@ export const HoverEffect = ({
             <Button
               size="sm"
               variant="ghost"
-              className="text-primary hover:text-primary hover:bg-primary/10"
+              className="text-cta-strong hover:bg-accent hover:text-accent-foreground"
               onClick={(e) => {
                 e.preventDefault();
                 const message = `Hello! I am interested in your ${item.title} service. Please provide me with a quote.`;
@@ -95,7 +95,7 @@ export const Card = ({
   return (
     <div
       className={cn(
-        "rounded-2xl h-full w-full p-4 overflow-hidden bg-white dark:bg-black border border-gray-200 dark:border-white/[0.2] group-hover:border-primary relative z-20 shadow-sm flex flex-col",
+        "rounded-2xl h-full w-full p-4 overflow-hidden bg-card border border-border group-hover:border-cta group-hover:shadow-brand transition-all duration-300 relative z-20 shadow-sm flex flex-col",
         className
       )}
     >
@@ -113,7 +113,7 @@ export const CardTitle = ({
   children: React.ReactNode;
 }) => {
   return (
-    <h4 className={cn("text-foreground font-bold tracking-wide mt-4 text-xl", className)}>
+    <h4 className={cn("font-heading text-primary font-bold tracking-tight mt-4 text-xl", className)}>
       {children}
     </h4>
   );

@@ -11,6 +11,44 @@ type Testimonial = {
   designation: string;
   src: string;
 };
+
+const initialsOf = (name: string) =>
+  name
+    .trim()
+    .split(/\s+/)
+    .slice(0, 2)
+    .map((part) => part[0]?.toUpperCase() ?? "")
+    .join("");
+
+/**
+ * Avatar that falls back to a Lufga monogram on the brand palette when the
+ * image cannot load. Several testimonial photos are hotlinked from third-party
+ * CDNs that return 403 once their signed URLs expire, and a broken <img> on the
+ * home page looks worse than initials.
+ */
+const Avatar = ({ src, name }: { src: string; name: string }) => {
+  const [failed, setFailed] = useState(false);
+
+  if (failed || !src) {
+    return (
+      <div className="flex h-full w-full items-center justify-center bg-primary font-heading text-sm font-bold text-primary-foreground">
+        {initialsOf(name)}
+      </div>
+    );
+  }
+
+  return (
+    <Image
+      src={src}
+      alt={name}
+      width={48}
+      height={48}
+      className="h-full w-full object-cover"
+      onError={() => setFailed(true)}
+    />
+  );
+};
+
 export const AnimatedTestimonials = ({
   testimonials,
   autoplay = false,
@@ -64,15 +102,19 @@ export const AnimatedTestimonials = ({
             {items.map((t, i) => (
               <div
                 key={`${t.src}-${i}`}
-                className="flex-shrink-0 w-80 md:w-96 p-6 bg-white dark:bg-neutral-900 border rounded-2xl shadow-md"
+                className="flex-shrink-0 w-80 md:w-96 p-6 bg-card border border-border rounded-lg shadow-brand"
                 aria-hidden={i >= testimonials.length}
               >
+                {/* Blaze Orange quote mark — the card's one accent. */}
+                <div className="mb-2 font-heading text-4xl font-black leading-none text-cta/40">
+                  &ldquo;
+                </div>
                 <div className="flex items-center gap-4">
-                  <div className="h-12 w-12 rounded-full overflow-hidden">
-                    <Image src={t.src} alt={t.name} width={48} height={48} className="object-cover" />
+                  <div className="h-12 w-12 flex-shrink-0 rounded-full overflow-hidden ring-2 ring-border">
+                    <Avatar src={t.src} name={t.name} />
                   </div>
                   <div>
-                    <div className="text-lg font-semibold text-foreground dark:text-white">{t.name}</div>
+                    <div className="font-heading text-lg font-semibold text-primary">{t.name}</div>
                     <div className="text-sm text-muted-foreground">{t.designation}</div>
                   </div>
                 </div>

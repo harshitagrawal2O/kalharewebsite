@@ -95,14 +95,18 @@ export default function Home() {
         "LayerForge transformed my designs into reality. The quality is outstanding! Their attention to detail and commitment to excellence is unmatched in the industry.",
       name: "Anurag Singh",
       designation: "Product Designer",
-      src: "https://media.licdn.com/dms/image/v2/D5603AQEFuNOySAf3xA/profile-displayphoto-scale_400_400/B56ZmvjPJ7IYAg-/0/1759586875670?e=1766016000&v=beta&t=nfoOZPWx-xYyqYJhix0YnFH0UxnBdxotrnWYTqpLyEo",
+      // Was a hotlinked LinkedIn CDN URL whose signature expired (403).
+      // Empty src renders the initials monogram with no network request.
+      // Drop a real headshot in /public/images/testimonials/ to restore a photo.
+      src: "",
     },
     {
       quote:
         "Fast turnaround and excellent customer service. Highly recommended! They helped bring my product vision to life with incredible precision and professionalism.",
       name: "Harshit Agrawal",
       designation: "Entrepreneur",
-      src: "https://media.licdn.com/dms/image/v2/D5603AQHGIbaTVhguDw/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1715881696505?e=1766016000&v=beta&t=ZRbmEouRQeoaEw1AjJtx48TGaxz-0QlCWzBqb9PWtSY",
+      // Expired LinkedIn CDN signature — see note above.
+      src: "",
     },
     {
       quote:
@@ -123,8 +127,8 @@ export default function Home() {
   return (
     <div className="overflow-hidden">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center bg-white pt-20 sm:pt-24 pb-12 sm:pb-16 overflow-hidden">
-        <div className="absolute inset-0 w-full h-full bg-white z-20 [mask-image:radial-gradient(transparent,white)] pointer-events-none" />
+      <section className="relative min-h-screen flex items-center justify-center bg-background pt-20 sm:pt-24 pb-12 sm:pb-16 overflow-hidden">
+        <div className="absolute inset-0 w-full h-full bg-background z-20 [mask-image:radial-gradient(transparent,white)] pointer-events-none" />
         <Boxes />
         <motion.div
           initial="initial"
@@ -133,19 +137,27 @@ export default function Home() {
           className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-20 relative z-20 w-full"
         >
           <div className="text-center space-y-6 sm:space-y-8">
-            <motion.div variants={fadeInUp} className="space-y-3 sm:space-y-4">
+            <motion.div variants={fadeInUp} className="space-y-4 sm:space-y-5">
+              <motion.span
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="eyebrow"
+              >
+                Additive Manufacturing
+              </motion.span>
               <motion.h1
-                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight justify-center font-heading text-slate-900 dark:text-slate-100"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold tracking-display justify-center font-heading text-primary"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
               >
                 Professional Additive Manufacturing &{" "}
-                <span className="text-[#094ba0] block w-full sm:inline-block sm:w-auto mt-2 sm:mt-0">
+                <span className="text-cta block w-full sm:inline-block sm:w-auto mt-2 sm:mt-0">
                   Rapid Prototyping
                 </span>
               </motion.h1>
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-foreground max-w-3xl mx-auto px-4">
+              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
                 From digital concepts to functional prototypes, built with
                 precision.
               </p>
@@ -158,21 +170,22 @@ export default function Home() {
               <Link href="/custom-print" className="w-full sm:w-auto">
                 <Button
                   size="lg"
-                  className="text-base sm:text-lg px-6 sm:px-8 w-full sm:w-auto h-12 sm:h-11"
+                  variant="cta"
+                  className="w-full sm:w-auto"
                 >
                   Get a Quote
-                  <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
+                  <ArrowRight className="ml-1 h-5 w-5" />
                 </Button>
               </Link>
               <PointerHighlight
-                rectangleClassName="border-[#094ba0]"
-                pointerClassName="text-[#094ba0]"
+                rectangleClassName="border-cta"
+                pointerClassName="text-cta"
               >
                 <Link href="/services" className="w-full sm:w-auto">
                   <Button
                     size="lg"
                     variant="outline"
-                    className="text-base sm:text-lg px-6 sm:px-8 relative z-10 w-full sm:w-auto h-12 sm:h-11"
+                    className="relative z-10 w-full sm:w-auto"
                   >
                     Our Services
                   </Button>
@@ -182,32 +195,29 @@ export default function Home() {
 
             <motion.div
               variants={fadeInUp}
-              className="pt-8 sm:pt-12 flex justify-center gap-6 sm:gap-8 md:gap-12 text-center flex-wrap px-4"
+              className="pt-8 sm:pt-12 flex justify-center items-stretch gap-6 sm:gap-8 md:gap-12 text-center flex-wrap px-4"
             >
-              <div className="min-w-[100px]">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-gradient">
-                  Precisely
+              {[
+                { value: "Precisely", label: "Accurate" },
+                { value: "Happy", label: "Clients" },
+                { value: "99%", label: "Satisfaction" },
+              ].map((stat, i) => (
+                <div
+                  key={stat.label}
+                  className={cn(
+                    "min-w-[100px] px-4 sm:px-6",
+                    // Slate hairlines between stats — the colour's stated role.
+                    i > 0 && "border-l border-border",
+                  )}
+                >
+                  <div className="font-heading text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-display text-primary">
+                    {stat.value}
+                  </div>
+                  <div className="mt-1 text-xs sm:text-sm md:text-base font-medium uppercase tracking-[0.12em] text-muted-foreground">
+                    {stat.label}
+                  </div>
                 </div>
-                <div className="text-xs sm:text-sm md:text-base text-slate-600 dark:text-slate-400">
-                  Accurate
-                </div>
-              </div>
-              <div className="min-w-[100px]">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-gradient">
-                  Happy
-                </div>
-                <div className="text-xs sm:text-sm md:text-base text-slate-600 dark:text-slate-400">
-                  Clients
-                </div>
-              </div>
-              <div className="min-w-[100px]">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-gradient">
-                  99%
-                </div>
-                <div className="text-xs sm:text-sm md:text-base text-slate-600 dark:text-slate-400">
-                  Satisfaction
-                </div>
-              </div>
+              ))}
             </motion.div>
           </div>
         </motion.div>
@@ -223,10 +233,10 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Why Choose <span className="text-gradient">LayerForge</span>
+            <h2 className="text-4xl md:text-5xl font-extrabold tracking-display mb-4">
+              Why Choose <span className="text-cta">LayerForge</span>
             </h2>
-            <p className="text-xl text-muted-foreground">
+            <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
               Industry-leading 3D printing with unmatched quality
             </p>
           </motion.div>
@@ -262,10 +272,10 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             className="text-center mb-8"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Our <span className="text-gradient">Services</span>
+            <h2 className="text-4xl md:text-5xl font-extrabold tracking-display mb-4">
+              Our <span className="text-cta">Services</span>
             </h2>
-            <p className="text-xl text-muted-foreground">
+            <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
               Comprehensive 3D printing solutions for every need
             </p>
           </motion.div>
@@ -314,10 +324,10 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              How It <span className="text-gradient">Works</span>
+            <h2 className="text-4xl md:text-5xl font-extrabold tracking-display mb-4">
+              How It <span className="text-cta">Works</span>
             </h2>
-            <p className="text-xl text-muted-foreground">
+            <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
               Simple steps to bring your ideas to life
             </p>
           </motion.div>
@@ -354,24 +364,24 @@ export default function Home() {
                 className="relative flex items-center gap-4"
               >
                 <CardSpotlight
-                  className="h-full text-center p-8 bg-white dark:bg-neutral-950 border-gray-200 flex-1"
+                  className="h-full text-center p-8 bg-card border-border rounded-lg flex-1"
                   radius={400}
-                  color="rgba(76, 154, 255, 0.25)"
+                  color="rgba(248, 100, 0, 0.18)"
                 >
-                  <div className="text-6xl font-bold text-primary/20 mb-4">
+                  <div className="font-heading text-6xl font-extrabold tracking-display text-cta/30 mb-4">
                     {item.step}
                   </div>
-                  <h3 className="text-xl font-bold mb-4 text-foreground">
+                  <h3 className="text-xl font-bold mb-4 text-primary">
                     {item.title}
                   </h3>
                   <p className="text-base text-muted-foreground">
                     {item.description}
                   </p>
-                  <CheckCircle2 className="h-12 w-12 text-primary mx-auto mt-6" />
+                  <CheckCircle2 className="h-12 w-12 text-cta mx-auto mt-6" />
                 </CardSpotlight>
                 {index < 2 && (
                   <div className="hidden md:block flex-shrink-0">
-                    <ArrowRight className="h-8 w-8 text-primary" />
+                    <ArrowRight className="h-8 w-8 text-brand-slate" />
                   </div>
                 )}
               </motion.div>
@@ -390,7 +400,7 @@ export default function Home() {
           className="relative w-full"
         >
           {/* Video container */}
-          <div className="relative w-full h-[600px] md:h-[700px] lg:h-[800px] bg-black">
+          <div className="relative w-full h-[600px] md:h-[700px] lg:h-[800px] bg-brand-teal">
             <motion.video
               key={currentVideo}
               ref={videoRef}
@@ -409,8 +419,9 @@ export default function Home() {
               Your browser does not support the video tag.
             </motion.video>
 
-            {/* Dark overlay for better text readability */}
-            <div className="absolute inset-0 bg-black/30" />
+            {/* Teal Blue scrim rather than neutral black, so the video sits
+                inside the palette instead of beside it. */}
+            <div className="absolute inset-0 bg-brand-teal/55" />
 
             {/* Content overlay */}
             <div className="absolute inset-0 flex items-center justify-center">
@@ -421,10 +432,10 @@ export default function Home() {
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="text-center px-4 z-10"
               >
-                <h2 className="text-4xl md:text-6xl font-bold text-white mb-4 drop-shadow-lg">
-                  Precision <span className="text-[#094ba0]">in Motion</span>
+                <h2 className="text-4xl md:text-6xl font-extrabold tracking-display text-brand-offwhite mb-4 drop-shadow-lg">
+                  Precision <span className="text-cta">in Motion</span>
                 </h2>
-                <p className="text-xl md:text-2xl text-white/90 drop-shadow-md">
+                <p className="text-xl md:text-2xl text-brand-offwhite/90 drop-shadow-md">
                   Watch innovation come to life, layer by layer
                 </p>
               </motion.div>
@@ -443,10 +454,10 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             className="text-center mb-8"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              What Our <span className="text-gradient">Clients Say</span>
+            <h2 className="text-4xl md:text-5xl font-extrabold tracking-display mb-4">
+              What Our <span className="text-cta">Clients Say</span>
             </h2>
-            <p className="text-xl text-muted-foreground">
+            <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
               Trusted by many customers
             </p>
           </motion.div>
@@ -456,37 +467,35 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-[#094ba0] to-[#4975d5]">
+      <section className="relative overflow-hidden py-20 bg-brand-gradient">
+        {/* A single Blaze Orange bloom — energy against the Teal ground. */}
+        <div className="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full bg-cta/20 blur-3xl" />
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
+          className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+          <h2 className="text-4xl md:text-5xl font-extrabold tracking-display text-brand-offwhite mb-6">
             Ready to Get Started?
           </h2>
-          <p className="text-xl text-white/90 mb-8">
+          <p className="text-xl text-brand-offwhite/80 mb-8">
             Join thousands of satisfied customers and bring your ideas to life
             today
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/custom-print">
-              <Button
-                size="lg"
-                variant="secondary"
-                className="text-lg px-8 bg-white hover:bg-white/90 text-[#1a365d]"
-              >
+              <Button size="lg" variant="cta" className="w-full sm:w-auto">
                 Get a quote
-                <ArrowRight className="ml-2 h-5 w-5" />
+                <ArrowRight className="ml-1 h-5 w-5" />
               </Button>
             </Link>
             <Link href="/services">
               <Button
                 size="lg"
                 variant="outline"
-                className="text-lg px-8 bg-transparent text-white border-white hover:bg-white/10"
+                className="w-full sm:w-auto border-brand-offwhite/30 bg-transparent text-brand-offwhite hover:border-cta hover:bg-brand-offwhite/10 hover:text-brand-offwhite"
               >
                 Services
               </Button>
